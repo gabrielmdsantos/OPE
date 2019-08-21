@@ -15,7 +15,7 @@
 $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "TESTE";
+    $dbname = "teste";
     
     $conn = new mysqli ($servername, $username, $password, $dbname);
     
@@ -38,10 +38,9 @@ function validaUsuario($usuario, $senha) {
   $nusuario = addslashes($usuario);
   $nsenha = addslashes($senha);
   // Monta uma consulta SQL (query) para procurar um usuário
-  $sql = "SELECT `id`, `login` FROM `usuarios` WHERE `login` = '".$nusuario."'";
-  //WHERE ".$cS." `login` = '".$nusuario."' AND ".$cS." `senha` = '".$nsenha."' LIMIT 1";
-  // SELECT `id`, `login` FROM `login` WHERE ".$cS." `login` = '".$nusuario."' AND ".$cS." `senha` = '".$nsenha."' LIMIT 1";
-  $servidor = "localhost";
+  $sql = "SELECT `id`,`login` FROM `usuarios` WHERE `login` = '".$nusuario."' AND `senha` = '".$nsenha."' LIMIT 1 ";
+
+$servidor = "localhost";
 $usuario = "root";
 $senha = "";
 $dbname = "TESTE";

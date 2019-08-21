@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Utiliza uma função criada no seguranca.php pra validar os dados digitados
   if (validaUsuario($usuario, $senha) == true) {
     // O usuário e a senha digitados foram validados, manda pra página interna
-    header("Location: redefinir_senha.html");
+    header("Location: home.html");
   } else {
+    echo "Não conectado";
     // O usuário e/ou a senha são inválidos, manda de volta pro form de login
     // Para alterar o endereço da página de login, verifique o arquivo seguranca.php
     expulsaVisitante();

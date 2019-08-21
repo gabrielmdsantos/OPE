@@ -7,3 +7,4 @@ $dbname = "TESTE";
 //criar conexao
 $conn = mysqli_connect($servidor,$usuario,$senha,$dbname);
 echo "Conectado com sucesso";
+
