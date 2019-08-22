@@ -5,6 +5,13 @@ $senha = "";
 $dbname = "TESTE";
 
 //criar conexao
-$conn = mysqli_connect($servidor,$usuario,$senha,$dbname);
+$conect = mysqli_connect($servidor,$usuario,$senha,$dbname);
 echo "Conectado com sucesso";
 
+if (!$conect){
+    die("Falha na conexao: " . mysqli_connect_error());
+}else{
+    //echo "Conectado com sucesso";
+}
+
+?>
