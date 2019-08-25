@@ -1,9 +1,9 @@
-<html>
-<html lang="pt-BR" dir="ltr">
+
+<html lang="pt-BR">
 	<head>
 		<link rel="stylesheet" href="css/estilo.css">
 		<meta charset="utf-8">
-		<title>Tela de Login</title>
+		<title>Tela de Login 1.0</title>
 	</head>
 	<body>
 		<div class="login">
@@ -14,10 +14,9 @@
 				<p>Usuários</p>
 				<input type="text" name="login" placeholder="Usuário">
 				<p>Senha</p>
-				<input type="password" name="senha" placeholder="Senha">
+				<input type="password"  name="senha" placeholder="Senha">
 				<input type="submit" name="" value="Iniciar sessão">
-				<a href="redefinir_senha.html">Esqueceu a senha?</a><br>
-				<a href="criar_conta.html">Criar conta</a><br>
+				
 				
 			</form>
 	</body>

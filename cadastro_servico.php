@@ -11,26 +11,23 @@
     <?php require_once("header.php");?>
 </nav>
 
-<nav id="ddf">
-    <?php
-    $id = "";
-    $nome = "";
+    <nav id="ddf">
+    <?php    
+        $id = "";
+        $tipo_de_servico = "";
 
-    function getPosts()
+
+        function getPosts()
         {
-        
             $posts = array();
-            $posts [1] = $_POST ['nome'];
-            
+            $posts [1] = $_POST ['tipo_de_servico'];
             return $posts;
         }
-    
-    
         
-        
+    
         if (isset($_POST['insert'])){
             $data = getPosts();
-            $Insert_Query = "INSERT INTO `parceiro`(`Nome`) VALUES ('$data[1]')";
+            $Insert_Query = "INSERT INTO `servico`(`tipo_de_servico`) VALUES ('$data[1]')";
             try{
                 $insert_result = mysqli_query ($conect ,$Insert_Query);
                 if ($insert_result){
@@ -45,14 +42,17 @@
             }
         }
 
+        
+    
     ?>
-        <form action="inserir_parceiros.php" method="post">
+        <form action="cadastro_servico.php" method="post">
             <div id="cad">
-                <h4>PARCEIRO</h4>
-                <input type="text" name="nome" placeholder="Nome" value="<?php echo  $nome;?>" /> 
-                <input type="submit" name="insert" value="Cadastrar" >
+                <h4>SERVIÇO</h4>
+                <input type="text" name="tipo_de_servico" placeholder="Tipo de Servico" value="<?php echo $tipo_de_servico;?>" /> <br>
+                <input type="submit" name="insert" value="Inserir" >
             </div>
         </form>
+        
     </nav>
 
 </body>

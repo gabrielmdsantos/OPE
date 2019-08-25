@@ -1,98 +1,64 @@
-<!doctype html>
-<html lang = 'pt-br'>
+<html lang="pt-br">
 <head>
-    <title> Formulario PHP </title>
-    <meta charset="utf-8" />
-    <link href="Css/diadois.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="css/estilo_home.css">
+    <link rel="stylesheet" href="css/esti.css">
+    <?php  include_once("conexao.php");  ?>
 </head>
-    <body>
-   
-<?php
-    $host="localhost";
-    $user= "root";
-    $password="";
-    $database="teste";
-    
-    $id = "";
-    $quantidade_gasta = "";
-    $descricao = "";
-        
-        
-    
-    mysqli_report (MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    
-    try{
-        $conect = mysqli_connect ($host, $user, $password, $database);
-    } catch (Exception $ex)
-    {
-     echo'Error';
-    }
-    
-    function getPosts()
-    {
-    
-        $posts = array();   
+<body>
+<nav id="menu">
+    <?php require_once("header.php");?>
+</nav>
 
-        $posts [1] = $_POST ['quantidade_gasta'];
-        $posts [2] = $_POST ['descricao'];
-        return $posts;
-    }
-    
-    
-        
-    
-    if (isset($_POST['insert'])){
-        $data = getPosts();
-        $Insert_Query = "INSERT INTO `gastos`(`quantidade_gasta`,`descricao`) VALUES ('$data[1]','$data[2]')";
-        try{
-            $insert_result = mysqli_query ($conect ,$Insert_Query);
-            if ($insert_result){
-                if(mysqli_affected_rows($conect)>0){
-                    echo ("Registro cadastrado com sucesso");
-                }else{
-                    echo("Não foi possivel inserir dados");
+    <nav id="ddf">
+        <?php
+            $id = "";
+            $quantidade_gasta = "";
+            $descricao = "";
+
+            function getPosts()
+                {
+                
+                    $posts = array();   
+
+                    $posts [1] = $_POST ['quantidade_gasta'];
+                    $posts [2] = $_POST ['descricao'];
+                    return $posts;
                 }
-            }
-        } catch (Exception $ex){
-            echo("error inserindo" .$ex->getMessage());
-        }
-    }
     
     
-    ?>
+        
+    
+                if (isset($_POST['insert'])){
+                    $data = getPosts();
+                    $Insert_Query = "INSERT INTO `gastos`(`quantidade_gasta`,`descricao`) VALUES ('$data[1]','$data[2]')";
+                    try{
+                        $insert_result = mysqli_query ($conect ,$Insert_Query);
+                        if ($insert_result){
+                            if(mysqli_affected_rows($conect)>0){
+                                echo ("Registro cadastrado com sucesso");
+                            }else{
+                                echo("Não foi possivel inserir dados");
+                            }
+                        }
+                    } catch (Exception $ex){
+                        echo("error inserindo" .$ex->getMessage());
+                    }
+                }
 
 
-        
-        
-        
-       
-        <aside class="um">
-        <li><a href="home.html">HOME</a></li>
-        </aside>
-        <section>
-             
-            <form action="inserir_gastos.php" method="post">
-            <center>
-           
-            quantidade_gasta:<br> <input type="number" name="quantidade_gasta" placeholder="quantidade_gasta" value="<?php echo $quantidade_gasta;?>" /> <br> 
-            descricao:<br> <input type="text" name="descricao" placeholder="descricao" value="<?php echo $descricao;?>" /> <br>
-            
-  
-            <br>
-            <div>
-            <input type="submit" name="insert" value="Cadastrar" >
-       
+        ?>
+        <form action="inserir_gastos.php" method="post">
+            <div id="cad">
+                <h4>GASTOS</h4>
+                <input type="text" name="quantidade_gasta" placeholder="Nome" value="<?php echo $quantidade_gasta; ?>" /> <br>
+                <br><input type="text" name="descricao" placeholder="Descricao" value="<?php echo $descricao;?>" /> 
+                <input type="submit" name="insert" value="Inserir" >
             </div>
-            </center>
-            </form>
-           
-        </section>
-        <aside class="dois">
-        
-        </aside>
-        <footer>
-        
-        </footer>        
-   
+        </form>
+    </nav>
+
 </body>
+    
 </html>

@@ -1,45 +1,33 @@
-<!doctype html>
-<html lang = 'pt-br'>
+<html lang="pt-br">
 <head>
-    <title> Formulario PHP </title>
-    <meta charset="utf-8" />
-    <link href="Css/diadois.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <link rel="stylesheet" href="css/estilo_home.css">
+    <link rel="stylesheet" href="css/esti.css">
+    <?php include_once("conexao.php"); ?>
 </head>
-    <body>
-   
-<?php
-    $host="localhost";
-    $user= "root";
-    $password="";
-    $database="teste";
-    
+<body>
+<nav id="menu">
+    <?php require_once("header.php");?>
+</nav>
+
+<nav id="ddf">
+    <?php   
     $id = "";
-    $nome = "";
+    $Nome = "";
     $rg = "";
     $CPF = "";
-    
-        
-    
-    mysqli_report (MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    
-    try{
-        $conect = mysqli_connect ($host, $user, $password, $database);
-    } catch (Exception $ex)
-    {
-     echo'Error';
-    }
-    
+
     function getPosts()
-    {
-    
-        $posts = array();
-        $posts [1] = $_POST ['Nome'];
-        $posts [2] = $_POST ['rg'];
-        $posts [3] = $_POST ['cpf'];
+        {
         
-        return $posts;
-    }
-    
+            $posts = array();
+            $posts [1] = $_POST ['Nome'];
+            $posts [2] = $_POST ['rg'];
+            $posts [3] = $_POST ['cpf'];
+            
+            return $posts;
+        }
     
         
     
@@ -59,43 +47,17 @@
             echo("error inserindo" .$ex->getMessage());
         }
     }
-    
-    
     ?>
+    <form action="cadastro_cliente.php" method="post">
+        <div id="cad">
+        <h4>CADASTRAR CLIENTE</h4>
+        <input type="text" name="Nome" placeholder="Nome" value="<?php echo $Nome;?>" /> <br>
+        <br><input type="text" name="rg" placeholder="RG" value="<?php echo $rg;?>" /> <br>
+        <br><input type="text" name="cpf" placeholder="CPF" value="<?php echo $CPF?>" />
+        <input type="submit" name="insert" value="Cadastrar" >
+        </div>
+    </form>
+</nav>
 
-
-        
-        
-        
-       
-        <aside class="um">
-        <li><a href="home.html">HOME</a></li>
-        </aside>
-        <section>
-             
-            <form action="cadastro_cliente.php" method="post">
-            <center>
-           
-            Nome:<br> <input type="text" name="Nome" placeholder="Nome" value="<?php echo $nome;?>" /> <br> 
-            RG:<br> <input type="text" name="rg" placeholder="rg" value="<?php echo $rg;?>" /> <br>
-            CPF:<br> <input type="text" name="cpf" placeholder="CPF" value="<?php echo $CPF;?>" /> <br>
-            
-  
-            <br>
-            <div>
-            <input type="submit" name="insert" value="Cadastrar" >
-       
-            </div>
-            </center>
-            </form>
-           
-        </section>
-        <aside class="dois">
-        
-        </aside>
-        <footer>
-        
-        </footer>        
-   
 </body>
-</html>
+    

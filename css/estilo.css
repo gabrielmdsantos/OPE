@@ -2,7 +2,6 @@ body {
 	margin: 0; 
 	padding: 0;
 	background-image: url(img/arq1.jpg);
-	opacity: 100%;
 	background-size: cover;
 	font-family: 'Times New Roman', Times, serif;
 	
@@ -10,7 +9,7 @@ body {
 
 .login {
 	width: 320px; /* Tamanho esquerda + direita box de login */
-	height: 380px; /* Tamanho do topo + base do box de login */
+	height: 350px; /* Tamanho do topo + base do box de login */
 	border: 3px solid rgb(3, 212, 55); /* Cor e tamanho da borda do box login*/
 	border-radius: 50px 0px 50px 0px; /* Pontas esq topo, dir topo, esq inferior, dir inferior*/
 	color: #fff; /* Cor das lestras "Login, Usuário e senha"*/
@@ -27,7 +26,7 @@ body {
 .usuario {
 	border-radius: 25%; /* Borda do avatar*/
 	position: absolute;
-	top: -30%; /* Distância do topo */
+	top: -35%; /* Distância do topo */
 	left: 112px; /* Posição esqueda e direita */
 }
 

@@ -1,0 +1,58 @@
+
+#ddf{
+    width: 50%;
+    height: 50%;
+    padding: 8px;
+    background-color: #9C9C9C;
+    box-shadow: 0 2px 5px;
+    margin-left: 20%;
+    margin-top: 10%;
+
+
+
+
+}
+
+#ddf h4{
+    margin: 0;
+	padding-top: 0;
+	padding-left: 0;
+	padding-bottom: 0px;
+	letter-spacing: 0px;
+	text-transform: arial;
+	text-align: left;
+    font-size: 20px;
+    margin-left: 5%;
+    margin-block-end: 5%;
+
+    
+}
+#ddf p{
+    margin: 0;
+	padding: 0;
+    font-size: 35px;
+    text-align:center;
+}
+
+#ddf input{
+    width: 50%;
+    padding: 5px;    
+    margin-left: 5%; 
+    
+ 
+}
+
+#ddf input[type="submit"]{
+    width: 30%;
+    padding: 2%;    
+    margin-left: 15%;
+    margin-top: 10%;
+}
+
+#cad{
+    width: 80%;
+    padding: 50px;    
+    margin-left: 20%; 
+    
+ 
+}
