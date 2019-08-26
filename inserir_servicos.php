@@ -43,7 +43,6 @@
 
     function getPosts()
     {
-    
         $posts = array();
         $posts [1] = $_POST ['servico'];
         $posts [2] = $_POST ['cliente'];
@@ -67,32 +66,47 @@
         return $posts;
     }
     
-  
-    
     if (isset($_POST['insert'])){
         $data = getPosts();
         $Insert_Query = "INSERT INTO `pagamento`(`valor_total`, `forma_pagamento`,`parcelamento`) VALUES ('$data[16]','$data[17]','$data[18]')";
-        
         try{
             $insert_result = mysqli_query ($conect ,$Insert_Query);
             if ($insert_result){
                 if(mysqli_affected_rows($conect)>0){
-                    $Insert_local = "INSERT INTO `local_do_projeto`( `id_cliente`, `cep`, `cidade`, `estado`, `endereco`, `numero`, `condicoes_imovel`) VALUES ('$data[2]','$data[7]','$data[8]','$data[9]','$data[10]','$data[11]','$data[12]')";
-                    $insert_result2 = mysqli_query($conect,$Insert_local);   
-                    if(mysqli_affected_rows($conect)>0){
-                        $sql = "SELECT `id` FROM `pagamento` ORDER BY id DESC LIMIT 1";
-                        $queryp = mysqli_query($conect,$sql);
-                        $resul = mysqli_fetch_assoc($queryp);
-                        $data[20] = $resul['id'];
-                        $Insert_projeto = "INSERT INTO `projeto`( `id_cliente`, `id_parceiro`, `id_funcionario`, `id_servico`, `id_pagamento`, `descricao`, `tamanho`) VALUES ('$data[2]','$data[3]','$data[4]','$data[1]',$data[20],'$data[5]','$data[6]')";
-                        $insert_result3 = mysqli_query($conect,$Insert_projeto);
-                        if(mysqli_affected_rows($conect)>0){
-                            $Insert_acompa = "INSERT INTO `acompanhamento`( `prazo`, `data_inicio`, `situacao`, `data_final`) VALUES ('$data[13]','$data[14]','$data[19]','$data[15]')";
-                            $Insert_result4 = mysqli_query($conect,$Insert_acompa);
-                            echo ("Registro cadastrado com sucesso");
+                    $Insert_local = "INSERT INTO `local_do_projeto`( `id_cliente`, `cep`, `cidade`, `estado`, `endereco`, `numero`, `condicoes_imovel`) VALUES ('$data[2]','$data[7]','$data[8]','$data[9]','$data[10]','$data[11]','$data[12]')"; 
+                    try{
+                        $insert_result2 = mysqli_query($conect,$Insert_local);
+                        if($insert_result2){
+                            if(mysqli_affected_rows($conect)>0){
+                                $sql = "SELECT `id` FROM `pagamento` ORDER BY id DESC LIMIT 1";
+                                $queryp = mysqli_query($conect,$sql);
+                                $resul = mysqli_fetch_assoc($queryp);
+                                $data[20] = $resul['id'];
+                                $Insert_projeto = "INSERT INTO `projeto`( `id_cliente`, `id_parceiro`, `id_funcionario`, `id_servico`, `id_pagamento`, `descricao`, `tamanho`) VALUES ('$data[2]','$data[3]','$data[4]','$data[1]',$data[20],'$data[5]','$data[6]')";
+                                try{
+                                    $insert_result3 = mysqli_query($conect,$Insert_projeto);
+                                    if($insert_result3){
+                                        if(mysqli_affected_rows($conect)>0){
+                                            $Insert_acompa = "INSERT INTO `acompanhamento`( `prazo`, `data_inicio`, `situacao`, `data_final`) VALUES ('$data[13]','$data[14]','$data[19]','$data[15]')";
+                                            try{
+                                                $Insert_result4 = mysqli_query($conect,$Insert_acompa);
+                                            }catch (Exception $ex){
+                                                echo("error inserindo" .$ex->getMessage());
+                                            } 
+                                    }
+                                                               
+                                    }
+                                    echo (mysqli_affected_rows($conect));
+                                }catch (Exception $ex){
+                                    echo("error inserindo" .$ex->getMessage());
+                                }
+                            }
                         }
-                    }      
+                    }catch (Exception $ex){
+                        echo("error inserindo" .$ex->getMessage());
+                    }
                     
+                    echo ("Registro cadastrado com sucesso");
                 }else{
                     echo("Não foi possivel inserir dados");
                 }
@@ -101,6 +115,8 @@
             echo("error inserindo" .$ex->getMessage());
         }
     }
+    
+    
     
     ?>
 

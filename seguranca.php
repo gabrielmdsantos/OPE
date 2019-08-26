@@ -1,17 +1,5 @@
 <?php
-/**
-* Sistema de segurança com acesso restrito
-*
-* Usado para restringir o acesso de certas páginas do seu site
-*
-* @author Thiago Belem <contato@thiagobelem.net>
-* @link http://thiagobelem.net/
-*
-* @version 1.0
-* @package SistemaSeguranca
-*/
-//  Configurações do Script
-// ==============================
+
 $servername = "localhost";
     $username = "root";
     $password = "";
