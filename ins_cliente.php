@@ -32,24 +32,20 @@ var data2 = {
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
-            if($objfn->queryEndereco($_POST)== 'ok'){
-                if($endereco == $data[2]){
-                    if($objfn->queryEndereco2($_POST)=='ok'){
-                        echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
-                    }else{} 
-                
-                }else{
-                    echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
-                    header("location: ins_cliente.php");
-                }
-                }
-                else{
-                   
-                }
-            }else{
+            if($objfn->queryInsertmail($_POST)=='ok'){
+                if($objfn->queryInserttel($_POST=='ok')){
+                    if($objfn->queryEndereco($_POST)== 'ok'){
+                        if($endereco == $data[2]){
+                            if($objfn->queryEndereco2($_POST)=='ok'){
 
-            }
-        }
+                            }
+                        }
+                    }else{}
+                }else{}
+            }else{}
+        }else{}
+    }
+        
 ?>
 
 <!DOCTYPE html>
@@ -137,13 +133,13 @@ var data2 = {
                 
             <fieldset id="contato" style="position:relative; border-radius:20px 20px 20px 20px">
                 <legend>Contato</legend>
-                        Telefone 1:<input type="number" name="tTel1" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
-                        Telefone 2: <input type="number" name="tTel2" id="cTel2" size="10" maxlength="10" placeholder="(11)9999-9999" />
-                        Celular: <input type="number" name="tCel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
+                        Telefone 1:<input type="number" name="tel1" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        Telefone 2: <input type="number" name="tel2" id="cTel2" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        Celular: <input type="number" name="tcel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
                       <!--  Contato: <input type="contato" name="tContato" id="cContato" size="10" maxlength="10" placeholder="joão@terra.com.br" /> -->
-                        E-mail:  <input type="email" name="tMail" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />
+                        E-mail:  <input type="email" name="email" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />
             </fieldset>
-            <script>
+<script>
 $(function(){
 'use stric';
 (update = function(index)
@@ -186,7 +182,7 @@ update( $(this).val() );
                 <input type="submit" name="insert" value="Inserir"> 
             
             
-        </form>
+</form>
     
 
 </body>

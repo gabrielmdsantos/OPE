@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title> Teste</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<!--Menu-->
+
+<body>
+    <nav>
+        <div class="menu">
+            <ul>
+                <li><a href="consultacliente.html">Cliente</a></li>
+                <li><a href="consultacontrato.html">Contrato</a></li>
+                <li><a href="controleprojeto.html">Controle do Projeto</a></li>
+                <li><a href="funcionario.html">Funcionário</a></li>
+                <li><a href="parceiro.html">Parceiro</a></li>
+                <li><a href="servico.html">Serviço</a></li>
+                <li><a href="financeiro.html">Financeiro</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Formulário-->
+    <div class="form1" justify-content: center;>
+        <form method="POST" id="formulario">
+            <!--função para indicar o local que será gravado o form(action="mailto:contato@teste.com.br)"-->
+            <!--Dados do cliente-->
+            <fieldset id="cadastro" style="position; relative; margin: 10px; border-radius:20px 20px 20px 20px; ">
+                <legend>Cadastro</legend>
+                <table ALIGN="center" height="100px" ; width="1300px" ;>
+                    <tr>
+                        <td align="left">
+                            <div style="height:40px;">
+                                <fieldset id="Pessoa" style="position: relative; height: 100%; float: left; width: 150px; border-radius:20px 20px 20px 20px">
+                                    <legend>Pessoa</legend>
+                                    <input type="radio" name="tPessoa" id="cPF" /><label for="cPF">Física</label>
+                                    <input type="radio" name="tPessoa" id="cPJ" /><label for="cPJ">Jurídica</label>
+                                </fieldset>
+                        </td>
+                        <td><label for="cCC">CPF/ CNPJ: </label><input type="number" name="tCC" id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" /></td>
+                        <td><label for="cNome">Nome: </label><input type="text" name="tNome" id="cNome" size="40" maxlength="40" placeholder="Nome Completo" /></td>
+                        <td><label for="cRS">Razão Social: </label><input type="text" name="tRS" id="cRS" size="30" maxlength="30" placeholder="Razão Social" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="cRepre">Representante: </label><input type="text" name="tRepre" id="cRepre" size="20" maxlength="20" placeholder="Nome do Responsável" /></td>
+                        <td><label for="cParc">Parceiro: </label><input type="text" name="tParc" id="cParc" size="20" maxlength="20" placeholder="Parceiro" /></td>
+                        <td><label for="cRG">RG: </label><input type="number" name="tRG" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" /></td>
+                        <td ALIGN="left">
+                            <div style="height:35px;">
+                                <fieldset id="sexo" style="position:relative; height:100%;  float:left;  width:200px; border-radius:20px 20px 20px 20px">
+                                    <legend>Sexo</legend>
+                                    <input type="radio" name="tSexo" id="cMasc" /><label for="cMasc">Masculino</label>
+                                    <input type="radio" name="tSexo" id="cFem" /><label for="cFem">Feminino</label>
+                                </fieldset>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </fieldset>
+            <div style="height:120px;">
+                <fieldset id="contato" style=" margin: 10px; height:100%;  float:left; margin-top: 0px;  width:300px; border-radius:20px 20px 20px 20px ">
+                    <legend>Contato</legend>
+                    <table ALIGN="left" height="100px" ; width="580px" ;>
+                        <tr>
+                            <td><label for="cTel1">Telefone 1: </label><input type="number" name="tTel1" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" /></td>
+                            <td><label for="cTel2">Telefone 2: </label><input type="number" name="tTel1" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cCel">Celular: </label><input type="number" name="tCel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" /></td>
+                            <td><label for="cContato">Contato: </label><input type="contato" name="tContato" id="cContato" size="10" maxlength="10" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cMail">E-mail: </label><input type="email" name="tMail" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" /></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+            <!--Dados do endereço-->
+            <div style="height:165px;">
+                <fieldset id="endereco" style="margin: 10px ; height:100%; margin-top: -150px; float:right;  width:620px; border-radius:20px 20px 20px 20px">
+                    <legend>Endereço</legend>
+                    <table ALIGN="left" height="160px" ; width="680px" ;>
+                        <tr>
+                            <td><label for="cEnd">Logradouro: </label> <input type="text" name="tEnd" id="cEnd" size="40" maxlength="40" placeholder="R:, Av:, Est:..." /></td>
+                            <td><label for="cNum">Número: </label><input type="number" name="tNum" id="cNum" min="0" max="99999" placeholder="" /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cComp">Complemento: </label><input type="text" name="tComp" id="cComp" size="30" maxlength="30" placeholder="Apto, Sala, ... " /></td>
+                            <td><label for="cCP">CEP: </label><input type="text" name="cep" size="5" maxlength="5"> - <input type="text" name="cep2" size="3" maxlength="3"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="cMun">Município: </label><input type="text" name="tMun" id="cMun" size="30" maxlength="30" placeholder="Cidade" /></td>
+                            <td><label for="cUF">Estado: </label><select name="cUF" id="cUF">
+                                        <option selected>UF</option>
+                                        <option>Acre</option>
+                                        <option>Alagoas</option>
+                                        <option>Amazonas</option>
+                                        <option>Amapá</option>
+                                        <option>Bahia</option>
+                                        <option>Ceará</option>
+                                        <option>Distrito Federal</option>
+                                        <option>Espírito Santo</option>
+                                        <option>Goiás</option>
+                                        <option>Maranhão</option>
+                                        <option>Mato Grosso</option>
+                                        <option>Mato Grosso do Sul</option>
+                                        <option>Minas Gerais</option>
+                                        <option>Pará</option>
+                                        <option>Paraíba</option>
+                                        <option>Paraná</option>
+                                        <option>Pernambuco</option>
+                                        <option>Piauí</option>
+                                        <option>Rio de Janeiro</option>
+                                        <option>Rio Grande do Norte</option>
+                                        <option>Rio Grande do Sul</option>
+                                        <option>Rondônia</option>
+                                        <option>Roraima</option>
+                                        <option>Santa Catarina</option>
+                                        <option>São Paulo</option>
+                                        <option>Sergipe</option>
+                                        <option>Tocantins</option> 
+                                    </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Endereço residencial é o mesmo de Cobrança?</td>
+                            <td>
+                                <div style="height:35px;">
+                                    <fieldset id="cobranca" style="position:relative; height:80%;  float: left;  width:120px; border-radius:20px 20px 20px 20px ">
+                                        <legend>End. Cobrança</legend>
+                                        <input type="radio" name="tEndc" id="cEndS" /><label for="cEndS">Sim</label>
+                                        <input type="radio" name="tEndc" id="cEndN" /><label for="cEndN">Não</label>
+
+                                    </fieldset>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+            </br>
+            </br>
+            </br>
+            <div style="height: 180px;">
+                <fieldset id="observacao" style="margin: 10px ; height:100%; margin-top: -190px; float:left; width: 250px; border-radius:20px 20px 20px 20px ">
+                    <legend>Observação</legend>
+                    <textarea name="comentarios" rows="10" cols="80" maxlength="600"></textarea>
+                </fieldset>
+            </div>
+        </fieldset>
+        </form>
+        <form>
+                <button class="btn6"><a href="consultacliente.html">VOLTAR</a></button>
+        </form>
+</body>
+
+</html>
+

@@ -20,6 +20,10 @@ class Cliente{
     private $observacao;
     private $id_parc;
     private $id_cli;
+    private $tel1;
+    private $tel2;
+    private $tcel;
+    private $email;
 
     public function __construct(){
         $this->con = new conexao();
@@ -176,6 +180,61 @@ class Cliente{
                 return 'erro';
             }
         }catch(PDOException $ex){
+        }
+
+    }
+
+    public function queryInsertmail($dados){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
+            $cst -> execute();
+            $this->email = $dados['email'];
+            $ultimaid = $cst->fetchColumn(0);
+            $cst = $this->con->conect()->prepare("INSERT INTO `email`(`email`, `id_cli`) VALUES (:email,$ultimaid);");
+          //  $cst -> bindParam(":tipo", $this->pessoa, PDO::PARAM_STR);
+            $cst -> bindParam(":email", $this->email, PDO::PARAM_STR);
+            if($cst->execute()){
+                return 'ok';
+                echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
+            }else{
+                return 'erro';
+                echo '<script type="text/javascript"> alert("erro ao inserir");</script>';
+            }
+        }catch(PDOException $ex){
+            
+        }
+
+    }
+
+    public function queryInserttel($dados){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
+            $cst -> execute();
+            $this->tel1 = $dados['tel1'];
+            $this->tel2 = $dados['tel2'];
+            $this->tcel = $dados['tcel'];
+            $ultimaid = $cst->fetchColumn(0);
+            $cst = $this->con->conect()->prepare("INSERT INTO `telefone`(`telefone`, `id_clie`) VALUES  (:tel1,$ultimaid);");
+            $cst2 = $this->con->conect()->prepare("INSERT INTO `telefone`(`telefone`, `id_clie`) VALUES  (:tel2,$ultimaid);");
+            $cst3 = $this->con->conect()->prepare("INSERT INTO `telefone`(`telefone`, `id_clie`) VALUES  (:tcel,$ultimaid);");
+            //  $cst -> bindParam(":tipo", $this->pessoa, PDO::PARAM_STR);
+            $cst -> bindParam(":tel1", $this->email, PDO::PARAM_INT);
+            $cst2 -> bindParam(":tel2", $this->email, PDO::PARAM_INT);
+            $cst3 -> bindParam(":tcel", $this->email, PDO::PARAM_INT);
+            if($cst->execute()){
+                if($cst2->execute()){
+                    if($cst3->execute()){
+                        return 'ok';
+                        echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
+                    }
+                }
+               
+            }else{
+                return 'erro';
+                echo '<script type="text/javascript"> alert("erro ao inserir");</script>';
+            }
+        }catch(PDOException $ex){
+            
         }
 
     }
