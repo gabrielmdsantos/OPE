@@ -1,9 +1,13 @@
 <?php
     require_once 'classes/funcoes.class.php';
     require_once 'classes/contrato.class.php';
+    require_once 'classes/servico.class.php';
+    require_once 'classes/cliente.class.php';
     
     $objFc = new Funcoes();
     $objfn = new Contrato();
+    $objsv = new Servico();
+    $objcl = new Cliente();
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
@@ -37,13 +41,22 @@
             <form method = "POST">
                 <table style="HEIGHT:100%; WIDTH:100%;">
                     <tr align="left " bottom="middle ">
-                        <td><input type=" search " id="search0 " maxlength="5" name="id_cli" placeholder="CLIENTE"></td>
-                        
+                        <td>Cliente: 
+                            <select name="id_cli">
+                                    <?php foreach($objcl->querySelectname() as $rst){ ?>
+                                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> 
+                                    </option>
+                                    <?php } ?>
+                                </select>
+                        </td>
                         <td>
+                        Serviço:
                             <select name="id_servi">
-                                        <option name="id_servi" value="1">1</option>
-                                        <option name="id_servi" value="2">2</option>
-                                    </select>
+                                <?php foreach($objsv->querySelect() as $rst){ ?>
+                                <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['servico'], 1)) ?> 
+                                </option>
+                                <?php } ?>
+                            </select>
                         </td>
                         <td><label for="cRG ">RG: </label><input type="number " name="tRG " id="cRG " size="10 " maxlength="10 " placeholder="00.000.000-0 " /></td>
                         <td><label for="cCC ">CPF/ CNPJ: </label><input type="number " name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00 " /></td>
@@ -51,20 +64,19 @@
                     <tr>
                         <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
                         <td><label for="cPrazo ">Prazo:</label><input type="date" name="prazo"></td>
-                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number " name="valor" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="" name="valor" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
                         <td><label for="cValorP ">Valor da Parcela: </label><input type="number " name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
                         <td><label for="cParcelas ">Quantidade de Parcelas </label><select name="qnt_parcela" id="cParcelas ">
                                         <option selected >1</option>
-                                        <option>1X</option>
-                                        <option>2X</option>
-                                        <option>3X</option>
-                                        <option>4X</option>
-                                        <option>5X</option>
-                                        <option>6X</option>
-                                        <option>7X</option>
-                                        <option>8X</option>
-                                        <option>9X</option>
-                                        <option>10X</option>                                        
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>                                        
                                     </select></td>
                     </tr>
                     <tr>

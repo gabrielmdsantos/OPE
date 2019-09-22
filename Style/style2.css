@@ -98,6 +98,10 @@ body {
     text-align: center;
 }
 
+.scroll table th:first-child {
+    position:fixed;
+}
+
 .scroll table td {
     padding: .8em;
 }

@@ -1,3 +1,10 @@
+<?php
+    require_once 'classes/funcoes.class.php';
+    require_once 'classes/parceiro.class.php';
+    
+    $objFc = new Funcoes();
+    $objfn = new Parceiro();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,9 +38,11 @@
                     <input type="hidden"  name="representante"  value="" />
                     <input type="hidden"  name="inscricao"      value="" />
                     <input type="hidden"  name="cnpj"  value="" />
-                    &nbsp;&nbsp; <select name="id_parc" placeholder="Selecione o parceiro">    
-                    <option value="null"> Selecione o parceiro </option>
-                    <option value="1"> 1 </option>
+                    &nbsp;&nbsp;Parceiro:  <select name="id_parc" placeholder="Selecione o parceiro">  
+                    <?php foreach($objfn->querySelect() as $rst){ ?>
+                    <option value="<?php echo ($objFc->tratarCaracter($rst['id_parc'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> </option>
+                   
+                    <?php } ?>
                     </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label> Observações: </label>

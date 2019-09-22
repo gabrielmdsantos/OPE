@@ -1,6 +1,10 @@
+<?php
+include_once 'seguranca/seguranca.php';
+protegePagina(); 
+
+?>
+
 <!DOCTYPE html>
-
-
 <html lang="pt-br">
 
 <head>
@@ -18,6 +22,17 @@
             <li><a href="cadasatrar_parceiro">Parceiro</a></li>
             <li><a href="servico.php">Serviço</a></li>
             <li><a href="financeiro.php">Financeiro</a></li>
-
+            <li><a> <form action="" method="post">
+                    <?php
+                    if(isset($_POST["sair"])){
+                        expulsaVisitante();
+                        }
+                    ?>
+                <input type="submit" name="sair" placeholder="Sair" value="sair" />
+                
+                </form>
+                </a>
         </ul>
+        
 </div>
+

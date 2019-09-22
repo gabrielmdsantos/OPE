@@ -1,8 +1,13 @@
+<?php
+    require_once 'classes/funcoes.class.php';
+    require_once 'classes/contrato.class.php';
+    
+    $objFc = new Funcoes();
+    $objfn = new Contrato();
+?>
+
 <!DOCTYPE html>
-
-
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
@@ -18,17 +23,28 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>DATA</th>
+                    
                     <th>C.C</th>
                     <th>CLIENTE</th>
-                    <th>STATUS DA OBRA</th>
+                    <th>SERVIÇO</th>
+                    <th>Detalhes</th>
                     <th>VALOR</th>
-                    <th>PARCELAS</th>
                     <th>QUANTIDADE DE VEZES</th>
                     <th>PRÓXIMA PARCELA</th>
                 </tr>
             </thead>
             <tbody>
+            <?php foreach($objfn->querySelectcli() as $rst){ ?>
+                <tr>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['CC'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['CLI'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['Serv'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['DETALHES'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['VALOR'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['QNT_PARC'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['VENC'], 1)) ?> </td>
+                </tr>
+                <?php } ?>
 
         </table>
     </div>

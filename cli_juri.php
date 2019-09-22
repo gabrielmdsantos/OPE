@@ -1,3 +1,11 @@
+<?php
+    require_once 'classes/funcoes.class.php';
+    require_once 'classes/parceiro.class.php';
+    
+    $objFc = new Funcoes();
+    $objfn = new Parceiro();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -27,10 +35,12 @@
                     &nbsp; Razão Social:<input type="text"  name="razao"   value="" id="cRS" size="30" maxlength="30" placeholder="Razão Social" />
                     <p>&nbsp; Inscrição Estadual: <input type="number"     value="" name="inscricao" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
                     &nbsp; Representante:<input type="text"  name="representante" value=""  id="cRepre" size="20" maxlength="20" placeholder="Nome do Responsável"/>
-                    &nbsp;
-                    <select name="id_parc">    
-                    <option> Selecione o Parceiro </option>
-                    <option value="1"> 1 </option>
+                    &nbsp;  Parceiro: 
+                    <select name="id_parc">   
+                    <?php foreach($objfn->querySelect() as $rst){ ?>
+                    <option value="<?php echo ($objFc->tratarCaracter($rst['id_parc'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> </option>
+                   
+                    <?php } ?>
                     </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label> Observações: </label>

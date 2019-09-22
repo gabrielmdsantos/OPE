@@ -8,10 +8,11 @@
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
             header("location: cadasatrar_parceiro.php");
-        }
+        
     }else{
-        echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
+        echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
     }
+}
 
 ?>
 
@@ -43,110 +44,13 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($objfn->querySelect() as $rst){ ?>
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['id_parc'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <?php } ?>
+              
         </table>
     </div>
     <div class="parceiro">

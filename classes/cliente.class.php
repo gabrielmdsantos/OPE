@@ -115,14 +115,25 @@ class Cliente{
     }
     public function querySelecionaID($dados){
         try{
-            $cst = $this->con->conectar()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
-            $cst = bindParam(":idFunc", $this->idFuncionario, PDO::PARAM_INT);
+            $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
             $cst->execute();
             return $cst->fechtAll();
         }catch(PDOException $ex){
             return 'error'.$ex->getMessage();
         }
     }
+
+    public function querySelectname(){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT `id`,  `nome` FROM `cliente`;");
+            $cst->execute();
+            return $cst->fetchAll();
+        }catch(PDOException $ex){
+            return 'erro '.$ex->getMessage();
+        }
+
+    }
+
 
     public function queryInsert($dados){
         try{     
@@ -265,6 +276,19 @@ class Cliente{
         }
 
     }
+
+    public function querySelectclieparc(){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc;");
+            $cst->execute();
+            return $cst->fetchAll();
+        }catch(PDOException $ex){
+            
+        }
+
+    }
+
+    //SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc
 
 }
 

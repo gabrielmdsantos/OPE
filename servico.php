@@ -8,11 +8,12 @@
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
             header("location: servico.php");
+            echo '<script type="text/javascript"> alert("Inserido com sucesso")</script>';
         }
-    }else{
-        echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
+    else{
+        echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
     }
-
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +35,7 @@
     
     <!--Conteúdo-->
     <div class="scroll-parceiro">
+           
             <table border="1">
                 <thead>
                     <tr>
@@ -42,114 +44,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($objfn->querySelect() as $rst){ ?>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td> <?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?> </td>
+                        <td> <?php echo ($objFc->tratarCaracter($rst['servico'], 1)) ?> </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <?php } ?>
+                    
             </table>
         </div>
         <div class="parceiro">
-            <form method="POST">
+            <form method="POST" action="">
                 <input type="text" id="tParceiro" name="nome" maxlength="20" placeholder="Tipo de Serviço" />
            
         </div>

@@ -53,11 +53,13 @@ class Parceiro{
 
     }
 
-    public function querySelect($dados){
+    public function querySelect(){
         try{
-
+            $cst = $this->con->conect()->prepare("SELECT `id_parc`, `nome` FROM `parceiro`;");
+            $cst->execute();
+            return $cst->fetchAll();
         }catch(PDOException $ex){
-            
+            return 'erro '.$ex->getMessage();
         }
 
     }

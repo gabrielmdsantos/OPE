@@ -112,6 +112,18 @@ class Contrato{
 
     }
 
+
+    public function querySelectcli(){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID AS CC, cliente.nome AS CLI, servico.servico AS Serv, contrato.Detalhes AS DETALHES,contrato.Valor AS VALOR ,contrato.qnt_parcela AS QNT_PARC ,contrato.VENCIMENTO AS VENC from cliente INNER JOIN contrato ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON contrato.ID_Servico = servico.id;");
+            $cst->execute();
+            return $cst->fetchAll();
+        }catch(PDOException $ex){
+            
+        }
+
+    }
+
 }
 
 ?>

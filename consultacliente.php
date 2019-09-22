@@ -1,8 +1,14 @@
+<?php
+    require_once 'classes/funcoes.class.php';
+    require_once 'classes/cliente.class.php';
+    
+    $objFc = new Funcoes();
+    $objfn = new Cliente();
+
+
+?>
 <!DOCTYPE html>
-
-
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
@@ -23,13 +29,22 @@
     <div class="scroll">
         <table border="1">
             <thead>
-                <tr>
+                <tr position="sticky">
                     <th>C.C</th>
                     <th>Nome do cliente</th>
                     <th>Parceiros</th>
                 </tr>
             </thead>
+            </table>
+            <table border="1">
             <tbody>
+            <?php foreach($objfn->querySelectclieparc() as $rst){ ?>
+                <tr>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['id_cli'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['nome_cli'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['nome_parceiro'], 1)) ?> </td>
+                </tr>
+                <?php } ?>
 
         </table>
     </div>
