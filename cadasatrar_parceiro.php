@@ -7,8 +7,9 @@
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
-            header("location: cadasatrar_parceiro.php");
-        
+            echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
+            echo "<script>window.location = 'cadastrar_parceiro.php';</script>"; 
+            //header("location: cadasatrar_parceiro.php");
     }else{
         echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
     }

@@ -11,7 +11,8 @@
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
-            header("location: cadastrarcontrato.php");
+            echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
+            echo "<script>window.location = 'cadastrar_parceiro.php';</script>";
         }
     }else{
         echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
@@ -44,7 +45,7 @@
                         <td>Cliente: 
                             <select name="id_cli">
                                     <?php foreach($objcl->querySelectname() as $rst){ ?>
-                                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> 
+                                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 2)) ?> 
                                     </option>
                                     <?php } ?>
                                 </select>
@@ -53,7 +54,7 @@
                         Serviço:
                             <select name="id_servi">
                                 <?php foreach($objsv->querySelect() as $rst){ ?>
-                                <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['servico'], 1)) ?> 
+                                <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>" > <?php echo ($objFc->tratarCaracter($rst['servico'], 2)) ?> 
                                 </option>
                                 <?php } ?>
                             </select>

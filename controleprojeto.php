@@ -53,7 +53,7 @@
 <?php include_once("header.php"); ?>
         <!--Conteúdo-->
         <div style="height:180px">
-            <fieldset id="dadosFin" style="height:100%;  float:left; margin-top: 10px; margin-left:auto; margin-right: auto;  width:98%; border-radius:20px 20px 20px 20px ">
+            <fieldset id="dadosFin" style="height:200px;  float:left; margin-top: 10px; margin-left:auto; margin-right: auto;  width:98%; border-radius:20px 20px 20px 20px ">
                 <legend>Cliente</legend>
                 <form action="" method = "POST">
                     <table style="HEIGHT:100%; WIDTH:100%;">

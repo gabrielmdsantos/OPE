@@ -47,7 +47,7 @@
                     <?php foreach($objfn->querySelect() as $rst){ ?>
                     <tr>
                         <td> <?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?> </td>
-                        <td> <?php echo ($objFc->tratarCaracter($rst['servico'], 1)) ?> </td>
+                        <td> <?php echo ($objFc->tratarCaracter($rst['servico'],2)) ?> </td>
                     </tr>
                     <?php } ?>
                     

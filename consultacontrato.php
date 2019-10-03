@@ -12,6 +12,9 @@
     <meta charset="UTF-8" />
     <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <script src="Script/jquery-2.1.4.min.js"></script>
+    <script src="Script/javascriptcontrato.js"></script>
+
 </head>
 
 <!--Menu-->
@@ -19,7 +22,7 @@
 <body>
     <?php include_once("header.php"); ?>
 
-    <div class="scroll-contrato">
+    <div id="resultado" class="scroll-contrato">
         <table border="1">
             <thead>
                 <tr>
@@ -37,40 +40,24 @@
             <?php foreach($objfn->querySelectcli() as $rst){ ?>
                 <tr>
                     <td> <?php echo ($objFc->tratarCaracter($rst['CC'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['CLI'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['Serv'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['DETALHES'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['VALOR'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['QNT_PARC'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['VENC'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['CLI'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['Serv'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['DETALHES'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['VALOR'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['QNT_PARC'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['VENC'], 2)) ?> </td>
                 </tr>
                 <?php } ?>
 
         </table>
     </div>
     <!--Campos de busca-->
-    <div class="search1">
-        <form method="post">
-            <input type="number" id="tCCusto" maxlength="5" placeholder="C.C">
-        </form>
-    </div>
-    <div class="search2">
-        <form method="post">
-            <input type="text" id="tCliente" maxlength="5" placeholder="CLIENTE">
-        </form>
-    </div>
-    <div class="statusobra">
-        <form method="POST">
-            <select name="cStatusO" id="StatusO">
-                    <option selected>STATUS DA OBRA</option>
-                    <option> NÃO INICIADO</option>
-                    <option>EM ANDAMENTO</option>
-                    <option>INCOMPLETO</option>
-                    <option>INTERROMPIDO</option>
-                    <option>CONCLUÍ DO</option>
-            </select>
-        </form>
-    </div>
+    <form action="procprocessacontratoessa.php">  
+        <div class="search2">
+        <input type="text" name="campo"  id="campo" placeholder="Nome do Cliente" >
+        </div>
+    </form>
+    
     <!--Botão-->
     <div class="btn1"><a href="cadastrarcontrato.php">CADASTRAR CONTRATO</a></div>
 

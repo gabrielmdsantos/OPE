@@ -9,7 +9,7 @@ class conexao{
 
     public function __construct(){
         $this->servidor = "localhost";
-        $this->banco = "teste";
+        $this->banco = "teste2";
         $this->usuario =  "root";
         $this->senha = "";
     }

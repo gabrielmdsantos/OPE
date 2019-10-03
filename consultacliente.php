@@ -1,9 +1,11 @@
 <?php
     require_once 'classes/funcoes.class.php';
     require_once 'classes/cliente.class.php';
+    require_once 'classes/parceiro.class.php';
     
     $objFc = new Funcoes();
     $objfn = new Cliente();
+    $objpc = new Parceiro();
 
 
 ?>
@@ -13,58 +15,49 @@
     <meta charset="UTF-8" />
     <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="Style/style2.css">
+    <script src="Script/jquery-2.1.4.min.js"></script>
+    <script src="Script/javascriptcli.js"></script>
 </head>
 
 <!--Menu-->
 
 <body>
-    <nav>
-        <div >
-        <?php include_once('header.php'); ?>
-        </div>
-    </nav>
-    <!--consulta cliente-->
-    </div>
+    <?php include_once('header.php'); ?> 
+    <!--consulta cliente-->    
 
-    <div class="scroll">
+
+    <div id="resultado" class="scroll" >
         <table border="1">
             <thead>
-                <tr position="sticky">
-                    <th>C.C</th>
-                    <th>Nome do cliente</th>
-                    <th>Parceiros</th>
+                <tr>
+                    <td>C.C</td>
+                    <td>Nome do cliente</td>
+                    <td>Parceiros</td>
                 </tr>
             </thead>
-            </table>
-            <table border="1">
-            <tbody>
-            <?php foreach($objfn->querySelectclieparc() as $rst){ ?>
+            <tbody>   
+            <?php foreach($objfn->querySelectclieparc($_POST) as $rst){ ?>
                 <tr>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['id_cli'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['nome_cli'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['nome_parceiro'], 1)) ?> </td>
+                    <td><?php echo ($objFc->tratarCaracter($rst['id_cli'], 1)) ?> </td>
+                    <td><?php echo ($objFc->tratarCaracter($rst['nome_cli'], 1)) ?></td>
+                    <td><?php echo ($objFc->tratarCaracter($rst['nome_parceiro'], 1)) ?> </td>
                 </tr>
-                <?php } ?>
+               <?php } ?>
 
         </table>
-    </div>
-    <!--Campos de busca-->
-    <form>
-        <div class="search3">
-            <input type="number" id="tCCusto" maxlength="5" placeholder="C.C" />
-        </div>
-        <div class="search4">
-            <input type="text" id="tCliente" maxlength="20" placeholder="CLIENTE" />
-        </div>
-        <select id="appearance-select">
-            <option selected>PARCEIRO</option>
-            <option></option>
-        </select>
+    </div> 
 
+    <form action="processa.php">  
+    <div class="search4">
+    <input type="text" name="campo"  id="campo" placeholder="Nome do Cliente" >
+    </div>
+    </form>
+
+    <!--Campos de busca-->
         <!--Botão-->
         <button class="btnnn" type="button" name="tbtn"><a href="ins_cliente.php">CADASTRAR CLIENTE</a></button>
-        <button class="btnnn" type="button" name="tbtn"><a href="editarcliente.html">EDITAR CADASTRO</a></button>
-    </form>
+        <button class="btnnn" type="button" name="tbtn"><a href="edita_cliente.php">EDITAR CADASTRO</a></button>
+    
 </body>
 
 </html>

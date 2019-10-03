@@ -41,7 +41,7 @@ function validaUsuario($usuario, $senha) {
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$dbname = "TESTE";
+$dbname = "TESTE2";
 
 //criar conexao
 $conn2 = mysqli_connect($servidor,$usuario,$senha,$dbname);

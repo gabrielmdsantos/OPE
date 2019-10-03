@@ -154,7 +154,7 @@ class Cliente{
             $cst -> bindParam(":cpf",$this->cpf, PDO::PARAM_INT);
             $cst -> bindParam(":rg",$this->rg, PDO::PARAM_INT);
             $cst -> bindParam(":cnpj",$this->cnpj, PDO::PARAM_INT);
-            $cst -> bindParam(":razao", $this->razao, PDO::PARAM_STR);
+            $cst -> bindParam(":razao", $this   ->razao, PDO::PARAM_STR);
             $cst -> bindParam(":inscricao",$this->inscricao, PDO::PARAM_INT);
             $cst -> bindParam(":representante",$this->representante, PDO::PARAM_STR);
             $cst -> bindParam(":sexo",$this->sexo, PDO::PARAM_STR);
@@ -287,9 +287,15 @@ class Cliente{
         }
 
     }
-
     //SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc
 
-}
+
+    //SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc WHERE parceiro.id_parc = 2 OR cliente.nome LIKE '%b%' OR cliente.id = 3
+    // função dinamica
+    
+
+}   
+    
+
 
 ?>

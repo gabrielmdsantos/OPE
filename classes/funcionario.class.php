@@ -43,7 +43,7 @@ class Funcionario{
             $this->cpf = $this->objfunc->tratarCaracter($dados['cpf'], 1);
             $this->cel = $this->objfunc->tratarCaracter($dados['cel'], 1);
             $this->email = $this->objfunc->tratarCaracter($dados['email'], 1);
-            $cst = $this->con->conect()->prepare("INSERT INTO `funcionario`(`NOME`, `CPF`, `EMAIL`, `CELULAR`) VALUES(:nome,:cpf,:cel,:email);");
+            $cst = $this->con->conect()->prepare("INSERT INTO `funcionario`(`NOME`, `CPF`, `EMAIL`, `CELULAR`) VALUES(:nome,:cpf,:email,:cel);");
             $cst -> bindParam(":nome", $this->nome, PDO::PARAM_STR);
             $cst -> bindParam(":cpf", $this->cpf, PDO::PARAM_INT);
             $cst -> bindParam(":cel", $this->cel, PDO::PARAM_INT);
@@ -55,8 +55,7 @@ class Funcionario{
                 $cst = $this->con->conect()->prepare("INSERT INTO `login`(`ID_FUNCIONARIO`, `SENHA`) VALUES ($ultimaid,:cpf)");
                 $cst -> bindParam(":cpf", $this->cpf, PDO::PARAM_INT);
                 if ($cst->execute()){
-                    return 'ok';
-                echo '<script type="text/javascript"> alert("Inserido com sucesso")</script>';                
+                    return 'ok';                
                 }else{
                     return 'erro';
                 }

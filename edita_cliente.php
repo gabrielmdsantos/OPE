@@ -63,6 +63,19 @@ var data2 = {
 <body>
 <?php require_once("header.php"); 
 ?>
+    <form action="" method="POST">
+    <p><fieldset style="position:relative; left:0px; width:98%; border-radius:20px 20px 20px 20px">
+    <legend> Pesquisa </legend>
+    <select name="id_parc" placeholder="Selecione o Cliente">  
+    <?php foreach($objfn->querySelectname() as $rst){ ?>
+                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> </option>
+                    <?php } ?>
+    </select>
+    <input type="submit" name="pesquisa" value="Pesquisar">
+
+
+    </fieldset><p>
+    </form>
         <form action="" method="post">
             <!--Dados do cliente-->
             <fieldset id="cadastro" style="position:relative; left:0px; width:98%; border-radius:20px 20px 20px 20px">
@@ -182,8 +195,9 @@ update( $(this).val() );
             
             
 </form>
-    
 
+    
+      
 </body>
 
 </html> 

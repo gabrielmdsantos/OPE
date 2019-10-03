@@ -1,0 +1,1 @@
+SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro, endereco.logradouro as ender from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc INNER JOIN endereco ON endereco.id_cli = cliente.id
