@@ -1,6 +1,15 @@
 <?php
 include('conecta.php');
 
+require_once 'classes/funcoes.class.php';
+require_once 'classes/cliente.class.php';
+require_once 'classes/parceiro.class.php';
+
+$objFc = new Funcoes();
+$objfn = new Cliente();
+$objpc = new Parceiro();
+
+
 $campo="%".$_POST['campo']."%";
 
 
@@ -16,6 +25,7 @@ echo "
         <td>C.C</td>
         <td>Nome do cliente</td>
         <td>Parceiros</td>
+        <td> Editar </td>
         </tr>
         </thead>
 
@@ -29,6 +39,7 @@ echo "
             <td>$id</td>
             <td>$produto</td>
             <td>$valor</td>
+            <td><div class='editar'><a href='edita_cliente.php?acao=edit&func=$id' title='Editar dados'> <img src='img/ico-editar.png' width='16' height='16' alt='Editar'> </a></div>  </td>
         </tr>
         ";
         }

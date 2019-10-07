@@ -31,9 +31,9 @@
                         <input type="hidden"  name="cpf" value="" id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" />
                         <input type="hidden"  name="rg" value="" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
                        
-                    &nbsp; CNPJ:        <input type="number"  name="cnpj"  value=""  id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" /> 
+                    &nbsp; CNPJ:        <input type="number"  name="cpf"  value=""  id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" /> 
                     &nbsp; Razão Social:<input type="text"  name="razao"   value="" id="cRS" size="30" maxlength="30" placeholder="Razão Social" />
-                    <p>&nbsp; Inscrição Estadual: <input type="number"     value="" name="inscricao" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
+                    <p>&nbsp; Inscrição Estadual: <input type="number"     value="" name="rg" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
                     &nbsp; Representante:<input type="text"  name="representante" value=""  id="cRepre" size="20" maxlength="20" placeholder="Nome do Responsável"/>
                     &nbsp;  Parceiro: 
                     <select name="id_parc">   

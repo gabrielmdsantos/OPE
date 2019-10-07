@@ -31,16 +31,33 @@ class Contrato{
     }
 
 
-    public function querySeleciona($dados){
+    public function querySeleciona($dado){
         try{
-            $cst = $this->con->conectar()->prepare("Select * from contrato");
-            $cst = bindParam(":id_cli", $this->idFuncionario, PDO::PARAM_INT);
+            $this->id = $dado;
+            $cst = $this->con->conect()->prepare("SELECT cliente.nome as nome_cli, servico.servico as nome_servico, cliente.rg as rg_cli, cliente.cpf AS cpf_cli, contrato.Detalhes as detalhes_contrato, contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas, contrato.VENCIMENTO as dia_vencimento FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico WHERE contrato.id = :id;");
+            $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
             $cst->execute();
-            return $cst->fechtAll();
-        }catch(PDOException $ex){
-            return 'error'.$ex->getMessage();
+            return $cst->fetch();
+        } catch (PDOException $ex) {
+            return 'error '.$ex->getMessage();
         }
     }
+
+    public function querySelecionalan($dado){
+        try{
+            $this->id = $dado;
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID as cc, cliente.nome as nome_cli, cliente.rg as rg_cli, cliente.cpf as cpf_cli, contrato.Detalhes as detalhes, servico.servico as serico, parceiro.nome AS parceiro,
+            contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcela, contrato.VENCIMENTO as vencimento from cliente INNER JOIN contrato ON contrato.ID_Cliente = cliente. ID INNER JOIN servico ON servico.id = contrato.ID_Servico INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc WHERE contrato.id = :id;");
+            $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
+            $cst->execute();
+            return $cst->fetch();
+        } catch (PDOException $ex) {
+            return 'error '.$ex->getMessage();
+        }
+    }
+
+
+
     public function querySelecionaID($dados){
         try{
             $cst = $this->con->conectar()->prepare("SELECT `id` FROM `contrato` ORDER BY id  DESC LIMIT 1");
@@ -94,14 +111,7 @@ class Contrato{
 
     }
 
-    public function queryUpdate($dados){
-        try{
 
-        }catch(PDOException $ex){
-            
-        }
-
-    }
 
     public function queryDelete($dados){
         try{

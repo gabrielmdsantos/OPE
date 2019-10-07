@@ -1,15 +1,3 @@
-<script>
-var data = {
-"Fisica":["1"],
-"Juridica":["2"]
-};
-var data2 = {
-    "N":["1"],
-    "S":["2"]
-};
-
-</script>
-
 <?php
 
     function getPosts()
@@ -25,25 +13,31 @@ var data2 = {
 
     require_once 'classes/funcoes.class.php';
     require_once 'classes/cliente.class.php';
-    
+    require_once 'classes/parceiro.class.php';
+
     $objFc = new Funcoes();
     $objfn = new Cliente();
+    $objpc = new Parceiro();
     $endereco = "N";
 
-    if(isset($_POST['insert'])){
-        if($objfn->queryInsert($_POST) == 'ok' ){
-            if($objfn->queryInsertmail($_POST)=='ok'){
-                if($objfn->queryInserttel($_POST=='ok')){
-                    if($objfn->queryEndereco($_POST)== 'ok'){
-                        if($endereco == $data[2]){
-                            if($objfn->queryEndereco2($_POST)=='ok'){
-
-                            }
-                        }
-                    }else{}
-                }else{}
-            }else{}
-        }else{}
+    if(isset($_POST['btAlterar'])){
+        if($objfn->queryUpdatee($_POST) == 'ok'){
+            header('location: consultacliente.php');
+        }else{
+            echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+        }
+    }
+    if(isset($_GET['acao'])){
+        switch($_GET['acao']){
+            case 'edit': $func = $objfn->querySeleciona($_GET['func']); break;
+            case 'delet':
+                if($objFn->queryDelete($_GET['func']) == 'ok'){
+                    header('location: /formulario');
+                }else{
+                    echo '<script type="text/javascript">alert("Erro em deletar");</script>';
+                }
+                    break;
+        }
     }
         
 ?>
@@ -63,19 +57,7 @@ var data2 = {
 <body>
 <?php require_once("header.php"); 
 ?>
-    <form action="" method="POST">
-    <p><fieldset style="position:relative; left:0px; width:98%; border-radius:20px 20px 20px 20px">
-    <legend> Pesquisa </legend>
-    <select name="id_parc" placeholder="Selecione o Cliente">  
-    <?php foreach($objfn->querySelectname() as $rst){ ?>
-                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> </option>
-                    <?php } ?>
-    </select>
-    <input type="submit" name="pesquisa" value="Pesquisar">
 
-
-    </fieldset><p>
-    </form>
         <form action="" method="post">
             <!--Dados do cliente-->
             <fieldset id="cadastro" style="position:relative; left:0px; width:98%; border-radius:20px 20px 20px 20px">
@@ -86,22 +68,45 @@ var data2 = {
                                     <input type="radio" name="pessoa" id="cPJ" value="Juridica" /><label for="cPJ">Jurídica</label>
                     </fieldset><p>
                     
+            
+                    &nbsp; Nome:        <input type="text"  name="nome" value="<?=$objFc->tratarCaracter((isset($func['nome_cli']))?($func['nome_cli']):(''), 1)?>" id="cNome" size="40" maxlength="40" placeholder="Nome Completo" />    
+                    &nbsp; CPF/CNPJ:         <input type="number"  name="cpf" value="<?=$objFc->tratarCaracter((isset($func['cpf_cli']))?($func['cpf_cli']):(''), 1)?>" id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" />
+                    &nbsp; RG/INSCRICAO ESTADUAL:          <input type="number"  name="rg"  value="<?=$objFc->tratarCaracter((isset($func['rg_cli']))?($func['rg_cli']):(''), 1)?>" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
                     
-                     
-    <div id="result">  </div>
-            </fieldset>
+                    <fieldset id="sexo" name="sexo" style="position:relative; height:55px;  float:right; width:180px; border-radius:20px 20px 20px 20px">
+                                    <legend>Sexo</legend>
+                                    <input type="radio" value="M" name="sexo" id="cMasc" CHECKED/><label for="cMasc">Masculino</label>
+                                    <input type="radio" value="F" name="sexo" id="cFem" /><label for="cFem">Feminino</label>
+                    
+                    </fieldset>
+                    <p>    
+                    <input type="hidden"  name="razao"          value="" />
+                    <input type="hidden"  name="representante"  value="" />
+                    <input type="hidden"  name="inscricao"      value="" />
+                    <input type="hidden"  name="cnpj"  value="" />
+                    &nbsp;&nbsp;Parceiro:  <select name="id_parc" placeholder="Selecione o parceiro">  
+                    <?php foreach($objpc->querySelect() as $rst){ ?>
+                    <option value="<?php echo ($objFc->tratarCaracter($rst['id_parc'], 1)) ?>" > <?php echo ($objFc->tratarCaracter($rst['nome'], 1)) ?> </option>
+                   
+                    <?php } ?>
+                    </select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label> Observações: </label>
+                            <textarea  id="msg" name="observacao" value=""> <?=$objFc->tratarCaracter((isset($func['obs_cli']))?($func['obs_cli']):(''), 2)?> </textarea>    
+
+
+                </fieldset>
             <br>  
             <!--Dados do endereço-->
-    
                 <fieldset id="endereco" style="position:relative;height:130px; border-radius:20px 20px 20px 20px">
                     <legend>Endereço 1 </legend>
-                            CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
-                            Logradouro: <input type="text" name="logradouro"     id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
-                            Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
-                            Complemento:<input type="text" name="complemento"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
+                            CEP:        <input type="number" name="cep"         value="<?=$objFc->tratarCaracter((isset($func['cep']))?($func['cep']):(''), 1)?>"        id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                            Logradouro: <input type="text" name="logradouro"    value="<?=$objFc->tratarCaracter((isset($func['endereco']))?($func['endereco']):(''), 1)?>"    id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                            Número:     <input type="number" name="numero"      value="<?=$objFc->tratarCaracter((isset($func['num']))?($func['num']):(''), 1)?>"  min="0" max="99999" placeholder="" />&nbsp;&nbsp;
+                            Complemento:<input type="text" name="complemento"   value="<?=$objFc->tratarCaracter((isset($func['comple']))?($func['comple']):(''), 1)?>"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
                         <p>
-                            Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
-                            Estado:    <input type="text"  name="estado"        size="30" placeholder="Estado" />
+                            Município: <input type="text"  name="municipio"     value="<?=$objFc->tratarCaracter((isset($func['municipio']))?($func['municipio']):(''), 1)?>"    size="30"  placeholder="Cidade" />
+                            Estado:    <input type="text"  name="estado"        value="<?=$objFc->tratarCaracter((isset($func['estado']))?($func['estado']):(''), 1)?>"    size="30" placeholder="Estado" />
                             <!--
                             <select name="estado" value="<?php echo $estado ?>" id="cUF">
                                         <option selected>UF</option>
@@ -139,65 +144,24 @@ var data2 = {
                                     <input type="radio" name="endereco" id="e" value="S" CHECKED /><label for="e" >Sim</label><br>
                                     <input type="radio" name="endereco" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f">Não</label>
                     </fieldset><p>
+                    <input type="hidden" name="id_cli" value="<?=$objFc->tratarCaracter((isset($func['id_cli']))?($func['id_cli']):(''), 1)?>" />
                     
                 </fieldset>
             <div id="result2">  </div>                
                 
             <fieldset id="contato" style="position:relative; border-radius:20px 20px 20px 20px">
                 <legend>Contato</legend>
-                        Telefone 1:<input type="number" name="tel1" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
-                        Telefone 2: <input type="number" name="tel2" id="cTel2" size="10" maxlength="10" placeholder="(11)9999-9999" />
-                        Celular: <input type="number" name="tcel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
+                        Telefone 1:<input type="number" name="tel1"     value="<?=$objFc->tratarCaracter((isset($func['tel']))?($func['tel']):(''), 2)?>" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        Telefone 2: <input type="number" name="tel2"    value="<?=$objFc->tratarCaracter((isset($func['tel']))?($func['tel']):(''), 2)?>" id="cTel2" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        Celular: <input type="number" name="tcel"       value="<?=$objFc->tratarCaracter((isset($func['tel']))?($func['tel']):(''), 2)?>" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
                       <!--  Contato: <input type="contato" name="tContato" id="cContato" size="10" maxlength="10" placeholder="joão@terra.com.br" /> -->
-                        E-mail:  <input type="email" name="email" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />
+                        E-mail:  <input type="email" name="email"       value="<?=$objFc->tratarCaracter((isset($func['email']))?($func['email']):(''), 2)?>" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />
             </fieldset>
-<script>
-$(function(){
-'use stric';
-(update = function(index)
-{
-var first = $('input[name="pessoa"]:eq(0)').val();
-var segund = $('input[name="endereco"]:eq(0)').val();
-var array = data[ index||first ];
-var array2 = data2 [index||first];
-console.log(array);
-console.log(array2);
-if (array == "1"){
-    console.log("Heloo");
-    $("#result").load("cli_fisi.php");
-}else if(array == "2"){
-    $("#result").load("cli_juri.php");
-    console.log("hi");
-}else if(array2 == "1"){
-    $("#result2").load("ende.php");
-    console.log("hi");
-}else if(array2 =="2"){
-    $('#result2').load("ende2.php");
-}
-else{
-}
-})();
-
-$('input[name="pessoa"]').change(function()
-{
-update( $(this).val() );
-
-});
-$('input[name="endereco"]').change(function()
-{
-update( $(this).val() );
-
-});
-});
-</script>
             <br><p>
-                <input type="submit" name="insert" value="Inserir"> 
-            
-            
-</form>
+                <input type="submit" name="btAlterar" value="Alterar"> 
+                <button class="btnnn" type="button" name="tbtn"><a href="consultacliente.php">Voltar</a></button>
 
-    
-      
+
+</form> 
 </body>
-
 </html> 

@@ -34,6 +34,7 @@
                     <th>VALOR</th>
                     <th>QUANTIDADE DE VEZES</th>
                     <th>PRÓXIMA PARCELA</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +47,7 @@
                     <td> <?php echo ($objFc->tratarCaracter($rst['VALOR'], 2)) ?> </td>
                     <td> <?php echo ($objFc->tratarCaracter($rst['QNT_PARC'], 2)) ?> </td>
                     <td> <?php echo ($objFc->tratarCaracter($rst['VENC'], 2)) ?> </td>
+                    <td><div class="editar"><a href="edita_contrato.php?acao=edit&func=<?=$objFc->tratarCaracter($rst['CC'], 1)?>" title="Editar dados"> <img src="img/ico-editar.png" width="16" height="16" alt="Editar"> </a></div>  </td>
                 </tr>
                 <?php } ?>
 

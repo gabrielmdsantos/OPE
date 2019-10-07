@@ -1,1 +1,27 @@
-SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro, endereco.logradouro as ender from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc INNER JOIN endereco ON endereco.id_cli = cliente.id
+<!-- busca da tela de editar cliente -->
+
+SELECT cliente.id AS id_cli, cliente.pessoa as pessoa_cli , cliente.nome AS nome_cli ,  cliente.cpf as  cpf_cli, cliente.rg as rg_cli , cliente.razao as razao_cli, cliente.inscricao as inscri_cli, cliente.representante as repre_cli , cliente.sexo as sex_cli , cliente.observacao as obs_cli, cliente.id_parc as parc_cli, parceiro.nome as nome_parceiro, 
+endereco.cep as cep, endereco.logradouro as endereco, endereco.Numero as num, endereco.Complemento as comple, endereco.municipio as municipio, endereco.estado as estado,
+telefone.telefone as tel, email.email as email
+
+
+from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc INNER JOIN endereco ON endereco.id_cli = cliente.id INNER JOIN telefone ON cliente.id = telefone.id_clie INNER JOIN email ON cliente.id = email.id_cli WHERE cliente.id = 1
+
+
+<!-- Busca da tela de editar contrato -->
+
+SELECT cliente.nome as nome_cli, servico.servico as nome_servico, 
+cliente.rg as rg_cli, cliente.rg AS rg_cli, contrato.Detalhes as detalhes,
+ contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas,
+ contrato.VENCIMENTO as dia_vencimento 
+FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico
+
+
+<!-- Busca do controle de projetos  -->
+
+
+SELECT contrato.ID as cc, cliente.nome as nome_cli, cliente.rg as rg_cli, cliente.cpf as cpf_cli, contrato.Detalhes as detalhes, servico.servico as serico, parceiro.nome AS parceiro,
+contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcela, contrato.VENCIMENTO as vencimento
+
+
+from cliente INNER JOIN contrato ON contrato.ID_Cliente = cliente. ID INNER JOIN servico ON servico.id = contrato.ID_Servico INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc

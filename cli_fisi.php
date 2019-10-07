@@ -17,7 +17,7 @@
 
 <body>
 
-                    &nbsp; Nome:        <input type="text"  name="nome" value="" id="cNome" size="40" maxlength="40" placeholder="Nome Completo" />    
+                    &nbsp; Nome:        <input type="text"  name="nome" value="<?=$objFc->tratarCaracter((isset($func['nome']))?($func['nome']):(''), 2)?>" id="cNome" size="40" maxlength="40" placeholder="Nome Completo" />    
                     &nbsp; CPF:         <input type="number"  name="cpf" value="" id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" />
                     &nbsp; RG:          <input type="number"  name="rg"  value="" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
                     

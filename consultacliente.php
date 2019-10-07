@@ -33,6 +33,7 @@
                     <td>C.C</td>
                     <td>Nome do cliente</td>
                     <td>Parceiros</td>
+                    <td> Editar </td>
                 </tr>
             </thead>
             <tbody>   
@@ -41,6 +42,7 @@
                     <td><?php echo ($objFc->tratarCaracter($rst['id_cli'], 1)) ?> </td>
                     <td><?php echo ($objFc->tratarCaracter($rst['nome_cli'], 1)) ?></td>
                     <td><?php echo ($objFc->tratarCaracter($rst['nome_parceiro'], 1)) ?> </td>
+                    <td><div class="editar"><a href="edita_cliente.php?acao=edit&func=<?=$objFc->tratarCaracter($rst['id_cli'], 1)?>" title="Editar dados"> <img src="img/ico-editar.png" width="16" height="16" alt="Editar"> </a></div>  </td>
                 </tr>
                <?php } ?>
 
@@ -56,7 +58,7 @@
     <!--Campos de busca-->
         <!--Botão-->
         <button class="btnnn" type="button" name="tbtn"><a href="ins_cliente.php">CADASTRAR CLIENTE</a></button>
-        <button class="btnnn" type="button" name="tbtn"><a href="edita_cliente.php">EDITAR CADASTRO</a></button>
+     
     
 </body>
 

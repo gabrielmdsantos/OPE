@@ -103,16 +103,21 @@ class Cliente{
         }
     }    
 
-    public function querySeleciona($dados){
-        try{
-            $cst = $this->con->conectar()->prepare("Select * from cliente");
-            $cst = bindParam(":id_cli", $this->idFuncionario, PDO::PARAM_INT);
-            $cst->execute();
-            return $cst->fechtAll();
-        }catch(PDOException $ex){
-            return 'error'.$ex->getMessage();
-        }
+    public function querySeleciona($dado){
+            
+            try{
+                $this->id = $dado;
+                $cst = $this->con->conect()->prepare("SELECT cliente.id AS id_cli, cliente.pessoa as pessoa_cli , cliente.nome AS nome_cli ,  cliente.cpf as  cpf_cli, cliente.rg as rg_cli , cliente.razao as razao_cli, cliente.inscricao as inscri_cli, cliente.representante as repre_cli , cliente.sexo as sex_cli , cliente.observacao as obs_cli, cliente.id_parc as parc_cli, parceiro.nome as nome_parceiro, 
+                endereco.cep as cep, endereco.logradouro as endereco, endereco.Numero as num, endereco.Complemento as comple, endereco.municipio as municipio, endereco.estado as estado,
+                telefone.telefone as tel, email.email as email  from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc INNER JOIN endereco ON endereco.id_cli = cliente.id INNER JOIN telefone ON cliente.id = telefone.id_clie INNER JOIN email ON cliente.id = email.id_cli WHERE cliente.id = :id;");
+                $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
+                $cst->execute();
+                return $cst->fetch();
+            } catch (PDOException $ex) {
+                return 'error '.$ex->getMessage();
+            }
     }
+    
     public function querySelecionaID($dados){
         try{
             $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
@@ -144,18 +149,19 @@ class Cliente{
             $this->id_parc = $dados['id_parc'];
             $this->cpf = $dados['cpf'];
             $this->rg = $dados['rg'];
-            $this->cnpj = $dados['cnpj'];
+         //   $this->cnpj = $dados['cnpj'];
             $this->razao = $this->objfunc->tratarCaracter($dados['razao'], 1);
-            $this->inscricao = $dados['inscricao'];
+            $this->representante = $this->objfunc->tratarCaracter($dados['representante'], 1);
+         //   $this->inscricao = $dados['inscricao'];
            //inserindo cliente 
-            $cst = $this->con->conect()->prepare("INSERT INTO `cliente`(`pessoa`, `nome`, `cpf`, `rg`, `cnpj`, `razao`, `inscricao`, `representante`, `sexo`, `observacao`, `id_parc`) VALUES (:pessoa,:nome,:cpf,:rg,:cnpj,:razao,:inscricao,:representante,:sexo,:observacao,:id_parc);");
+            $cst = $this->con->conect()->prepare("INSERT INTO `cliente`(`pessoa`, `nome`, `cpf`, `rg`, `razao`,  `representante`, `sexo`, `observacao`, `id_parc`) VALUES (:pessoa,:nome,:cpf,:rg,:razao,:representante,:sexo,:observacao,:id_parc);");
             $cst -> bindParam(":pessoa", $this->pessoa, PDO::PARAM_STR);
             $cst -> bindParam(":nome", $this->nome, PDO::PARAM_STR);
             $cst -> bindParam(":cpf",$this->cpf, PDO::PARAM_INT);
             $cst -> bindParam(":rg",$this->rg, PDO::PARAM_INT);
-            $cst -> bindParam(":cnpj",$this->cnpj, PDO::PARAM_INT);
+        //    $cst -> bindParam(":cnpj",$this->cnpj, PDO::PARAM_INT);
             $cst -> bindParam(":razao", $this   ->razao, PDO::PARAM_STR);
-            $cst -> bindParam(":inscricao",$this->inscricao, PDO::PARAM_INT);
+        //    $cst -> bindParam(":inscricao",$this->inscricao, PDO::PARAM_INT);
             $cst -> bindParam(":representante",$this->representante, PDO::PARAM_STR);
             $cst -> bindParam(":sexo",$this->sexo, PDO::PARAM_STR);
             $cst -> bindParam(":observacao",$this->observacao, PDO::PARAM_STR);
@@ -259,11 +265,44 @@ class Cliente{
 
     }
 
-    public function queryUpdate($dados){
+    public function queryUpdatee($dados){
         try{
+            $this->id_cli = $this->objfunc->tratarCaracter($dados['id_cli'], 2);
+            $this->pessoa = $this->objfunc->tratarCaracter($dados['pessoa'], 2);
+            $this->nome = $this->objfunc->tratarCaracter($dados['nome'], 2);
+            $this->cpf = $this->objfunc->tratarCaracter($dados['cpf'], 2);
+            $this->rg = $this->objfunc->tratarCaracter($dados['rg'], 2);
+            $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 2);
+            $this->razao = $this->objfunc->tratarCaracter($dados['razao'], 2);
+            $this->representante = $this->objfunc->tratarCaracter($dados['representante'], 2);
+            $this->inscricao = $this->objfunc->tratarCaracter($dados['inscricao'], 2);
+            $this->cnpj = $this->objfunc->tratarCaracter($dados['cnpj'], 2);
+            $this->id_parc = $this->objfunc->tratarCaracter($dados['id_parc'], 2);
+            $this->observacao = $this->objfunc->tratarCaracter($dados['observacao'], 2);
 
-        }catch(PDOException $ex){
+            $cst = $this->con->conect()->prepare("UPDATE `cliente` SET `pessoa`=:pessoa,`nome`=:nome,`cpf`=:cpf,`rg`=:rg,`cnpj`=:cnpj,`razao`=:razao,`inscricao`=:inscricao,`representante`=:representante,`sexo`=:sexo,`observacao`=:observacao,`id_parc`=:id_parc WHERE  `id` = :id_cli");
             
+            $cst->bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
+            $cst->bindParam(":pessoa", $this->pessoa, PDO::PARAM_STR);
+            $cst->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+            $cst->bindParam(":cpf", $this->cpf, PDO::PARAM_INT);
+            $cst->bindParam(":rg", $this->rg, PDO::PARAM_INT);
+            $cst->bindParam(":sexo", $this->sexo, PDO::PARAM_STR);
+            $cst->bindParam(":razao", $this->razao, PDO::PARAM_INT);
+            $cst->bindParam(":representante", $this->representante, PDO::PARAM_STR);
+            $cst->bindParam(":inscricao", $this->inscricao, PDO::PARAM_INT);
+            $cst->bindParam(":cnpj", $this->cnpj, PDO::PARAM_INT);
+            $cst->bindParam(":id_parc", $this->id_parc, PDO::PARAM_INT);
+            $cst->bindParam(":observacao", $this->observacao, PDO::PARAM_STR);
+
+            if($cst->execute()){
+                return 'ok';
+            }else{
+                echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+                return 'erro';
+            }
+        }catch(PDOException $ex){
+            return 'error '.$ex->getMessage();            
         }
 
     }
