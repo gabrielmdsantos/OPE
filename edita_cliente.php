@@ -98,15 +98,16 @@
                 </fieldset>
             <br>  
             <!--Dados do endereço-->
+                <?php foreach($objfn->querySelectendereco($_GET['func']) as $rst){ ?>
                 <fieldset id="endereco" style="position:relative;height:130px; border-radius:20px 20px 20px 20px">
                     <legend>Endereço 1 </legend>
-                            CEP:        <input type="number" name="cep"         value="<?=$objFc->tratarCaracter((isset($func['cep']))?($func['cep']):(''), 1)?>"        id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
-                            Logradouro: <input type="text" name="logradouro"    value="<?=$objFc->tratarCaracter((isset($func['endereco']))?($func['endereco']):(''), 1)?>"    id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
-                            Número:     <input type="number" name="numero"      value="<?=$objFc->tratarCaracter((isset($func['num']))?($func['num']):(''), 1)?>"  min="0" max="99999" placeholder="" />&nbsp;&nbsp;
-                            Complemento:<input type="text" name="complemento"   value="<?=$objFc->tratarCaracter((isset($func['comple']))?($func['comple']):(''), 1)?>"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
+                            CEP:        <input type="number" name="cep"         value="<?=$objFc->tratarCaracter((isset($rst['cep']))?($rst['cep']):(''), 1)?>"        id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                            Logradouro: <input type="text" name="logradouro"    value="<?=$objFc->tratarCaracter((isset($rst['logradouro']))?($rst['logradouro']):(''), 1)?>"    id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                            Número:     <input type="number" name="numero"      value="<?=$objFc->tratarCaracter((isset($rst['Numero']))?($rst['Numero']):(''), 1)?>"  min="0" max="99999" placeholder="" />&nbsp;&nbsp;
+                            Complemento:<input type="text" name="complemento"   value="<?=$objFc->tratarCaracter((isset($rst['Complemento']))?($rst['Complemento']):(''), 1)?>"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
                         <p>
-                            Município: <input type="text"  name="municipio"     value="<?=$objFc->tratarCaracter((isset($func['municipio']))?($func['municipio']):(''), 1)?>"    size="30"  placeholder="Cidade" />
-                            Estado:    <input type="text"  name="estado"        value="<?=$objFc->tratarCaracter((isset($func['estado']))?($func['estado']):(''), 1)?>"    size="30" placeholder="Estado" />
+                            Município: <input type="text"  name="municipio"     value="<?=$objFc->tratarCaracter((isset($rst['municipio']))?($rst['municipio']):(''), 1)?>"    size="30"  placeholder="Cidade" />
+                            Estado:    <input type="text"  name="estado"        value="<?=$objFc->tratarCaracter((isset($rst['estado']))?($rst['estado']):(''), 1)?>"    size="30" placeholder="Estado" />
                             <!--
                             <select name="estado" value="<?php echo $estado ?>" id="cUF">
                                         <option selected>UF</option>
@@ -147,6 +148,7 @@
                     <input type="hidden" name="id_cli" value="<?=$objFc->tratarCaracter((isset($func['id_cli']))?($func['id_cli']):(''), 1)?>" />
                     
                 </fieldset>
+                <?php } ?>
             <div id="result2">  </div>                
                 
             <fieldset id="contato" style="position:relative; border-radius:20px 20px 20px 20px">

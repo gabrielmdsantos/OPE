@@ -326,6 +326,20 @@ class Cliente{
         }
 
     }
+
+    public function querySelectendereco($dados){
+        try{
+            $this->id_cli = $dados;
+            $cst = $this->con->conect()->prepare("SELECT * FROM `endereco` WHERE `id_cli` = :id_cli;");
+            $cst->bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
+            $cst->execute();
+            return $cst->fetchAll();
+        }catch(PDOException $ex){
+            
+        }
+
+    }
+
     //SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc
 
 
