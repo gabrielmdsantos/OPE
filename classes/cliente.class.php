@@ -44,16 +44,18 @@ class Cliente{
         try{
             $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
             $cst -> execute();
-           // $this->tipo = $dados['tipo'];
-            $this->cep = $dados['cep'];
-            $this->logradouro = $dados['logradouro'];
+      
+            $this->cep = $this->objfunc->tratarCaracter($dados['cep'],1);
+            $this->logradouro = $this->objfunc->tratarCaracter($dados['logradouro'],1);
             $this->numero = $dados['numero'];
-            $this->complemento = $dados['complemento'];
-            $this->municipio = $dados['municipio'];
-            $this->estado = $dados['estado'];
+            $this->complemento = $this->objfunc->tratarCaracter($dados['complemento'],1);
+            $this->municipio = $this->objfunc->tratarCaracter($dados['municipio'],1);
+            $this->estado = $this->objfunc->tratarCaracter($dados['estado'],1);
+            $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'],1);
             $ultimaid = $cst->fetchColumn(0);
-            $cst = $this->con->conect()->prepare("INSERT INTO `endereco`(`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`) VALUES  (:cep,:logradouro,:numero,:complemento,:municipio,:estado,$ultimaid);");
-          //  $cst -> bindParam(":tipo", $this->pessoa, PDO::PARAM_STR);
+            $cst = $this->con->conect()->prepare("INSERT INTO `endereco`(`tipo`,`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`) VALUES  (:tipo,:cep,:logradouro,:numero,:complemento,:municipio,:estado,$ultimaid);");
+      
+            $cst -> bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
             $cst -> bindParam(":cep", $this->cep, PDO::PARAM_INT);
             $cst -> bindParam(":logradouro", $this->logradouro, PDO::PARAM_STR);
             $cst -> bindParam(":numero", $this->numero, PDO::PARAM_INT);
@@ -76,16 +78,16 @@ class Cliente{
         try{
             $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
             $cst -> execute();
-           // $this->tipo = $dados['tipo'];
-            $this->cepb = $dados['cepb'];
-            $this->logradourob = $dados['logradourob'];
-            $this->numerob = $dados['numerob'];
-            $this->complementob = $dados['complementob'];
-            $this->municipiob = $dados['municipiob'];
-            $this->estadob = $dados['estadob'];
+            $this->cepb = $this->objfunc->tratarCaracter($dados['cepb'],1);
+            $this->logradourob = $this->objfunc->tratarCaracter($dados['logradourob'],1);
+            $this->numerob = $this->objfunc->tratarCaracter($dados['numerob'],1);
+            $this->complementob = $this->objfunc->tratarCaracter($dados['complementob'],1);
+            $this->municipiob = $this->objfunc->tratarCaracter($dados['municipiob'],1);
+            $this->estadob = $this->objfunc->tratarCaracter($dados['estadob'],1);
+            $this->tipob = $this->objfunc->tratarCaracter($dados['tipob'],1);
             $ultimaid = $cst->fetchColumn(0);
-            $cst = $this->con->conect()->prepare("INSERT INTO `endereco`(`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`) VALUES  (:cepb,:logradourob,:numerob,:complementob,:municipiob,:estadob,$ultimaid);");
-          //  $cst -> bindParam(":tipo", $this->pessoa, PDO::PARAM_STR);
+            $cst = $this->con->conect()->prepare("INSERT INTO `endereco`(`tipo`,`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`) VALUES  (:tipob,:cepb,:logradourob,:numerob,:complementob,:municipiob,:estadob,$ultimaid);");
+            $cst -> bindParam(":tipob", $this->tipob, PDO::PARAM_STR)   ;
             $cst -> bindParam(":cepb", $this->cepb, PDO::PARAM_INT);
             $cst -> bindParam(":logradourob", $this->logradourob, PDO::PARAM_STR);
             $cst -> bindParam(":numerob", $this->numerob, PDO::PARAM_INT);
@@ -234,10 +236,10 @@ class Cliente{
             $cst = $this->con->conect()->prepare("INSERT INTO `telefone`(`telefone`, `id_clie`) VALUES  (:tel1,$ultimaid);");
             $cst2 = $this->con->conect()->prepare("INSERT INTO `telefone`(`telefone`, `id_clie`) VALUES  (:tel2,$ultimaid);");
             $cst3 = $this->con->conect()->prepare("INSERT INTO `telefone`(`telefone`, `id_clie`) VALUES  (:tcel,$ultimaid);");
-            //  $cst -> bindParam(":tipo", $this->pessoa, PDO::PARAM_STR);
-            $cst -> bindParam(":tel1", $this->email, PDO::PARAM_INT);
-            $cst2 -> bindParam(":tel2", $this->email, PDO::PARAM_INT);
-            $cst3 -> bindParam(":tcel", $this->email, PDO::PARAM_INT);
+            //$cst -> bindParam(":tipo", $this->pessoa, PDO::PARAM_STR);
+            $cst -> bindParam(":tel1", $this->tel1, PDO::PARAM_INT);
+            $cst2 -> bindParam(":tel2", $this->tel2, PDO::PARAM_INT);
+            $cst3 -> bindParam(":tcel", $this->tcel, PDO::PARAM_INT);
             if($cst->execute()){
                 if($cst2->execute()){
                     if($cst3->execute()){
@@ -307,6 +309,37 @@ class Cliente{
 
     }
 
+    public function Queryupdateend($dados){
+        try{
+            $this->id_end = $this->objfunc->tratarCaracter($dados['id_end'], 2);
+            $this->cep = $this->objfunc->tratarCaracter($dados['cep'], 2);
+            $this->logradouro = $this->objfunc->tratarCaracter($dados['logradouro'], 2);
+            $this->numero = $this->objfunc->tratarCaracter($dados['numero'], 2);
+            $this->complemento = $this->objfunc->tratarCaracter($dados['complemento'], 2);
+            $this->municipio = $this->objfunc->tratarCaracter($dados['municipio'], 2);
+            $this->estado = $this->objfunc->tratarCaracter($dados['estado'], 2);
+            $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'], 2);
+            $cst = $this->con->conect()->prepare("UPDATE `endereco` SET `tipo`=:tipo,`cep`=:cep,`logradouro`=:logradouro,`Numero`=:numero,`Complemento`=:complemento,`municipio`=:municipio,`estado`=:estado WHERE  `id` = :id_end");
+            $cst->bindParam(":id_end", $this->id_end, PDO::PARAM_INT);
+            $cst->bindParam(":cep", $this->cep, PDO::PARAM_INT);
+            $cst->bindParam(":logradouro", $this->logradouro, PDO::PARAM_STR);
+            $cst->bindParam(":numero", $this->numero, PDO::PARAM_INT);
+            $cst->bindParam(":complemento", $this->complemento, PDO::PARAM_STR);
+            $cst->bindParam(":municipio", $this->municipio, PDO::PARAM_STR);
+            $cst->bindParam(":estado", $this->estado, PDO::PARAM_STR);
+            $cst->bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
+            
+            if($cst->execute()){
+                return 'ok';
+            }else{
+                echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+                return 'erro';
+            }
+        }catch(PODEException $ex){
+            return 'error' .$ex->getMessage();
+        }
+    }
+
     public function queryDelete($dados){
         try{
 
@@ -331,6 +364,19 @@ class Cliente{
         try{
             $this->id_cli = $dados;
             $cst = $this->con->conect()->prepare("SELECT * FROM `endereco` WHERE `id_cli` = :id_cli;");
+            $cst->bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
+            $cst->execute();
+            return $cst->fetchAll();
+        }catch(PDOException $ex){
+            
+        }
+
+    }
+
+    public function querySelecttel($dados){
+        try{
+            $this->id_cli = $dados;
+            $cst = $this->con->conect()->prepare("SELECT * FROM `telefone` WHERE `id_clie` = :id_cli;");
             $cst->bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
             $cst->execute();
             return $cst->fetchAll();

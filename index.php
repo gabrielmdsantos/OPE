@@ -1,7 +1,7 @@
 
 <html lang="pt-BR">
 	<head>
-		<link rel="stylesheet" href="login_estilo.css">
+		<link rel="stylesheet" href="style/style.css">
 		<meta charset="utf-8">
 		<title>Login</title>
 	</head>

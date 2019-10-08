@@ -32,18 +32,20 @@ var data2 = {
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
-            if($objfn->queryInsertmail($_POST)=='ok'){
-                if($objfn->queryInserttel($_POST=='ok')){
+            if($objfn->queryInsertmail($_POST) == 'ok'){
+                if($objfn->queryInserttel($_POST) == 'ok'){
                     if($objfn->queryEndereco($_POST)== 'ok'){
                         if($endereco == $data[2]){
                             if($objfn->queryEndereco2($_POST)=='ok'){
-
+                                
                             }
                         }
                     }else{}
                 }else{}
             }else{}
-        }else{}
+                echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
+                                echo "<script>window.location = 'consultacliente.php';</script>";
+            }else{}
     }
         
 ?>
@@ -88,51 +90,54 @@ var data2 = {
                             Complemento:<input type="text" name="complemento"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
                         <p>
                             Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
-                            Estado:    <input type="text"  name="estado"        size="30" placeholder="Estado" />
-                            <!--
-                            <select name="estado" value="<?php echo $estado ?>" id="cUF">
+                            Estado:
+                       <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
+                            -->
+                            <select name="estado" value="" id="cUF">
                                         <option selected>UF</option>
-                                        <option>Acre</option>
-                                        <option>Alagoas</option>
-                                        <option>Amazonas</option>
-                                        <option>Amapá</option>
-                                        <option>Bahia</option>
-                                        <option>Ceará</option>
-                                        <option>Distrito Federal</option>
-                                        <option>Espírito Santo</option>
-                                        <option>Goiás</option>
-                                        <option>Maranhão</option>
-                                        <option>Mato Grosso</option>
-                                        <option>Mato Grosso do Sul</option>
-                                        <option>Minas Gerais</option>
-                                        <option>Pará</option>
-                                        <option>Paraíba</option>
-                                        <option>Paraná</option>
-                                        <option>Pernambuco</option>
-                                        <option>Piauí</option>
-                                        <option>Rio de Janeiro</option>
-                                        <option>Rio Grande do Norte</option>
-                                        <option>Rio Grande do Sul</option>
-                                        <option>Rondônia</option>
-                                        <option>Roraima</option>
-                                        <option>Santa Catarina</option>
-                                        <option>São Paulo</option>
-                                        <option>Sergipe</option>
-                                        <option>Tocantins</option> 
-                                    </select> -->
+                                        <option value = "AC">Acre</option>
+                                        <option value = "AL">Alagoas</option>
+                                        <option value = "AM">Amazonas</option>
+                                        <option value = "AP">Amapá</option>
+                                        <option value = "BA">Bahia</option>
+                                        <option value = "CE">Ceará</option>
+                                        <option value = "DF">Distrito Federal</option>
+                                        <option value = "ES">Espírito Santo</option>
+                                        <option value = "GO">Goiás</option>
+                                        <option value = "MA">Maranhão</option>
+                                        <option value = "MT">Mato Grosso</option>
+                                        <option value = "MS">Mato Grosso do Sul</option>
+                                        <option value = "MG">Minas Gerais</option>
+                                        <option value = "PA">Pará</option>
+                                        <option value = "PB">Paraíba</option>
+                                        <option value = "PR">Paraná</option>
+                                        <option value = "PE">Pernambuco</option>
+                                        <option value = "PI">Piauí</option>
+                                        <option value = "RJ">Rio de Janeiro</option>
+                                        <option value = "RN">Rio Grande do Norte</option>
+                                        <option value = "RS">Rio Grande do Sul</option>
+                                        <option value = "RO">Rondônia</option>
+                                        <option value = "RR">Roraima</option>
+                                        <option value = "SC">Santa Catarina</option>
+                                        <option value = "SP">São Paulo</option>
+                                        <option value = "SE">Sergipe</option>
+                                        <option value = "TO">Tocantins</option> 
+                                    </select> 
                     
                     <fieldset id="endereco"  name="endereco"  style="position: relative; height: 100px; float:right; width:100px; top:-90px; border-radius:20px 20px 20px 20px">
                                     <legend>End. Cobrança.</legend>
                                     <input type="radio" name="endereco" id="e" value="S" CHECKED /><label for="e" >Sim</label><br>
                                     <input type="radio" name="endereco" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f">Não</label>
                     </fieldset><p>
+                    <input type="hidden" name="tipo" value="Residencial"/>
                     
                 </fieldset>
             <div id="result2">  </div>                
                 
             <fieldset id="contato" style="position:relative; border-radius:20px 20px 20px 20px">
                 <legend>Contato</legend>
-                        Telefone 1:<input type="number" name="tel1" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        Telefone 1: <input type="number" name="tel1"      min="0" maxlength="10" placeholder="(11)9999-9999" />
+                        
                         Telefone 2: <input type="number" name="tel2" id="cTel2" size="10" maxlength="10" placeholder="(11)9999-9999" />
                         Celular: <input type="number" name="tcel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
                       <!--  Contato: <input type="contato" name="tContato" id="cContato" size="10" maxlength="10" placeholder="joão@terra.com.br" /> -->
