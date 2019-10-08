@@ -18,15 +18,11 @@
     $objFc = new Funcoes();
     $objfn = new Cliente();
     $objpc = new Parceiro();
+    $cont = 0;
+    $contel = 0;
     $endereco = "N";
 
     
-    if(isset($_POST['btAlterar'])){
-        if($objfn->queryUpdatee($_POST) == 'ok'){
-        }else{
-            echo '<script type="text/javascript">alert("Erro em alterar");</script>';
-        }
-    }
     
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
@@ -99,29 +95,24 @@
                 </fieldset>
             <br>  
             <!--Dados do endereço-->
-                <?php foreach($objfn->querySelectendereco($_GET['func']) as $rst){      
+                <?php 
+                foreach($objfn->querySelectendereco($_GET['func']) as $rst){      
+                $cont ++;
                 ?>
-                
-                
-                <?php  if(isset($_POST['btAlterar'])){
-                if($objfn->Queryupdateend($_POST) == 'ok'){
-                ?>
-                <script> console.log('teste') </script>
-                <?php } } ?>
                 <fieldset id="endereco" style="position:relative;height:130px; border-radius:20px 20px 20px 20px">
                     <legend>Endereço</legend>
-                            CEP:        <input type="number" name="cep"         value="<?=$objFc->tratarCaracter((isset($rst['cep']))?($rst['cep']):(''), 2)?>"        id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
-                            Logradouro: <input type="text" name="logradouro"    value="<?=$objFc->tratarCaracter((isset($rst['logradouro']))?($rst['logradouro']):(''), 2)?>"    id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
-                            Número:     <input type="number" name="numero"      value="<?=$objFc->tratarCaracter((isset($rst['Numero']))?($rst['Numero']):(''), 2)?>"  min="0" max="99999" placeholder="" />&nbsp;&nbsp;
-                            Complemento:<input type="text" name="complemento"   value="<?=$objFc->tratarCaracter((isset($rst['Complemento']))?($rst['Complemento']):(''), 2)?>"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
+                            CEP:        <input type="number" name="<?php echo("cep".$cont) ?>"         value="<?=$objFc->tratarCaracter((isset($rst['cep']))?($rst['cep']):(''), 2)?>"        id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                            Logradouro: <input type="text" name="<?php echo("logradouro".$cont) ?>"    value="<?=$objFc->tratarCaracter((isset($rst['logradouro']))?($rst['logradouro']):(''), 2)?>"    id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                            Número:     <input type="number" name="<?php echo("numero".$cont) ?>"      value="<?=$objFc->tratarCaracter((isset($rst['Numero']))?($rst['Numero']):(''), 2)?>"  min="0" max="99999" placeholder="" />&nbsp;&nbsp;
+                            Complemento:<input type="text" name="<?php echo("complemento".$cont) ?>"     value="<?=$objFc->tratarCaracter((isset($rst['Complemento']))?($rst['Complemento']):(''), 2)?>"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
                         <p>
-                            Município: <input type="text"  name="municipio"     value="<?=$objFc->tratarCaracter((isset($rst['municipio']))?($rst['municipio']):(''), 2)?>"    size="30"  placeholder="Cidade" />
-                            Estado:    <input type="text"  name="estado"        value="<?=$objFc->tratarCaracter((isset($rst['estado']))?($rst['estado']):(''), 2)?>"    size="30" placeholder="Estado" />
+                            Município: <input type="text"  name="<?php echo("municipio".$cont) ?>"       value="<?=$objFc->tratarCaracter((isset($rst['municipio']))?($rst['municipio']):(''), 2)?>"    size="30"  placeholder="Cidade" />
+                            Estado:    <input type="text"  name="<?php echo("estado".$cont) ?>"          value="<?=$objFc->tratarCaracter((isset($rst['estado']))?($rst['estado']):(''), 2)?>"    size="30" placeholder="Estado" />
 
                     
-                    Tipo:<input type="text" name="tipo" value="<?=$objFc->tratarCaracter((isset($rst['tipo']))?($rst['tipo']):(''), 1)?>" />
-                    <input type="hidden" name="id_cli" value="<?=$objFc->tratarCaracter((isset($func['id_cli']))?($func['id_cli']):(''), 1)?>" />
-                    <input type="hidden" name="id_end" value="<?=$objFc->tratarCaracter((isset($rst['id']))?($rst['id']):(''), 1)?>" />
+                    Tipo:<input type="text" name="<?php echo("tipo".$cont) ?>"   value="<?=$objFc->tratarCaracter((isset($rst['tipo']))?($rst['tipo']):(''), 1)?>" />
+                    <input type="hidden" name="<?php echo("id_cli") ?>"    value="<?=$objFc->tratarCaracter((isset($func['id_cli']))?($func['id_cli']):(''), 1)?>" />
+                    <input type="hidden" name="<?php echo("id_end".$cont) ?>"   value="<?=$objFc->tratarCaracter((isset($rst['id']))?($rst['id']):(''), 1)?>" />
 
 
                 </fieldset>
@@ -131,8 +122,12 @@
             
             <fieldset id="contato" style="position:relative; border-radius:20px 20px 20px 20px">
                 <legend>Contato</legend>
-                <?php foreach($objfn->querySelecttel($_GET['func']) as $rst){  ?>
-                        Telefone :<input type="number" name="tel1" value="<?=$objFc->tratarCaracter((isset($rst['telefone']))?($rst['telefone']):(''), 2)?>" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                <?php foreach($objfn->querySelecttel($_GET['func']) as $rst){  
+                    $contel ++;
+                    echo ($contel); 
+                ?>  
+                        Telefone :<input type="number" name="<?php echo("tel".$contel) ?>" value="<?=$objFc->tratarCaracter((isset($rst['telefone']))?($rst['telefone']):(''), 2)?>" id="cTel1" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        <input type="hidden" name="<?php echo("id_tel".$contel) ?>" value="<?=$objFc->tratarCaracter((isset($rst['id']))?($rst['id']):(''), 2)?>" />
                         <?php } ?>
                         <!--  Contato: <input type="contato" name="tContato" id="cContato" size="10" maxlength="10" placeholder="joão@terra.com.br" /> -->
                         E-mail:  <input type="email" name="email"       value="<?=$objFc->tratarCaracter((isset($func['email']))?($func['email']):(''), 2)?>" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />
@@ -142,7 +137,25 @@
                 <input type="submit" name="btAlterar" value="Alterar"> 
                 <button class="btnnn" type="button" name="tbtn"><a href="consultacliente.php">Voltar</a></button>
 
+</form>
 
-</form> 
+<?php
+    if(isset($_POST['btAlterar'])){
+        if($objfn->queryUpdatee($_POST) == 'ok'){
+            if($objfn->Queryupdateend($_POST,$cont) == 'ok'){
+                if($objfn->Queryupdatetel($_POST,$contel) == 'ok'){
+                    if($objfn->QueryUpdateEmail($_POST) == 'ok'){
+                        echo '<script type="text/javascript"> alert("Alterado com Sucesso"); </script>';
+                        echo "<script>window.location = 'consultacliente.php';</script>";
+                    }
+                }
+            }
+        }else{
+            echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+        }
+    }
+    
+
+?>
 </body>
 </html> 

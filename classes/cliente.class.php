@@ -169,38 +169,14 @@ class Cliente{
             $cst -> bindParam(":observacao",$this->observacao, PDO::PARAM_STR);
             $cst -> bindParam(":id_parc",$this->id_parc, PDO::PARAM_INT);
             
-            if ($cst->execute()){
-                
-                /*
-                try{
-                    
-                    $this->cpf = $dados['cpf'];
-                    $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
-                    $cst -> execute();
-                    $ultimaid = $cst->fetch();
-                    echo '<script type="text/javascript"> console.log("aquiiii"); </script>';
-                    $cst = $this->con->conect()->prepare("INSERT INTO `endereco` ( `cep`) VALUES (:cpf);");
-                    $cst -> bindParam(":cpf",$this->cpf, PDO::PARAM_INT);
-                    if($cst->execute()){
-                            echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>'; 
-                    }else{
-                        echo '<script type="text/javascript"> alert("Erro ao inserir Endereco");</script>';    
-                    }
-
-                }   catch(PDOException $ex){
-                }
-                
-                //echo (querySelecionaID($dados));
-                */
-                
+            if ($cst->execute()){                
                 return 'ok';
             }else{
                 echo '<script type="text/javascript"> alert("Erro ao inserir");</script>';
                 return 'erro';
             }
-        }catch(PDOException $ex){
+            }catch(PDOException $ex){
         }
-
     }
 
     public function queryInsertmail($dados){
@@ -247,24 +223,12 @@ class Cliente{
                         echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
                     }
                 }
-               
             }else{
                 return 'erro';
                 echo '<script type="text/javascript"> alert("erro ao inserir");</script>';
             }
-        }catch(PDOException $ex){
-            
+        }catch(PDOException $ex){  
         }
-
-    }
-
-    public function querySelect($dados){
-        try{
-
-        }catch(PDOException $ex){
-            
-        }
-
     }
 
     public function queryUpdatee($dados){
@@ -309,16 +273,20 @@ class Cliente{
 
     }
 
-    public function Queryupdateend($dados){
+    public function Queryupdateend($dados,$cont){
+        for($x = 1; $x <= $cont; $x++){
+          //  echo ($cont);
+         //   echo ($x);
         try{
-            $this->id_end = $this->objfunc->tratarCaracter($dados['id_end'], 2);
-            $this->cep = $this->objfunc->tratarCaracter($dados['cep'], 2);
-            $this->logradouro = $this->objfunc->tratarCaracter($dados['logradouro'], 2);
-            $this->numero = $this->objfunc->tratarCaracter($dados['numero'], 2);
-            $this->complemento = $this->objfunc->tratarCaracter($dados['complemento'], 2);
-            $this->municipio = $this->objfunc->tratarCaracter($dados['municipio'], 2);
-            $this->estado = $this->objfunc->tratarCaracter($dados['estado'], 2);
-            $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'], 2);
+            
+            $this->id_end = $this->objfunc->tratarCaracter($dados['id_end'.$x], 1);
+            $this->cep = $this->objfunc->tratarCaracter($dados['cep'.$x], 1);
+            $this->logradouro = $this->objfunc->tratarCaracter($dados['logradouro'.$x], 1);
+            $this->numero = $this->objfunc->tratarCaracter($dados['numero'.$x], 1);
+            $this->complemento = $this->objfunc->tratarCaracter($dados['complemento'.$x], 1);
+            $this->municipio = $this->objfunc->tratarCaracter($dados['municipio'.$x], 1);
+            $this->estado = $this->objfunc->tratarCaracter($dados['estado'.$x], 1);
+            $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'.$x], 1);
             $cst = $this->con->conect()->prepare("UPDATE `endereco` SET `tipo`=:tipo,`cep`=:cep,`logradouro`=:logradouro,`Numero`=:numero,`Complemento`=:complemento,`municipio`=:municipio,`estado`=:estado WHERE  `id` = :id_end");
             $cst->bindParam(":id_end", $this->id_end, PDO::PARAM_INT);
             $cst->bindParam(":cep", $this->cep, PDO::PARAM_INT);
@@ -330,7 +298,7 @@ class Cliente{
             $cst->bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
             
             if($cst->execute()){
-                return 'ok';
+                //return 'ok';
             }else{
                 echo '<script type="text/javascript">alert("Erro em alterar");</script>';
                 return 'erro';
@@ -339,6 +307,49 @@ class Cliente{
             return 'error' .$ex->getMessage();
         }
     }
+    return 'ok';
+    }
+
+    public function QueryUpdateEmail($dados){
+        try{
+            $this->id_cli = $this->objfunc->tratarCaracter($dados['id_cli'], 2);
+            $this->email = $this->objfunc->tratarCaracter($dados['email'],1);
+            $cst = $this->con->conect()->prepare("UPDATE `email` SET `email`=:email WHERE `id_cli` = :id_cli");
+            $cst->bindParam(":id_cli",$this->id_cli,PDO::PARAM_INT);
+            $cst->bindParam(":email" ,$this->email, PDO::PARAM_STR);
+            if($cst->execute()){
+                return 'ok';
+            }else{
+                echo '<script type"text/javascrpit"> alert("Erro em alterar"); </script>';
+                return 'erro';
+            }
+        }catch(PODEException $ex){
+            return 'error' .$ex->getMEssage();
+        }
+    }
+
+    public function Queryupdatetel($dados,$contel){
+        for($i = 1; $i <= $contel; $i++){
+            try{        
+                $this->id_tel = $this->objfunc->tratarCaracter($dados['id_tel'.$i], 1);
+                $this->tel = $this->objfunc->tratarCaracter($dados['tel'.$i], 1);
+                $cst = $this->con->conect()->prepare("UPDATE `telefone` SET `telefone`=:tel WHERE `id` = :id_tel");
+                $cst->bindParam(":id_tel", $this->id_tel, PDO::PARAM_INT);
+                $cst->bindParam(":tel", $this->tel, PDO::PARAM_INT);
+
+                if($cst->execute()){
+                    //return 'ok';
+                }else{
+                    echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+                    return 'erro';
+                }
+            }catch(PODEException $ex){
+                return 'error' .$ex->getMessage();
+             }
+        } return 'ok';
+    }
+
+
 
     public function queryDelete($dados){
         try{
@@ -348,6 +359,7 @@ class Cliente{
         }
 
     }
+
 
     public function querySelectclieparc(){
         try{
@@ -385,16 +397,6 @@ class Cliente{
         }
 
     }
-
-    //SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc
-
-
-    //SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc WHERE parceiro.id_parc = 2 OR cliente.nome LIKE '%b%' OR cliente.id = 3
-    // função dinamica
-    
-
 }   
     
-
-
 ?>
