@@ -12,12 +12,12 @@
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
             echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
-            echo "<script>window.location = 'cadastrar_parceiro.php';</script>";
-        }
+            echo "<script>window.location = 'consultacontrato.php';</script>";
+        
     }else{
-        echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
+        echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
     }
-
+    }
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +30,14 @@
     <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style2.css">
 </head>
+<script type="text/javascript">    
+    function calcular(){
+        var valor = document.getElementById("valor").value;
+        var parce = document.getElementById("qnt_parcela").value;
+        var final = valor / parce;
+        document.getElementById("final").innerHTML = "<input type='text' value='"+ final +"'/>";
+    }
+</script>
 
 <!--Menu-->
 
@@ -37,7 +45,7 @@
     <?php include_once ("header.php"); ?>
     <!--Conteúdo-->
     <div style="height:180px">
-        <fieldset id="dadosFin" style="height:100%;  float:height; margin-top: 10px; margin-left:auto; margin-right: auto;  width:90%; border-radius:20px 20px 20px 20px ">
+        <fieldset id="dadosFin" style="height:100%;  float:height; margin-top: 10px;   width:98%; border-radius:20px 20px 20px 20px ">
             <legend>Cliente</legend>
             <form method = "POST">
                 <table style="HEIGHT:100%; WIDTH:100%;">
@@ -63,11 +71,10 @@
                         <td><label for="cCC ">CPF/ CNPJ: </label><input type="number " name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00 " /></td>
                     </tr>
                     <tr>
-                        <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
-                        <td><label for="cPrazo ">Prazo:</label><input type="date" name="prazo"></td>
-                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="" name="valor" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                        <td><label for="cValorP ">Valor da Parcela: </label><input type="number " name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                        <td><label for="cParcelas ">Quantidade de Parcelas </label><select name="qnt_parcela" id="cParcelas ">
+                        <td><label for="dTrabalho">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
+                        <td><label for="cPrazo">Prazo:</label><input type="date" name="prazo"></td>
+                        <td><label for="cValorT">Valor do Contrato: </label> <input type="number" value="" name="valor" onBlur="calcular()" id="valor"  placeholder="R$1.000 " /></td>
+                        <td><label for="cParcelas">Quantidade de Parcelas </label><select name="qnt_parcela" id="qnt_parcela" onBlur="calcular()"> 
                                         <option selected >1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -79,6 +86,8 @@
                                         <option>9</option>
                                         <option>10</option>                                        
                                     </select></td>
+                        
+                        <td><label for="cValorP">Valor da Parcela: </label> <div id="final"> <input type="number"  value="" name="final " id="final " min="0 " max="99999 " placeholder="R$1.000 " /></td>
                     </tr>
                     <tr>
                         <td><label for="cdate "></label>Dia de Vencimento: </label><input type="text" name="vencimento" name="cdate" /></td>
@@ -86,11 +95,11 @@
                 </table>
             
         </fieldset>
-        <div style="height:120px ">
-            <fieldset id="dadosFin " style="height:100%; float:height; margin-top: 10px; margin-left:auto; margin-right: auto; width:90%; border-radius:20px 20px 20px 20px ">
+        <div style="height:auto">
+            <fieldset id="dadosFin " style="height:100%; position:relative; float:height; margin-top: 10px;  width:98%; border-radius:20px 20px 20px 20px ">
                 <legend>Endereço do Projeto</legend>
                 
-                    <table style="HEIGHT:100px;; WIDTH:100%;">
+                    <table style="HEIGHT:100px; WIDTH:100%;">
                         <tr align="left " bottom="middle ">
                             <td><label for="cLog">Logradouro: </label><input type="text" name="tLog" id="cLog" size="40" maxlength="40" placeholder="R:, Av:, Est:..." /></td>
                             <td><label for="cNum">Número: </label><input type="number" name="tNum" id="cNum" min="0" max="99999" placeholder="000" /></td>
@@ -136,6 +145,7 @@
                 
             </fieldset>
         </div>
+        
         <input type="submit" name="insert" value="Inserir" >
         </form>
 </body>

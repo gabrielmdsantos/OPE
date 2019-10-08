@@ -87,11 +87,8 @@ class Contrato{
             $cst -> bindParam(":valor", $this->valor, PDO::PARAM_STR);
             $cst -> bindParam(":qnt_parcela", $this->qnt_parcela, PDO::PARAM_STR);
             $cst -> bindParam(":vencimento", $this->vencimento, PDO::PARAM_INT);
-           
 
-            
             if ($cst->execute()){
-                echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
                 return 'ok';
             }else{
                 echo '<script type="text/javascript"> alert("Erro ao inserir");</script>';
