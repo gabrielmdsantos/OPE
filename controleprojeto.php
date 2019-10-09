@@ -12,8 +12,9 @@
     <meta charset="UTF-8" />
     <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style2.css">
-    <script src="Script/jquery-2.1.4.min.js"></script>
-    <script src="Script/javascriptcontrato.js"></script>
+    <script src="jquery-2.1.4.min.js">  </script>
+    <script src="Script/controle.js">   </script>
+    
 
 </head>
 
@@ -22,7 +23,7 @@
 <body>
     <?php include_once("header.php"); ?>
 
-    <div id="resultado" class="scroll-contrato">
+    <div id="resultado" class="scroll" >
         <table border="1">
             <thead>
                 <tr>
@@ -48,8 +49,13 @@
         </table>
     </div>
     <!--Campos de busca-->
-
-
+    <form action="processa_controle.php">  
+        <div class="search">
+        <input type="text" name="campo"  id="campo" placeholder="Nome do Cliente" >
+        </div>
+    </form> 
+  
+    
 </body>
 
 </html>

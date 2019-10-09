@@ -54,7 +54,7 @@
         </table>
     </div>
     <!--Campos de busca-->
-    <form action="procprocessacontratoessa.php">  
+    <form action="processacontrato.php">  
         <div class="search2">
         <input type="text" name="campo"  id="campo" placeholder="Nome do Cliente" >
         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 09-Out-2019 às 13:30
+-- Generation Time: 09-Out-2019 às 16:13
 -- Versão do servidor: 5.7.26
 -- versão do PHP: 7.2.18
 
@@ -77,12 +77,14 @@ DROP TABLE IF EXISTS `despesa_proj`;
 CREATE TABLE IF NOT EXISTS `despesa_proj` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_CONT` int(11) DEFAULT NULL,
+  `id_cli` int(11) DEFAULT NULL,
   `DATA` date DEFAULT NULL,
   `VALOR` decimal(10,0) DEFAULT NULL,
   `Descricao` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `fk_conti` (`ID_CONT`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_conti` (`ID_CONT`),
+  KEY `fk_cli_desp` (`id_cli`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -204,12 +206,14 @@ DROP TABLE IF EXISTS `receita_proj`;
 CREATE TABLE IF NOT EXISTS `receita_proj` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_CONT` int(11) DEFAULT NULL,
+  `id_cli` int(11) DEFAULT NULL,
   `DATA` date DEFAULT NULL,
   `VALOR` decimal(10,0) DEFAULT NULL,
   `descricao` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`),
-  KEY `fk_cont` (`ID_CONT`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  KEY `fk_cont` (`ID_CONT`),
+  KEY `fk_cli_receita` (`id_cli`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -260,6 +264,7 @@ ALTER TABLE `contrato`
 -- Limitadores para a tabela `despesa_proj`
 --
 ALTER TABLE `despesa_proj`
+  ADD CONSTRAINT `fk_cli_desp` FOREIGN KEY (`id_cli`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `fk_conti` FOREIGN KEY (`ID_CONT`) REFERENCES `contrato` (`ID`);
 
 --
@@ -279,6 +284,7 @@ ALTER TABLE `endereco`
 -- Limitadores para a tabela `receita_proj`
 --
 ALTER TABLE `receita_proj`
+  ADD CONSTRAINT `fk_cli_receita` FOREIGN KEY (`id_cli`) REFERENCES `cliente` (`id`),
   ADD CONSTRAINT `fk_cont` FOREIGN KEY (`ID_CONT`) REFERENCES `contrato` (`ID`);
 
 --

@@ -29,3 +29,13 @@ from cliente INNER JOIN contrato ON contrato.ID_Cliente = cliente. ID INNER JOIN
 
 <!-- Quantidade de endereço -->
 SELECT COUNT(*) FROM endereco WHERE ID_CLI = 19
+
+<!-- Busca das despesas -- >
+
+SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(despesa_proj.VALOR) AS DESPESA FROM despesa_proj INNER JOIN contrato ON contrato.ID = despesa_proj.ID_CONT INNER JOIN cliente ON cliente.id = despesa_proj.id_cli
+GROUP BY despesa_proj.ID_CONT
+
+<!-- Busca das receitas -->
+
+SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(receita_proj.VALOR) AS receita FROM receita_proj INNER JOIN contrato ON contrato.ID = receita_proj.ID_CONT INNER JOIN cliente ON cliente.id = receita_proj.id_cli
+GROUP BY receita_proj.ID_CONT
