@@ -3,7 +3,8 @@
     require_once 'classes/contrato.class.php';
     require_once 'classes/servico.class.php';
     require_once 'classes/cliente.class.php';
-    
+
+
     $objFc = new Funcoes();
     $objfn = new Contrato();
     $objsv = new Servico();
@@ -11,12 +12,13 @@
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
+            if($objcl->queryEndereco($_POST) == 'ok'){
             echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
             echo "<script>window.location = 'consultacontrato.php';</script>";
-        
-    }else{
-        echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
-    }
+            }
+        }else{
+            echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
+        }
     }
 ?>
 
@@ -53,12 +55,12 @@
                         <td>Cliente: 
                             <select name="id_cli">
                                     <?php foreach($objcl->querySelectname() as $rst){ ?>
-                                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 2)) ?> 
+                                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 2) ." || RG/IE: ". $objFc->tratarCaracter($rst['rg'], 2) ." || CPF/CNPJ: ". $objFc->tratarCaracter($rst['cpf'], 2) ) ?> 
                                     </option>
                                     <?php } ?>
                                 </select>
                         </td>
-                        <td>
+                        <td> 
                         Serviço:
                             <select name="id_servi">
                                 <?php foreach($objsv->querySelect() as $rst){ ?>
@@ -67,8 +69,7 @@
                                 <?php } ?>
                             </select>
                         </td>
-                        <td><label for="cRG ">RG: </label><input type="number " name="tRG " id="cRG " size="10 " maxlength="10 " placeholder="00.000.000-0 " /></td>
-                        <td><label for="cCC ">CPF/ CNPJ: </label><input type="number " name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00 " /></td>
+                       
                     </tr>
                     <tr>
                         <td><label for="dTrabalho">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
@@ -96,58 +97,50 @@
             
         </fieldset>
         <div style="height:auto">
-            <fieldset id="dadosFin " style="height:100%; position:relative; float:height; margin-top: 10px;  width:98%; border-radius:20px 20px 20px 20px ">
-                <legend>Endereço do Projeto</legend>
-                
-                    <table style="HEIGHT:100px; WIDTH:100%;">
-                        <tr align="left " bottom="middle ">
-                            <td><label for="cLog">Logradouro: </label><input type="text" name="tLog" id="cLog" size="40" maxlength="40" placeholder="R:, Av:, Est:..." /></td>
-                            <td><label for="cNum">Número: </label><input type="number" name="tNum" id="cNum" min="0" max="99999" placeholder="000" /></td>
-                            <td><label for="cComp">Complemento: </label><input type="text" name="tComp" id="cComp" size="30" maxlength="30" placeholder="Apto, Sala, ... " /></td>
-
-                        </tr>
-                        <tr>
-                            <td><label for="cCP">CEP: </label><input type="text" name="cep" size="5" maxlength="5"> - <input type="text" name="cep2" size="3" maxlength="3"></td>
-                            <td><label for="cMun">Município: </label><input type="text" name="tMun" id="cMun" size="30" maxlength="30" placeholder="Cidade" /></td>
-                            <td><label for="cUF">Estado: </label><select name="cUF" id="cUF">
-                                                                        <option selected>UF</option>
-                                                                        <option>Acre</option>
-                                                                        <option>Alagoas</option>
-                                                                        <option>Amazonas</option>
-                                                                        <option>Amapá</option>
-                                                                        <option>Bahia</option>
-                                                                        <option>Ceará</option>
-                                                                        <option>Distrito Federal</option>
-                                                                        <option>Espírito Santo</option>
-                                                                        <option>Goiás</option>
-                                                                        <option>Maranhão</option>
-                                                                        <option>Mato Grosso</option>
-                                                                        <option>Mato Grosso do Sul</option>
-                                                                        <option>Minas Gerais</option>
-                                                                        <option>Pará</option>
-                                                                        <option>Paraíba</option>
-                                                                        <option>Paraná</option>
-                                                                        <option>Pernambuco</option>
-                                                                        <option>Piauí</option>
-                                                                        <option>Rio de Janeiro</option>
-                                                                        <option>Rio Grande do Norte</option>
-                                                                        <option>Rio Grande do Sul</option>
-                                                                        <option>Rondônia</option>
-                                                                        <option>Roraima</option>
-                                                                        <option>Santa Catarina</option>
-                                                                        <option>São Paulo</option>
-                                                                        <option>Sergipe</option>
-                                                                        <option>Tocantins</option> 
-                                                                    </select>
-                            </td>
-                        </tr>
-                    </table>
-                
-            </fieldset>
-        </div>
-        
+        <fieldset id="endereco" style="position:relative;height:130px; border-radius:20px 20px 20px 20px">
+                    <legend>Endereço 1 </legend>
+                            CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                            Logradouro: <input type="text" name="logradouro"     id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                            Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
+                            Complemento:<input type="text" name="complemento"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
+                        <p>
+                            Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
+                            Estado:
+                       <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
+                            -->
+                            <select name="estado" value="" id="cUF">
+                                        <option selected>UF</option>
+                                        <option value = "AC">Acre</option>
+                                        <option value = "AL">Alagoas</option>
+                                        <option value = "AM">Amazonas</option>
+                                        <option value = "AP">Amapá</option>
+                                        <option value = "BA">Bahia</option>
+                                        <option value = "CE">Ceará</option>
+                                        <option value = "DF">Distrito Federal</option>
+                                        <option value = "ES">Espírito Santo</option>
+                                        <option value = "GO">Goiás</option>
+                                        <option value = "MA">Maranhão</option>
+                                        <option value = "MT">Mato Grosso</option>
+                                        <option value = "MS">Mato Grosso do Sul</option>
+                                        <option value = "MG">Minas Gerais</option>
+                                        <option value = "PA">Pará</option>
+                                        <option value = "PB">Paraíba</option>
+                                        <option value = "PR">Paraná</option>
+                                        <option value = "PE">Pernambuco</option>
+                                        <option value = "PI">Piauí</option>
+                                        <option value = "RJ">Rio de Janeiro</option>
+                                        <option value = "RN">Rio Grande do Norte</option>
+                                        <option value = "RS">Rio Grande do Sul</option>
+                                        <option value = "RO">Rondônia</option>
+                                        <option value = "RR">Roraima</option>
+                                        <option value = "SC">Santa Catarina</option>
+                                        <option value = "SP">São Paulo</option>
+                                        <option value = "SE">Sergipe</option>
+                                        <option value = "TO">Tocantins</option> 
+                                    </select> 
+                    <input type="hidden" name="tipo" value="Obra"/>
+        </div>      
         <input type="submit" name="insert" value="Inserir" >
         </form>
 </body>
-
 </html>

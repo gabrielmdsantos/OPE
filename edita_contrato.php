@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <?php
     require_once 'classes/funcoes.class.php';
     require_once 'classes/contrato.class.php';
@@ -13,13 +16,17 @@
         if($objfn->queryInsert($_POST) == 'ok' ){
             echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
             echo "<script>window.location = 'cadastrar_parceiro.php';</script>";
+        }else{
+            echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
         }
-    }else{
-        echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
     }
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
-            case 'edit': $func = $objfn->querySeleciona($_GET['func']); break;
+            case 'edit': $func = $objfn->querySeleciona($_GET['func']); 
+                        $id_cli = $func['id_cli'];
+                        echo ($id_cli);
+                        $edn = $objfn->querySeleciona($_GET['func']);
+                break;
             case 'delet':
                 if($objFn->queryDelete($_GET['func']) == 'ok'){
                     header('location: /formulario');
@@ -32,24 +39,19 @@
 
 ?>
 
-<!DOCTYPE html>
-
-
-<html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8" />
-    <title> Teste</title>
+    <meta charset="UTF-8"/>
+    <title> Teste </title>
     <link rel="stylesheet" type="text/css" href="style/style2.css">
 </head>
 
 <!--Menu-->
-
+<?php include_once ("header.php"); ?>
 <body>
-    <?php include_once ("header.php"); ?>
+    
     <!--Conteúdo-->
     <div style="height:180px">
-        <fieldset id="dadosFin" style="height:100%;  float:height; margin-top: 10px; margin-left:auto; margin-right: auto;  width:90%; border-radius:20px 20px 20px 20px ">
+        <fieldset id="dadosFin" style="height:100%; float:left; margin-top: 10px; width:97%; border-radius:20px 20px 20px 20px">
             <legend>Cliente</legend>
             <form method = "POST">
                 <table style="HEIGHT:100%; WIDTH:100%;">
@@ -67,10 +69,16 @@
                     <tr>
                         <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "> <?php echo $objFc->tratarCaracter((isset($func['detalhes_contrato']))?($func['detalhes_contrato']):(''), 2)?> </textarea></td>
                         <td><label for="cPrazo ">Prazo:</label><input type="date" name="prazo" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" ></td>
-                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>" name="valor" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                        <td><label for="cValorP ">Valor da Parcela: </label><input type="number " name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>" name="valor" id="valor" min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                        <?php
+                            $valor = $func['valor'];
+                            $qnt_p = $func['parcelas'];
+                            $vlp = $valor / $qnt_p;
+                        ?>
+                        <td><label for="cValorP ">Valor da Parcela: </label> <input type="number" readonly=“true” name="final" id="final" value="<?php echo ($vlp);?>"  min="0 " max="99999 " placeholder="R$1.000 " /></td>
                         <td><label for="cParcelas ">Quantidade de Parcelas </label>
-                        <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcelas']))?($func['parcelas']):(''), 2)?>" name="qnt_parc" id="cValorT " min="0 " max="99999 " placeholder="3x" />
+
+                        <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcelas']))?($func['parcelas']):(''), 2)?>" name="qnt_parc" id="qnt_parc" min="0" max="99999" placeholder="3x"/>
                     </tr>
                     <tr>
                         <td><label for="cdate "></label>Dia de Vencimento: </label><input type="text"  value="<?=$objFc->tratarCaracter((isset($func['dia_vencimento']))?($func['dia_vencimento']):(''), 2)?>" name="vencimento" name="cdate" /></td>
@@ -79,7 +87,7 @@
             
         </fieldset>
         <div style="height:120px ">
-            <fieldset id="dadosFin " style="height:100%; float:height; margin-top: 10px; margin-left:auto; margin-right: auto; width:90%; border-radius:20px 20px 20px 20px ">
+            <fieldset id="dadosFin " style="height:100%; float:left; margin-top: 10px; width:97%; border-radius:20px 20px 20px 20px">
                 <legend>Endereço do Projeto</legend>
                 
                     <table style="HEIGHT:100px;; WIDTH:100%;">

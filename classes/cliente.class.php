@@ -132,7 +132,7 @@ class Cliente{
 
     public function querySelectname(){
         try{
-            $cst = $this->con->conect()->prepare("SELECT `id`,  `nome` FROM `cliente`;");
+            $cst = $this->con->conect()->prepare("SELECT `id`,  `nome`,`rg`,`cpf`  FROM `cliente`;");
             $cst->execute();
             return $cst->fetchAll();
         }catch(PDOException $ex){

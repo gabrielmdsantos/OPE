@@ -34,7 +34,7 @@ class Contrato{
     public function querySeleciona($dado){
         try{
             $this->id = $dado;
-            $cst = $this->con->conect()->prepare("SELECT cliente.nome as nome_cli, servico.servico as nome_servico, cliente.rg as rg_cli, cliente.cpf AS cpf_cli, contrato.Detalhes as detalhes_contrato, contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas, contrato.VENCIMENTO as dia_vencimento FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico WHERE contrato.id = :id;");
+            $cst = $this->con->conect()->prepare("SELECT cliente.id as id_cli, cliente.nome as nome_cli, servico.servico as nome_servico, cliente.rg as rg_cli, cliente.cpf AS cpf_cli, contrato.Detalhes as detalhes_contrato, contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas, contrato.VENCIMENTO as dia_vencimento FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico WHERE contrato.id = :id;");
             $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
             $cst->execute();
             return $cst->fetch();
