@@ -16,7 +16,7 @@ $campo="%".$_POST['campo']."%";
 $sql=$mysqli->prepare("SELECT cliente.id AS id_cli, cliente.nome AS nome_cli, parceiro.nome as nome_parceiro from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc WHERE  cliente.nome LIKE '$campo' ");
 //$sql->bind_param("s",$campo);
 $sql->execute();
-$sql->bind_result($id,$produto,$valor);
+$sql->bind_result($id,$nome,$parceiro);
 
 echo "
     <table border='1'>
@@ -36,9 +36,9 @@ echo "
 
         echo "
         <tr>
-            <td>$id</td>
-            <td>$produto</td>
-            <td>$valor</td>
+            <td>"; echo $objFc->tratarCaracter($id,2);   echo "</td>
+            <td>"; echo $objFc->tratarCaracter($nome,2);    ;echo "</td>
+            <td>"; echo $objFc->tratarCaracter($parceiro,2)      ;echo "</td>
             <td><div class='editar'><a href='edita_cliente.php?acao=edit&func=$id' title='Editar dados'> <img src='img/ico-editar.png' width='16' height='16' alt='Editar'> </a></div>  </td>
         </tr>
         ";

@@ -39,9 +39,9 @@
             <tbody>   
             <?php foreach($objfn->querySelectclieparc($_POST) as $rst){ ?>
                 <tr>
-                    <td><?php echo ($objFc->tratarCaracter($rst['id_cli'], 1)) ?> </td>
-                    <td><?php echo ($objFc->tratarCaracter($rst['nome_cli'], 1)) ?></td>
-                    <td><?php echo ($objFc->tratarCaracter($rst['nome_parceiro'], 1)) ?> </td>
+                    <td><?php echo ($objFc->tratarCaracter($rst['id_cli'], 2)) ?> </td>
+                    <td><?php echo ($objFc->tratarCaracter($rst['nome_cli'], 2)) ?></td>
+                    <td><?php echo ($objFc->tratarCaracter($rst['nome_parceiro'], 2)) ?> </td>
                     <td><div class="editar"><a href="edita_cliente.php?acao=edit&func=<?=$objFc->tratarCaracter($rst['id_cli'], 1)?>" title="Editar dados"> <img src="img/ico-editar.png" width="16" height="16" alt="Editar"> </a></div>  </td>
                 </tr>
                <?php } ?>

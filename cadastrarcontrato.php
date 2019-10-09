@@ -12,7 +12,7 @@
 
     if(isset($_POST['insert'])){
         if($objfn->queryInsert($_POST) == 'ok' ){
-            if($objcl->queryEndereco($_POST) == 'ok'){
+            if($objfn->queryEndereco($_POST) == 'ok'){
             echo ('<script type="text/javascript"> alert("Inserido com sucesso")</script>');
             echo "<script>window.location = 'consultacontrato.php';</script>";
             }

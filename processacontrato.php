@@ -1,7 +1,7 @@
 <?php
 include('conecta.php');
 require_once 'classes/funcoes.class.php';
-$objFc = new Funcoes();
+$objFc = new funcoes();
 $campo="%".$_POST['campo']."%";
 
 
@@ -33,13 +33,13 @@ echo "
         while($sql->fetch()){
         echo "
         <tr>
-            <td>$cc</td>
-            <td>$cli</td>
-            <td>$serv</td>
-            <td>$detalhes</td>
-            <td>$valor</td>
-            <td>$qnt</td>
-            <td>$par</td>
+            <td>"; echo ($objFc->tratarCaracter($cc,2)); echo"</td>
+            <td>"; echo ($objFc->tratarCaracter($cli,2)); echo"</td>
+            <td>"; echo ($objFc->tratarCaracter($serv,2)); echo"</td>
+            <td>"; echo ($objFc->tratarCaracter($detalhes,2)); echo"</td>
+            <td>"; echo ($objFc->tratarCaracter($valor,2));  echo"</td>
+            <td>"; echo ($objFc->tratarCaracter($qnt,2));    echo"</td>
+            <td>"; echo ($objFc->tratarCaracter($par,2));    echo"</td>
             <td><div class='editar'><a href='edita_contrato.php?acao=edit&func=$cc' title='Editar dados'> <img src='img/ico-editar.png' width='16' height='16' alt='Editar'> </a></div>  </td>
         </tr>
         ";

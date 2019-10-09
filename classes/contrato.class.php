@@ -34,7 +34,7 @@ class Contrato{
     public function querySeleciona($dado){
         try{
             $this->id = $dado;
-            $cst = $this->con->conect()->prepare("SELECT cliente.id as id_cli, cliente.nome as nome_cli, servico.servico as nome_servico, cliente.rg as rg_cli, cliente.cpf AS cpf_cli, contrato.Detalhes as detalhes_contrato, contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas, contrato.VENCIMENTO as dia_vencimento FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico WHERE contrato.id = :id;");
+            $cst = $this->con->conect()->prepare("SELECT cliente.id as id_cli, cliente.nome as nome_cli, servico.servico as nome_servico, cliente.rg as rg_cli, cliente.cpf AS cpf_cli, contrato.Detalhes as detalhes_contrato, contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas, contrato.VENCIMENTO as dia_vencimento,contrato.id as id_contrato FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico WHERE contrato.id = :id;");
             $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
             $cst->execute();
             return $cst->fetch();
@@ -99,15 +99,53 @@ class Contrato{
 
     }
 
-    public function querySelect($dados){
+    public function querySelectendereco($dados,$dados2){
         try{
-
+            $this->id = $dados;
+            $this->id_cont = $dados2;
+            $cst = $this->con->conect()->prepare("SELECT * FROM `endereco` WHERE id_cli = :id AND id_cont = :id_cont");
+            $cst -> bindParam(":id", $this->id, PDO::PARAM_INT);
+            $cst -> bindParam(":id_cont", $this->id_cont, PDO::PARAM_INT);
+            $cst->execute();
+            return $cst->fetch();
         }catch(PDOException $ex){
             
         }
 
     }
 
+    public function queryEndereco($dados){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT `id` FROM `contrato` ORDER BY id  DESC LIMIT 1");
+            $cst -> execute();
+            $this->id_cli = $dados['id_cli'];
+            $this->cep = $this->objfunc->tratarCaracter($dados['cep'],1);
+            $this->logradouro = $this->objfunc->tratarCaracter($dados['logradouro'],1);
+            $this->numero = $dados['numero'];
+            $this->complemento = $this->objfunc->tratarCaracter($dados['complemento'],1);
+            $this->municipio = $this->objfunc->tratarCaracter($dados['municipio'],1);
+            $this->estado = $this->objfunc->tratarCaracter($dados['estado'],1);
+            $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'],1);
+            $idcontrato = $cst->fetchColumn(0);
+            $cst = $this->con->conect()->prepare("INSERT INTO `endereco`(`tipo`,`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`,`id_cont`) VALUES  (:tipo,:cep,:logradouro,:numero,:complemento,:municipio,:estado,:id_cli,$idcontrato);");
+            $cst -> bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
+            $cst -> bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
+            $cst -> bindParam(":cep", $this->cep, PDO::PARAM_INT);
+            $cst -> bindParam(":logradouro", $this->logradouro, PDO::PARAM_STR);
+            $cst -> bindParam(":numero", $this->numero, PDO::PARAM_INT);
+            $cst -> bindParam(":complemento", $this->complemento, PDO::PARAM_STR);
+            $cst -> bindParam(":municipio", $this->municipio, PDO::PARAM_STR);
+            $cst -> bindParam(":estado", $this->estado, PDO::PARAM_STR);
+    
+            if($cst->execute()){
+                return 'ok';
+            }else{
+                return 'erro';
+            }
+        }catch(PDOException $ex){
+
+        }
+    }
 
 
     public function queryDelete($dados){
@@ -117,6 +155,68 @@ class Contrato{
             
         }
 
+    }
+
+    public function queryupdateend($dados){
+        try{
+            $this->id_end = $dados['id_end'];
+            $this->cep = $this->objfunc->tratarCaracter($dados['cep'],1);
+            $this->logradouro = $this->objfunc->tratarCaracter($dados['logradouro'],1);
+            $this->numero = $dados['numero'];
+            $this->complemento = $this->objfunc->tratarCaracter($dados['complemento'],1);
+            $this->municipio = $this->objfunc->tratarCaracter($dados['municipio'],1);
+            $this->estado = $this->objfunc->tratarCaracter($dados['estado'],1);
+         //   $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'],1);
+            $cst = $this->con->conect()->prepare("UPDATE `endereco` SET `cep`=:cep,`logradouro`=:logradouro,`Numero`=:numero,`Complemento`=:complemento,`municipio`=:municipio,`estado`=:estado WHERE `id` = :id_end");
+            $cst -> bindParam(":id_end", $this->id_end, PDO::PARAM_INT);
+        //    $cst -> bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
+            $cst -> bindParam(":cep", $this->cep, PDO::PARAM_INT);
+            $cst -> bindParam(":logradouro", $this->logradouro, PDO::PARAM_STR);
+            $cst -> bindParam(":numero", $this->numero, PDO::PARAM_INT);
+            $cst -> bindParam(":complemento", $this->complemento, PDO::PARAM_STR);
+            $cst -> bindParam(":municipio", $this->municipio, PDO::PARAM_STR);
+            $cst -> bindParam(":estado", $this->estado, PDO::PARAM_STR);
+            // UPDATE `endereco` SET `cep`=[value-3],`logradouro`=[value-4],`Numero`=[value-5],`Complemento`=[value-6],`municipio`=[value-7],`estado`=[value-8] WHERE `id_cli` = 1
+            if($cst->execute()){
+                return 'ok';
+            }else{
+                echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+                return 'erro';
+            }
+        }catch(PODEException $ex){
+
+        }
+    }
+
+
+    public function queryupdatecontrato($dados){
+        try{
+            $this->id_contrato = $dados['id_contrato'];
+            //$this->id_servi = $dados['id_servi'];
+            $this->detalhes = $dados['detalhes'];
+            $this->prazo = $this->objfunc->dataAtual(2);
+            $this->valor = $dados['valor'];
+            $this->qnt_parcela = $dados['qnt_parcela'];
+            $this->vencimento = $dados['vencimento'];
+           //inserindo contrato
+            $cst = $this->con->conect()->prepare("UPDATE `contrato` SET `Detalhes`=:detalhes,`PRAZO`=:prazo,`Valor`=:valor,`qnt_parcela`=:qnt_parcela,`VENCIMENTO`=:vencimento WHERE id = :id_contrato;");
+            $cst -> bindParam(":id_contrato", $this->id_contrato, PDO::PARAM_INT);
+            //$cst -> bindParam(":id_servi", $this->id_servi, PDO::PARAM_INT);
+            $cst -> bindParam(":detalhes", $this->detalhes, PDO::PARAM_STR);
+            $cst -> bindParam(":prazo", $this->prazo, PDO::PARAM_STR);
+            $cst -> bindParam(":valor", $this->valor, PDO::PARAM_STR);
+            $cst -> bindParam(":qnt_parcela", $this->qnt_parcela, PDO::PARAM_STR);
+            $cst -> bindParam(":vencimento", $this->vencimento, PDO::PARAM_INT);
+            if($cst->execute()){
+                return 'ok';
+            }else{
+                echo '<script type="text/javascript">alert("Erro em alterar");</script>';
+                return 'erro';
+            }
+
+        }catch(PODEException $ex){
+
+        }
     }
 
 
