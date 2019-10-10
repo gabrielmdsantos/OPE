@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 09-Out-2019 às 16:13
+-- Generation Time: 10-Out-2019 às 13:41
 -- Versão do servidor: 5.7.26
 -- versão do PHP: 7.2.18
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `id_parc` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_parc` (`id_parc`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `contrato` (
   PRIMARY KEY (`ID`),
   KEY `fk_cli` (`ID_Cliente`),
   KEY `fk_servi` (`ID_Servico`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -80,11 +80,11 @@ CREATE TABLE IF NOT EXISTS `despesa_proj` (
   `id_cli` int(11) DEFAULT NULL,
   `DATA` date DEFAULT NULL,
   `VALOR` decimal(10,0) DEFAULT NULL,
-  `Descricao` varchar(100) NOT NULL,
+  `Descricao` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_conti` (`ID_CONT`),
   KEY `fk_cli_desp` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `email` (
   `id_cli` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_email` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   PRIMARY KEY (`id`),
   KEY `id_cli` (`id_cli`),
   KEY `FK_END_CONTRA` (`id_cont`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -135,10 +135,17 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `NOME` varchar(50) NOT NULL,
   `CPF` varchar(11) NOT NULL,
-  `EMAIL` varchar(50) NOT NULL,
-  `CELULAR` char(11) NOT NULL,
+  `EMAIL` varchar(50) DEFAULT NULL,
+  `CELULAR` char(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `funcionario`
+--
+
+INSERT INTO `funcionario` (`ID`, `NOME`, `CPF`, `EMAIL`, `CELULAR`) VALUES
+(1, 'Admin', '123', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,30 +165,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 --
 
 INSERT INTO `login` (`ID_FUNCIONARIO`, `SENHA`) VALUES
-(1, '12345678999'),
-(1, '0'),
-(1, '0'),
-(1, '123123'),
-(1, '123'),
-(1, '123'),
-(3, '12312312311'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0'),
-(3, '0');
+(1, '123');
 
 -- --------------------------------------------------------
 
@@ -194,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `parceiro` (
   `id_parc` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   PRIMARY KEY (`id_parc`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -209,11 +193,11 @@ CREATE TABLE IF NOT EXISTS `receita_proj` (
   `id_cli` int(11) DEFAULT NULL,
   `DATA` date DEFAULT NULL,
   `VALOR` decimal(10,0) DEFAULT NULL,
-  `descricao` varchar(100) NOT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_cont` (`ID_CONT`),
   KEY `fk_cli_receita` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -226,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `servico` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `servico` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -241,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `telefone` (
   `id_clie` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_clie` (`id_clie`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Constraints for dumped tables

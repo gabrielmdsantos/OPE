@@ -46,7 +46,7 @@ class Contrato{
     public function querySelecionalan($dado){
         try{
             $this->id = $dado;
-            $cst = $this->con->conect()->prepare("SELECT contrato.ID as cc, cliente.nome as nome_cli, cliente.rg as rg_cli, cliente.cpf as cpf_cli, contrato.Detalhes as detalhes, servico.servico as serico, parceiro.nome AS parceiro,
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID as cc, cliente.id as id_cli, cliente.nome as nome_cli, cliente.rg as rg_cli, cliente.cpf as cpf_cli, contrato.Detalhes as detalhes, servico.servico as serico, parceiro.nome AS parceiro,
             contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcela, contrato.VENCIMENTO as vencimento from cliente INNER JOIN contrato ON contrato.ID_Cliente = cliente. ID INNER JOIN servico ON servico.id = contrato.ID_Servico INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc WHERE contrato.id = :id;");
             $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
             $cst->execute();
@@ -79,7 +79,7 @@ class Contrato{
             $this->qnt_parcela = $dados['qnt_parcela'];
             $this->vencimento = $dados['vencimento'];
            //inserindo contrato
-            $cst = $this->con->conect()->prepare("INSERT INTO `contrato`(`ID_Cliente`,`ID_Servico`,`Detalhes`,`PRAZO`,`Valor`,`qnt_parcela`,`VENCIMENTO`) VALUES (:id_cli,:id_servi,:detalhes,:prazo,:valor,:qnt_parcela,:vencimento);");
+            $cst  = $this->con->conect()->prepare("INSERT INTO `contrato`(`ID_Cliente`,`ID_Servico`,`Detalhes`,`PRAZO`,`Valor`,`qnt_parcela`,`VENCIMENTO`) VALUES (:id_cli,:id_servi,:detalhes,:prazo,:valor,:qnt_parcela,:vencimento);");
             $cst -> bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
             $cst -> bindParam(":id_servi", $this->id_servi, PDO::PARAM_INT);
             $cst -> bindParam(":detalhes", $this->detalhes, PDO::PARAM_STR);
@@ -127,8 +127,12 @@ class Contrato{
             $this->estado = $this->objfunc->tratarCaracter($dados['estado'],1);
             $this->tipo = $this->objfunc->tratarCaracter($dados['tipo'],1);
             $idcontrato = $cst->fetchColumn(0);
-            $cst = $this->con->conect()->prepare("INSERT INTO `endereco`(`tipo`,`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`,`id_cont`) VALUES  (:tipo,:cep,:logradouro,:numero,:complemento,:municipio,:estado,:id_cli,$idcontrato);");
+            $cst =  $this->con->conect()->prepare("INSERT INTO `endereco`(`tipo`,`cep`,`logradouro`,`Numero`,`Complemento`,`municipio`,`estado`,`id_cli`,`id_cont`) VALUES  (:tipo,:cep,:logradouro,:numero,:complemento,:municipio,:estado,:id_cli,$idcontrato);");
+            $desp = $this->con->conect()->prepare("INSERT INTO `despesa_proj` (`ID_CONT`, `id_cli`) VALUES ($idcontrato,:id_cli)");
+            $rece = $this->con->conect()->prepare("INSERT INTO `receita_proj` (`ID_CONT`, `id_cli`) VALUES ($idcontrato,:id_cli)");
             $cst -> bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
+            $desp -> bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
+            $rece -> bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
             $cst -> bindParam(":tipo", $this->tipo, PDO::PARAM_STR);
             $cst -> bindParam(":cep", $this->cep, PDO::PARAM_INT);
             $cst -> bindParam(":logradouro", $this->logradouro, PDO::PARAM_STR);
@@ -136,7 +140,8 @@ class Contrato{
             $cst -> bindParam(":complemento", $this->complemento, PDO::PARAM_STR);
             $cst -> bindParam(":municipio", $this->municipio, PDO::PARAM_STR);
             $cst -> bindParam(":estado", $this->estado, PDO::PARAM_STR);
-    
+            $rece -> execute();
+            $desp -> execute();
             if($cst->execute()){
                 return 'ok';
             }else{

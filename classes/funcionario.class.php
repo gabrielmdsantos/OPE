@@ -49,7 +49,7 @@ class Funcionario{
             $cst -> bindParam(":cel", $this->cel, PDO::PARAM_INT);
             $cst -> bindParam(":email", $this->email, PDO::PARAM_STR);
             if ($cst->execute()){
-                $cst = $this->con->conect()->prepare("SELECT `id` FROM `cliente` ORDER BY id  DESC LIMIT 1");
+                $cst = $this->con->conect()->prepare("SELECT `id` FROM `funcionario` ORDER BY id  DESC LIMIT 1");
                 $cst -> execute();
                 $ultimaid = $cst->fetchColumn(0);
                 $cst = $this->con->conect()->prepare("INSERT INTO `login`(`ID_FUNCIONARIO`, `SENHA`) VALUES ($ultimaid,:cpf)");

@@ -77,8 +77,8 @@
                     
                     </fieldset>
                     <p>    
-                    Razão Social<input type="text"  name="razao"          value="<?=$objFc->tratarCaracter((isset($func['razao_cli']))?($func['razao_cli']):(''), 2)?>" />
-                    Representante<input type="text"  name="representante"  value="<?=$objFc->tratarCaracter((isset($func['repre_cli']))?($func['repre_cli']):(''), 2)?>" />
+                    Razão Social<input type="text"  name="razao"          value="<?=$objFc->tratarCaracter((isset($func['razao_cli']))?($func['razao_cli']):(''), 1)?>" />
+                    Representante<input type="text"  name="representante"  value="<?=$objFc->tratarCaracter((isset($func['repre_cli']))?($func['repre_cli']):(''), 1)?>" />
                     <input type="hidden"  name="inscricao"      value="" />
                     <input type="hidden"  name="cnpj"  value="" />
                     &nbsp;&nbsp;Parceiro:  <select name="id_parc" placeholder="Selecione o parceiro">  
@@ -89,7 +89,7 @@
                     </select>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label> Observações: </label>
-                            <textarea  id="msg" name="observacao" value=""> <?=$objFc->tratarCaracter((isset($func['obs_cli']))?($func['obs_cli']):(''), 2)?> </textarea>    
+                            <textarea  id="msg" name="observacao" value=""> <?=$objFc->tratarCaracter((isset($func['obs_cli']))?($func['obs_cli']):(''), 1)?> </textarea>    
 
 
                 </fieldset>

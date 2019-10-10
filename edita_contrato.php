@@ -45,6 +45,14 @@
     <title> Teste </title>
     <link rel="stylesheet" type="text/css" href="style/style2.css">
 </head>
+<script type="text/javascript">    
+    function calcular(){
+        var valor = document.getElementById("valor").value;
+        var parce = document.getElementById("qnt_parcela").value;
+        var final = valor / parce;
+        document.getElementById("final").innerHTML = "<input type='text' value='"+ final +"'/>";
+    }
+</script>
 
 <!--Menu-->
 <?php include_once ("header.php"); ?>
@@ -71,16 +79,16 @@
                     <tr>
                         <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "> <?php echo $objFc->tratarCaracter((isset($func['detalhes_contrato']))?($func['detalhes_contrato']):(''), 2)?> </textarea></td>
                         <td><label for="cPrazo ">Prazo:</label><input type="date" name="prazo" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" ></td>
-                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>" name="valor" id="valor" min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                        <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>" onBlur="calcular()" name="valor" id="valor" min="0 " max="99999 " placeholder="R$1.000 " /></td>
                         <?php
                             $valor = $func['valor'];
                             $qnt_p = $func['parcelas'];
                             $vlp = $valor / $qnt_p;
                         ?>
-                        <td><label for="cValorP ">Valor da Parcela: </label> <input type="number" readonly=“true” name="final" id="final" value="<?php echo ($vlp);?>"  min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                        <td><label for="cValorP ">Valor da Parcela: </label><div id="final"> <input type="number" readonly=“true” name="final" id="final" value="<?php echo ($vlp);?>"  min="0 " max="99999 " placeholder="R$1.000 " /></td>
                         <td><label for="cParcelas ">Quantidade de Parcelas </label>
 
-                        <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcelas']))?($func['parcelas']):(''), 2)?>" name="qnt_parcela" id="qnt_parcela" min="0" max="99999" placeholder="3x"/>
+                        <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcelas']))?($func['parcelas']):(''), 2)?>" onBlur="calcular()" name="qnt_parcela" id="qnt_parcela" min="0" max="99999" placeholder="3x"/>
                     </tr>
                     <tr>
                         <td><label for="cdate "></label>Dia de Vencimento: </label><input type="text"  value="<?=$objFc->tratarCaracter((isset($func['dia_vencimento']))?($func['dia_vencimento']):(''), 2)?>" name="vencimento" name="cdate" /></td>

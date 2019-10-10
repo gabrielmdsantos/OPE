@@ -25,16 +25,20 @@
             // N igual a receita
             if($objfn->queryInsertdespesa($_POST)=='ok'){
                     echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
+                    echo "<script>window.location = 'controleprojeto.php';</script>";
             } 
         }else{
                 if($objfn->queryInsertreceita($_POST)=='ok'){
                 echo '<script type="text/javascript"> alert("Inserido com sucesso");</script>';
+                echo "<script>window.location = 'controleprojeto.php';</script>";
             }
         }
     }   
     if(isset($_GET['acao'])){
         switch($_GET['acao']){
-            case 'edit': $func = $objct->querySelecionalan($_GET['func']); break;
+            case 'edit': $func = $objct->querySelecionalan($_GET['func']); 
+                        $desp = $objfn->querySomadespesa($_GET['func']);
+                        $recei = $objfn->querySomareceita($_GET['func']);
             break;
         }
     }   
@@ -57,7 +61,8 @@
                 <form action="" method = "POST">
                     <table style="HEIGHT:100%; WIDTH:100%;">
                         <tr align="left " bottom="middle ">
-                       <td> CC <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['cc']))?($func['cc']):(''), 2)?>" name='id_cont'> </td>
+                            <td> CC <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['cc']))?($func['cc']):(''), 2)?>" name='id_cont'> </td>
+                            <input type="hidden" value="<?php echo($func['id_cli']) ?>" name="id_cli">
                             <td> Cliente  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['nome_cli']))?($func['nome_cli']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "></td>
                             <td> Parceiro <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['parceiro']))?($func['parceiro']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "></td>
                             <td> Servico  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['serico']))?($func['serico']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "> </td>
@@ -68,7 +73,7 @@
                             <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0" cols="20" maxlength="20"> <?=$objFc->tratarCaracter((isset($func['detalhes']))?($func['detalhes']):(''), 2)?>  </textarea></td>
                             <td><label for="cPrazo ">Prazo:</label><input type="text" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" name="prazo"></td>
                             <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                            <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                            <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
                             <td><label for="cParcelas ">Quantidade de Parcelas </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcela']))?($func['parcela']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /> </td>
                         </tr>
                         <tr>
@@ -77,8 +82,17 @@
                         </tr>
                     </table>
                     <br><p>
-                    Valor Total do Contrato:  <input type="number " name="tValorT " id="" min="0 " max="99999 " placeholder="R$1.000 " />
-                    Valor Restante: </label> <input type="number " name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                    <?php
+                        $contrato =  $func['valor'];
+                        $receita = $recei['receita'];
+                        //echo ($receita);
+                        $despesa = $desp['despesa'];
+                        $valortotal = $contrato+$despesa;
+                        $final = $valortotal - $receita;
+
+                    ?>
+                    Valor Total do Contrato:  <input type="number " name="tValorT " id=""    value="<?php echo($valortotal); ?>" min="0 " max="99999 " placeholder="R$1.000 " />
+                    Valor Restante a ser pago: </label> <input type="number " name="tValorT" value="<?php echo($final); ?>" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
 
             </fieldset>
             <div style="height:80px ">
