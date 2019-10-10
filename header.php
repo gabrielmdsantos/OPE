@@ -17,7 +17,7 @@ protegePagina();
             <li><a href="consultacontrato.php">Contrato</a></li>
             <li><a href="controleprojeto.php">Controle do projeto</a></li>
             <li><a href="funcionario.php">Funcionário</a></li>
-            <li><a href="cadasatrar_parceiro">Parceiro</a></li>
+            <li><a href="cadastrar_parceiro">Parceiro</a></li>
             <li><a href="servico.php">Serviço</a></li>
             <!--
                 Esta bugando a pesquisa do usuario

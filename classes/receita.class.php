@@ -91,13 +91,27 @@ class Receita{
 
     }
 
-    public function querySelect($dados){
+    public function querySelectreceita(){
         try{
-
+                //SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(receita_proj.VALOR) AS receita FROM receita_proj INNER JOIN contrato ON contrato.ID = receita_proj.ID_CONT INNER JOIN cliente ON cliente.id = receita_proj.id_cli GROUP BY receita_proj.ID_CONT
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(receita_proj.VALOR) AS receita FROM receita_proj INNER JOIN contrato ON contrato.ID = receita_proj.ID_CONT INNER JOIN cliente ON cliente.id = receita_proj.id_cli GROUP BY receita_proj.ID_CONT;");
+            $cst->execute();
+            return $cst->fetchAll();    
         }catch(PDOException $ex){
-            
+            return 'error'.$ex->getMessage();
         }
 
+    }
+
+    public function querySelectdespesa(){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(despesa_proj.VALOR) AS DESPESA FROM despesa_proj INNER JOIN contrato ON contrato.ID = despesa_proj.ID_CONT INNER JOIN cliente ON cliente.id = despesa_proj.id_cli GROUP BY despesa_proj.ID_CONT;");
+            $cst->execute();
+            return $cst->fetchAll();
+            //SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(despesa_proj.VALOR) AS DESPESA FROM despesa_proj INNER JOIN contrato ON contrato.ID = despesa_proj.ID_CONT INNER JOIN cliente ON cliente.id = despesa_proj.id_cli GROUP BY despesa_proj.ID_CONT
+        }catch(PDOException $ex){
+            return 'error'.$ex->getMessage();
+        }
     }
 
     public function queryUpdate($dados){
