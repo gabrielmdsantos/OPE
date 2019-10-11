@@ -26,7 +26,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="Style/style2.css" />
 </head>
 
 <!--Menu-->
@@ -55,6 +55,24 @@
                 </table>
             </fieldset>
         </div>
+        <div class="scroll-parceiro">
+        <table border="1">
+            <thead>
+                <tr>
+                <th>ID/LOGIN</th>
+                <th>FUNCIONARIO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($objfn->querySeleciona() as $rst){ ?>
+                <tr>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['ID'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['NOME'], 2)) ?> </td>
+                </tr>
+                <?php } ?>
+              
+        </table>
+    </div>
     <div class="botao6">
             <input class="btn" type="submit" name="insert" value="Cadastrar Funcionário"></a>
     </div>

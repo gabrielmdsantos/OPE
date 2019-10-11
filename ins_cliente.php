@@ -55,6 +55,7 @@ var data2 = {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <head>
     <meta charset="UTF-8" />
+   
     <script src="script/jquery-2.1.4.min.js"></script>
    <!-- <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>   -->
 
@@ -63,8 +64,7 @@ var data2 = {
 <!--Menu-->
 
 <body>
-<?php require_once("header.php"); 
-?>
+<?php require_once("header.php"); ?>
         <form action="" method="post">
             <!--Dados do cliente-->
             <fieldset id="cadastro" style="position:relative; left:0px; width:98%; border-radius:20px 20px 20px 20px">

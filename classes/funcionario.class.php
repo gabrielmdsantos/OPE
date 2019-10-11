@@ -26,12 +26,12 @@ class Funcionario{
 
     }
 
-    public function querySeleciona($dados){
+    public function querySeleciona(){
         try{
-            $cst = $this->con->conectar()->prepare("Select * from parceiro");
-            $cst = bindParam(":idFunc", $this->idFuncionario, PDO::PARAM_INT);
+            $cst = $this->con->conect()->prepare("SELECT * FROM `funcionario`");
+            //$cst = bindParam(":ID", $this->ID, PDO::PARAM_INT);
             $cst->execute();
-            return $cst->fechtAll();
+            return $cst->fetchAll();
         }catch(PDOException $ex){
             return 'error'.$ex->getMessage();
         }

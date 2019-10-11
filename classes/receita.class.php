@@ -106,6 +106,19 @@ class Receita{
 
     }
 
+    public function querySelectreceita2($dados){
+        try{
+                //SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(receita_proj.VALOR) AS receita FROM receita_proj INNER JOIN contrato ON contrato.ID = receita_proj.ID_CONT INNER JOIN cliente ON cliente.id = receita_proj.id_cli GROUP BY receita_proj.ID_CONT
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(receita_proj.VALOR) AS receita FROM receita_proj INNER JOIN contrato ON contrato.ID = receita_proj.ID_CONT INNER JOIN cliente ON cliente.id = receita_proj.id_cli WHERE contrato.ID like $dados  GROUP BY receita_proj.ID_CONT;");
+            $cst->execute();
+            return $cst->fetchAll();    
+        }catch(PDOException $ex){
+            return 'error'.$ex->getMessage();
+        }
+
+    }
+
+
     public function querySomadespesa($dados){
         try{
             $cst = $this->con->conect()->prepare("SELECT sum(VALOR) as despesa FROM despesa_proj WHERE id_cli = $dados");
@@ -129,6 +142,18 @@ class Receita{
     public function querySelectdespesa($dados){
         try{
             $cst = $this->con->conect()->prepare("SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(despesa_proj.VALOR) AS DESPESA FROM despesa_proj INNER JOIN contrato ON contrato.ID = despesa_proj.ID_CONT INNER JOIN cliente ON cliente.id = despesa_proj.id_cli  GROUP BY despesa_proj.ID_CONT;");
+            //$cst -> bindParam(":nome", $this->nome, PDO::PARAM_STR);
+            $cst->execute();
+            return $cst->fetchAll();
+            //SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(despesa_proj.VALOR) AS DESPESA FROM despesa_proj INNER JOIN contrato ON contrato.ID = despesa_proj.ID_CONT INNER JOIN cliente ON cliente.id = despesa_proj.id_cli GROUP BY despesa_proj.ID_CONT
+        }catch(PDOException $ex){
+            return 'error'.$ex->getMessage();
+        }
+    }
+
+    public function querySelectdespesa2($dados){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(despesa_proj.VALOR) AS DESPESA FROM despesa_proj INNER JOIN contrato ON contrato.ID = despesa_proj.ID_CONT INNER JOIN cliente ON cliente.id = despesa_proj.id_cli WHERE contrato.id like $dados  GROUP BY despesa_proj.ID_CONT;");
             //$cst -> bindParam(":nome", $this->nome, PDO::PARAM_STR);
             $cst->execute();
             return $cst->fetchAll();

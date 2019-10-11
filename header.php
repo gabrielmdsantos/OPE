@@ -19,6 +19,7 @@ protegePagina();
             <li><a href="funcionario.php">Funcionário</a></li>
             <li><a href="cadastrar_parceiro">Parceiro</a></li>
             <li><a href="servico.php">Serviço</a></li>
+            <li><a href="financeiro.php"> Financeiro </a></li>
             <!--
                 Esta bugando a pesquisa do usuario
             <li><a href="financeiro.php">Financeiro</a></li>

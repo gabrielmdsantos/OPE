@@ -61,7 +61,8 @@
     <!--Campos de busca-->
     <form action="processa_controle.php">  
         <div class="search">
-        <input type="text" name="campo"  id="campo" placeholder="Nome do Cliente" >
+        Encontre pelo C.C
+        <input type="text" name="campo"  id="campo" placeholder="Numero do C.C" >
         </div>
     </form> 
   
