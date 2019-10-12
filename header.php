@@ -20,19 +20,8 @@ protegePagina();
             <li><a href="cadastrar_parceiro">Parceiro</a></li>
             <li><a href="servico.php">Serviço</a></li>
             <li><a href="financeiro.php"> Financeiro </a></li>
-            <!--
-                Esta bugando a pesquisa do usuario
-            <li><a href="financeiro.php">Financeiro</a></li>
-            <li><a> <form action="" method="post">
-                    <?php
-                    if(isset($_POST["sair"])){
-                        expulsaVisitante();
-                        }
-                    ?>
-                <input type="submit" name="sair" placeholder="Sair" value="sair" />
-                </form>
-                </a></li>
-            -->
+            <li><a href="escritorio.php"> Lançamentos Interno </a></li>
+            <li><a href="sair.php"> Sair </a></li>
         </ul>
         
 </div>

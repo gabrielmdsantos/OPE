@@ -70,10 +70,11 @@
                             <td><label for="cCC ">CPF/ CNPJ: </label><input type="number"  value="<?=$objFc->tratarCaracter((isset($func['cpf_cli']))?($func['cpf_cli']):(''), 2)?>" name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00 " /></td>
                         </tr>
                         <tr>
+                        <?php $valorparcela = $func['valor'] / $func['parcela']; ?>
                             <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0" cols="20" maxlength="20"> <?=$objFc->tratarCaracter((isset($func['detalhes']))?($func['detalhes']):(''), 2)?>  </textarea></td>
                             <td><label for="cPrazo ">Prazo:</label><input type="text" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" name="prazo"></td>
                             <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                            <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                            <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT" id="cValorT" value="<?php echo($valorparcela); ?>" min="0 " max="99999 " placeholder="R$1.000 " /></td>
                             <td><label for="cParcelas ">Quantidade de Parcelas </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcela']))?($func['parcela']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /> </td>
                         </tr>
                         <tr>
@@ -88,11 +89,14 @@
                         //echo ($receita);
                         $despesa = $desp['despesa'];
                         $valortotal = $contrato+$despesa;
+                        //echo ($valortotal);
+                        //echo ('  B  '.$despesa);
+                        //echo ('  a  '. $receita);
                         $final = $valortotal - $receita;
 
                     ?>
-                    Valor Total do Contrato:  <input type="number " name="tValorT " id=""    value="<?php echo($valortotal); ?>" min="0 " max="99999 " placeholder="R$1.000 " />
-                    Valor Restante a ser pago: </label> <input type="number " name="tValorT" value="<?php echo($final); ?>" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                    Valor Total do Contrato:  <input type="number" readonly="true" name="tValorT " id=""    value="<?php echo($valortotal); ?>" min="0 " max="99999 " placeholder="R$1.000 " />
+                    Valor Restante a ser pago: </label> <input type="number" readonly="true" name="tValorT" value="<?php echo($final); ?>" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
 
             </fieldset>
             <div style="height:80px ">

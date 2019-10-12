@@ -233,18 +233,18 @@ class Cliente{
 
     public function queryUpdatee($dados){
         try{
-            $this->id_cli = $this->objfunc->tratarCaracter($dados['id_cli'], 2);
-            $this->pessoa = $this->objfunc->tratarCaracter($dados['pessoa'], 2);
-            $this->nome = $this->objfunc->tratarCaracter($dados['nome'], 2);
-            $this->cpf = $this->objfunc->tratarCaracter($dados['cpf'], 2);
-            $this->rg = $this->objfunc->tratarCaracter($dados['rg'], 2);
-            $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 2);
-            $this->razao = $this->objfunc->tratarCaracter($dados['razao'], 2);
-            $this->representante = $this->objfunc->tratarCaracter($dados['representante'], 2);
-            $this->inscricao = $this->objfunc->tratarCaracter($dados['inscricao'], 2);
-            $this->cnpj = $this->objfunc->tratarCaracter($dados['cnpj'], 2);
-            $this->id_parc = $this->objfunc->tratarCaracter($dados['id_parc'], 2);
-            $this->observacao = $this->objfunc->tratarCaracter($dados['observacao'], 2);
+            $this->id_cli = $this->objfunc->tratarCaracter($dados['id_cli'], 1);
+            $this->pessoa = $this->objfunc->tratarCaracter($dados['pessoa'], 1);
+            $this->nome = $this->objfunc->tratarCaracter($dados['nome'], 1);
+            $this->cpf = $this->objfunc->tratarCaracter($dados['cpf'], 1);
+            $this->rg = $this->objfunc->tratarCaracter($dados['rg'], 1);
+            $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 1);
+            $this->razao = $this->objfunc->tratarCaracter($dados['razao'], 1);
+            $this->representante = $this->objfunc->tratarCaracter($dados['representante'], 1);
+            $this->inscricao = $this->objfunc->tratarCaracter($dados['inscricao'], 1);
+            $this->cnpj = $this->objfunc->tratarCaracter($dados['cnpj'], 1);
+            $this->id_parc = $this->objfunc->tratarCaracter($dados['id_parc'], 1);
+            $this->observacao = $this->objfunc->tratarCaracter($dados['observacao'], 1);
 
             $cst = $this->con->conect()->prepare("UPDATE `cliente` SET `pessoa`=:pessoa,`nome`=:nome,`cpf`=:cpf,`rg`=:rg,`cnpj`=:cnpj,`razao`=:razao,`inscricao`=:inscricao,`representante`=:representante,`sexo`=:sexo,`observacao`=:observacao,`id_parc`=:id_parc WHERE  `id` = :id_cli");
             

@@ -39,3 +39,15 @@ GROUP BY despesa_proj.ID_CONT
 
 SELECT contrato.ID AS ID_CONTRATO, cliente.id AS ID_CLI, cliente.nome AS NOME_CLI, SUM(receita_proj.VALOR) AS receita FROM receita_proj INNER JOIN contrato ON contrato.ID = receita_proj.ID_CONT INNER JOIN cliente ON cliente.id = receita_proj.id_cli
 GROUP BY receita_proj.ID_CONT
+
+<!-- Busca total despesa por data -->
+SELECT  sum(VALOR) FROM `despesa_proj` WHERE `DATA` BETWEEN '2019/10/05' AND '2019/10/12'
+
+<!-- Busca total receitas por data -->
+SELECT  sum(VALOR) FROM `receita_proj` WHERE `DATA` BETWEEN '2019/10/05' AND '2019/10/12'
+
+<!-- Lista de despesas por data -->
+SELECT `ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao` FROM `despesa_proj` WHERE `DATA` BETWEEN '2019/10/05' AND '2019/10/12'
+
+<!-- Lista de receitas por data -->
+SELECT `ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao` FROM `receita_proj` WHERE `DATA` BETWEEN '2019/10/05' AND '2019/10/12';

@@ -4,7 +4,7 @@ require_once 'Conexao.class.php';
 require_once 'funcoes.class.php';
 
 
-class Receita{
+class Financeiro{
     private $conn;
     private $objfunc;
     private $id_cont;
@@ -28,46 +28,69 @@ class Receita{
     }
 
 
-    public function querySeleciona($dados){
-        try{
-
-        }catch(PDOException $ex){
-            
-        }
-    }
-    public function querySelecionaID($dados){
-        try{
-
-        }catch(PDOException $ex){
-            
-        }  
-    }
-
-    public function queryInsertreceita($dados){
+    public function QuerySelectReceita($dados){
         try{     
-            $this->id_cont = $dados['id_cont'];
-            $this->id_cli = $dados['id_cli'];
-            $this->data = $this->objfunc->dataAtual(2);
-            $this->valoor = $dados['valoor'];
-            $this->descricao = $dados['descricao'];
-           //inserindo receita
-            $cst = $this->con->conect()->prepare("INSERT INTO `receita_proj`(`ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao`) VALUES (:id_cont,:id_cli,:data,:valoor,:descricao);");
-            $cst -> bindParam(":id_cont", $this->id_cont, PDO::PARAM_INT);
-            $cst -> bindParam("id_cli", $this->id_cli,PDO::PARAM_INT);
-            $cst -> bindParam(":data", $this->data, PDO::PARAM_STR);
-            $cst -> bindParam(":valoor", $this->valoor, PDO::PARAM_STR);
-            $cst -> bindParam(":descricao", $this->descricao, PDO::PARAM_STR);            
+            $this->fim = $dados['fim'];
+            $this->inicio = $dados['inicio'];
+            $cst = $this->con->conect()->prepare("SELECT `ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao` FROM `receita_proj` WHERE `DATA` BETWEEN :inicio AND :fim");
+            $cst -> bindParam(":inicio", $this->inicio, PDO::PARAM_STR);
+            $cst -> bindParam("fim", $this->fim,PDO::PARAM_STR);            
             if ($cst->execute()){
-                return 'ok';
+                return $cst->fetchAll();
             }else{
-                echo '<script type="text/javascript"> alert("Erro ao inserir");</script>';
+                echo '<script type="text/javascript"> alert("Erro ao pesquisar");</script>';
                 return 'erro';
             }
         }catch(PDOException $ex){
         }
-
+    }
+    public function QuerySelectDespesa($dados){
+        try{     
+            $this->fim = $dados['fim'];
+            $this->inicio = $dados['inicio'];
+            $cst = $this->con->conect()->prepare("SELECT `ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao` FROM `despesa_proj` WHERE `DATA` BETWEEN :inicio AND :fim");
+            $cst -> bindParam(":inicio", $this->inicio, PDO::PARAM_STR);
+            $cst -> bindParam("fim", $this->fim,PDO::PARAM_STR);            
+            if ($cst->execute()){
+                return $cst->fetchAll();
+            }else{
+                echo '<script type="text/javascript"> alert("Erro ao pesquisar");</script>';
+                return 'erro';
+            }
+        }catch(PDOException $ex){
+        }
     }
 
+    public function QueryTotalReceita($dados){
+        try{
+            $this->fim = $dados['fim'];
+            $this->inicio = $dados['inicio'];
+            $cst = $this->con->conect()->prepare("SELECT SUM(`VALOR`) AS 'valor' FROM `receita_proj` WHERE `DATA` BETWEEN :inicio AND :fim");
+            $cst -> bindParam(":inicio", $this->inicio, PDO::PARAM_STR);
+            $cst -> bindParam("fim", $this->fim,PDO::PARAM_STR);            
+            $cst -> execute();
+            return $cst->fetch();
+        }catch(PDOException $ex){
+
+        }
+    }
+
+    public function QueryTotalDespesa($dados){
+        try{
+            $this->fim = $dados['fim'];
+            $this->inicio = $dados['inicio'];
+            $cst = $this->con->conect()->prepare("SELECT SUM(`VALOR`) AS 'valor' FROM `despesa_proj` WHERE `DATA` BETWEEN :inicio AND :fim");
+            $cst -> bindParam(":inicio", $this->inicio, PDO::PARAM_STR);
+            $cst -> bindParam("fim", $this->fim,PDO::PARAM_STR);            
+            $cst -> execute();
+            return $cst->fetch();
+        }catch(PDOException $ex){
+
+        }
+    }
+
+
+   /*
     public function queryInsertreceitaectri($dados){
         try{     
           //  $this->id_cont = $dados['id_cont'];
@@ -172,7 +195,7 @@ class Receita{
 
     public function querySomadespesa($dados){
         try{
-            $cst = $this->con->conect()->prepare("SELECT sum(VALOR) as despesa FROM despesa_proj WHERE ID_CONT = $dados");
+            $cst = $this->con->conect()->prepare("SELECT sum(VALOR) as despesa FROM despesa_proj WHERE id_cli = $dados");
             $cst -> execute();
             return $cst->fetch();
         }catch(PDOException $ex){
@@ -182,7 +205,7 @@ class Receita{
 
     public function querySomareceita($dados){
         try{
-            $cst = $this->con->conect()->prepare("SELECT sum(VALOR) as receita FROM receita_proj WHERE ID_CONT = $dados");
+            $cst = $this->con->conect()->prepare("SELECT sum(VALOR) as receita FROM receita_proj WHERE id_cli = $dados");
             $cst -> execute();
             return $cst->fetch();
         }catch(PDOException $ex){
@@ -222,7 +245,7 @@ class Receita{
         }
 
     }
-
+ 
     public function queryDelete($dados){
         try{
 
@@ -231,6 +254,7 @@ class Receita{
         }
 
     }
+    */
 
 }
 

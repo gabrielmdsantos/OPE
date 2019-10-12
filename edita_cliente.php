@@ -78,7 +78,7 @@
                     </fieldset>
                     <p>    
                     Razão Social<input type="text"  name="razao"          value="<?=$objFc->tratarCaracter((isset($func['razao_cli']))?($func['razao_cli']):(''), 1)?>" />
-                    Representante<input type="text"  name="representante"  value="<?=$objFc->tratarCaracter((isset($func['repre_cli']))?($func['repre_cli']):(''), 1)?>" />
+                    Representante<input type="text"  name="representante"  value="<?=$objFc->tratarCaracter((isset($func['repre_cli']))?($func['repre_cli']):(''), 2)?>" />
                     <input type="hidden"  name="inscricao"      value="" />
                     <input type="hidden"  name="cnpj"  value="" />
                     &nbsp;&nbsp;Parceiro:  <select name="id_parc" placeholder="Selecione o parceiro">  

@@ -49,7 +49,7 @@ echo "
                 <td>"; echo ($objFc->tratarCaracter($rec['NOME_CLI'],2)); echo"</td>
                 <td>"; echo ($objFc->tratarCaracter($rec['receita'],2)); echo"</td>
                 <td>"; echo ($objFc->tratarCaracter($des['DESPESA'],2)); echo"</td>
-                <td><div class='editar'><a href='edita_contrato.php?acao=edit&func=";echo ($rec['ID_CONTRATO']); echo"' title='Editar dados'> <img src='img/ico-editar.png' width='16' height='16' alt='Editar'> </a></div>  </td>
+                <td><div class='editar'><a href='lancamentos.php?acao=edit&func=";echo ($rec['ID_CONTRATO']); echo"' title='Editar dados'> <img src='img/ico-editar.png' width='16' height='16' alt='Editar'> </a></div>  </td>
             </tr>
             ";
         }, $rec,$des);
