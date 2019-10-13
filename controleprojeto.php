@@ -52,7 +52,7 @@
                     <td> <?php echo ($objFc->tratarCaracter($des['NOME_CLI'],2)); ?> </td>
                     <td> <?php echo ($rec['receita']); ?> </td>
                     <td> <?php echo ($des['DESPESA']); //($objFc->tratarCaracter($rst['VENC'], 2)) ?> </td>
-                    <td><div class="editar"><a href="lancamentos.php?acao=edit&func=<?php echo $rec['ID_CONTRATO'] ?>" title="Editar dados"> <img src="img/ico-editar.png" width="16" height="16" alt="Editar"> </a></div>  </td>
+                    <td><div class="editar"><a href="lancamentos.php?acao=edit&func=<?php echo $des['ID_CONTRATO'] ?>" title="Editar dados"> <img src="img/ico-editar.png" width="16" height="16" alt="Editar"> </a></div>  </td>
                 </tr>
                 <?php }, $rec,$des); ?>
 

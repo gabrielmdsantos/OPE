@@ -15,9 +15,12 @@
     require_once 'classes/receita.class.php';
     require_once 'classes/contrato.class.php';
     
+    
     $objFc = new Funcoes();
     $objfn = new Receita();
     $objct = new Contrato();
+    
+
     $receitas = "N";
 
     if(isset($_POST['insert'])){
@@ -40,8 +43,22 @@
                         $desp = $objfn->querySomadespesa($_GET['func']);
                         $recei = $objfn->querySomareceita($_GET['func']);
             break;
+            case 'delr': 
+                if($deleterec = $objct->queryDeletRec($_GET['func'],$_GET['delet']) != 'erro' ){
+                    echo '<script type="text/javascript"> alert ("Deletado com sucesso"); </script>';
+                    $ir = $_GET['func'];
+                    header("location:lancamentos.php?acao=edit&func=$ir");
+                } break;
+            case 'deld': 
+                if($deleterec = $objct->queryDeletDes($_GET['func'],$_GET['delet'])){
+                    echo ('<script type="text/javascript"> alert ("Deletado com sucesso"); </script>');    
+                    $ir = $_GET['func'];
+                    header("location:lancamentos.php?acao=edit&func=$ir");               
+                } break;
         }
-    }   
+    }
+
+    
 ?>
 
 
@@ -56,7 +73,7 @@
 <?php include_once("header.php"); ?>
         <!-- Conteúdo -->
         <div style="height:180px">
-            <fieldset id="dadosFin" style="height:250px;  float:left; margin-top: 10px; margin-left:auto; margin-right: auto;  width:98%; border-radius:20px 20px 20px 20px ">
+            <fieldset id="dadosFin" style="height:350px;  float:left; margin-top: 10px; margin-left:auto; margin-right: auto;  width:98%; border-radius:20px 20px 20px 20px ">
                 <legend>Cliente</legend>
                 <form action="" method = "POST">
                     <table style="HEIGHT:100%; WIDTH:100%;">
@@ -70,7 +87,8 @@
                             <td><label for="cCC ">CPF/ CNPJ: </label><input type="number"  value="<?=$objFc->tratarCaracter((isset($func['cpf_cli']))?($func['cpf_cli']):(''), 2)?>" name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00 " /></td>
                         </tr>
                         <tr>
-                        <?php $valorparcela = $func['valor'] / $func['parcela']; ?>
+                        <?php 
+                        $valorparcela = $func['valor'] / $func['parcela']; ?>
                             <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0" cols="20" maxlength="20"> <?=$objFc->tratarCaracter((isset($func['detalhes']))?($func['detalhes']):(''), 2)?>  </textarea></td>
                             <td><label for="cPrazo ">Prazo:</label><input type="text" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" name="prazo"></td>
                             <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
@@ -81,6 +99,50 @@
 
                             <td>Data do Vencimento:<input type="text" value="<?=$objFc->tratarCaracter((isset($func['vencimento']))?($func['vencimento']):(''), 2)?>"  /></td>
                         </tr>
+                    </table>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <td> Valor </td>
+                                <td> Data </td>
+                                <td> Descrição  </td>
+                                <td> Excluir  </td>
+                            </tr>
+                        </thead>
+                        <?php 
+                            $rec = $objct->querySelectRec($_GET['func']);
+                            $des = $objct->querySelectDesp($_GET['func']);
+                            array_map (function($rec,$des){ 
+                                require_once 'classes/funcoes.class.php';
+                                require_once 'classes/receita.class.php';
+                                require_once 'classes/contrato.class.php';
+                                
+                                
+                                $objFc = new Funcoes();
+                                $objfn = new Receita();
+                                $objct = new Contrato();        
+                        ?> 
+                        <tbody>
+                            <?php if ($des['VALOR'] != ''){ ?>
+                                <tr>
+                                    <td><?php echo ('-'.$objFc->tratarCaracter($des['VALOR'], 2));        ?></td>
+                                    <td><?php echo ($objFc->tratarCaracter($des['DATA'],1));    ?></td>
+                                    <td><?php echo ($objFc->tratarCaracter($des['descricao'],1));    ?></td>
+                                    <td> <div class="excluir"> <a href="?acao=deld&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$des['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
+                                </tr>
+                            <?php
+                            } if ($rec['VALOR'] != ''){ ?>
+                                <tr>
+                                        <td><?php echo ('+'.$objFc->tratarCaracter($rec['VALOR'], 2));        ?></td>
+                                        <td><?php echo ($objFc->tratarCaracter($rec['DATA'],1));    ?></td>
+                                        <td><?php echo ($objFc->tratarCaracter($rec['descricao'],1));    ?></td>
+                                        <td> <div class="excluir"> <a href="?acao=delr&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$rec['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
+                                    </tr>
+                            <?php 
+                            } 
+                            }, $rec,$des); ?>
+                        </tbody>
+
                     </table>
                     <br><p>
                     <?php

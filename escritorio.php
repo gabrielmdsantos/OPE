@@ -58,7 +58,7 @@
                                     <input type="radio" name="receitas" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f"> Despesa </label>
                     </fieldset><p>
                                 Valor: <input type="text " name="valoor" size="20 " maxlength="20 " placeholder="Estacionamento, Cópias " /></td>
-                                Data: <input type="date" name="data" >
+                                Data: <input type="date" name="data">
                                 Descrição:<textarea id="dTrabalho " rows="0 " cols="20 " maxlength="20 " name="descricao"></textarea>
 
                             </tr>

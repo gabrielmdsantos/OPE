@@ -47,7 +47,7 @@ class Receita{
         try{     
             $this->id_cont = $dados['id_cont'];
             $this->id_cli = $dados['id_cli'];
-            $this->data = $this->objfunc->dataAtual(2);
+            $this->data = $dados['data'];
             $this->valoor = $dados['valoor'];
             $this->descricao = $dados['descricao'];
            //inserindo receita
@@ -72,7 +72,7 @@ class Receita{
         try{     
           //  $this->id_cont = $dados['id_cont'];
           //  $this->id_cli = $dados['id_cli'];
-            $this->data = $this->objfunc->dataAtual(2);
+            $this->data = $dados['data'];
             $this->valoor = $dados['valoor'];
             $this->descricao = $dados['descricao'];
            //inserindo receita
@@ -98,7 +98,7 @@ class Receita{
         try{     
             $this->id_cont = $dados['id_cont'];
             $this->id_cli = $dados['id_cli'];
-            $this->data = $this->objfunc->dataAtual(2);
+            $this->data = $dados['data'];
             $this->valoor = $dados['valoor'];
             $this->descricao = $dados['descricao'];
            //inserindo receita
@@ -123,7 +123,7 @@ class Receita{
         try{     
            // $this->id_cont = $dados['id_cont'];
            // $this->id_cli = $dados['id_cli'];
-            $this->data = $this->objfunc->dataAtual(2);
+            $this->data = $dados['data'];
             $this->valoor = $dados['valoor'];
             $this->descricao = $dados['descricao'];
            //inserindo receita

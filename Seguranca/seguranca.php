@@ -1,13 +1,4 @@
 <?php
-/**
-* Sistema de segurança com acesso restrito
-*
-* Usado para restringir o acesso de certas páginas do seu site
-*
-*
-* @version 1.0
-* @package SistemaSeguranca
-*/
 //  Configurações do Script
 // ==============================
 $servername = "localhost";
@@ -87,6 +78,13 @@ function protegePagina() {
 * Função para expulsar um visitante
 */
 function expulsaVisitante() {
+  global $_SG;
+  // Remove as variáveis da sessão (caso elas existam)
+  unset($_SESSION['ID_FUNCIONARIO'], $_SESSION['SENHA']);
+  // Manda pra tela de login
+  header("Location: ../index.php");
+}
+function expulsaVisitante2() {
   global $_SG;
   // Remove as variáveis da sessão (caso elas existam)
   unset($_SESSION['ID_FUNCIONARIO'], $_SESSION['SENHA']);

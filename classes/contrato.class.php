@@ -74,7 +74,7 @@ class Contrato{
             $this->id_cli = $dados['id_cli'];
             $this->id_servi = $dados['id_servi'];
             $this->detalhes = $dados['detalhes'];
-            $this->prazo = $this->objfunc->dataAtual(2);
+            $this->prazo = $dados['prazo'];
             $this->valor = $dados['valor'];
             $this->qnt_parcela = $dados['qnt_parcela'];
             $this->vencimento = $dados['vencimento'];
@@ -199,7 +199,7 @@ class Contrato{
             $this->id_contrato = $dados['id_contrato'];
             //$this->id_servi = $dados['id_servi'];
             $this->detalhes = $dados['detalhes'];
-            $this->prazo = $this->objfunc->dataAtual(2);
+            $this->prazo = $dados['data'];
             $this->valor = $dados['valor'];
             $this->qnt_parcela = $dados['qnt_parcela'];
             $this->vencimento = $dados['vencimento'];
@@ -234,6 +234,54 @@ class Contrato{
             
         }
 
+    }
+
+    public function querySelectDesp($id){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT * FROM `despesa_proj` WHERE `ID_CONT` = $id");
+            $cst->execute();
+            return $cst->fetchAll();
+            //SELECT * FROM `receita_proj` WHERE `ID_CONT` = 1
+        }catch(PDOException $ex){
+
+        }
+    }
+
+    public function querySelectRec($id){
+        try{
+            $cst = $this->con->conect()->prepare("SELECT * FROM `receita_proj` WHERE `ID_CONT` = $id");
+            $cst->execute();
+            return $cst->fetchAll();
+            //SELECT * FROM `receita_proj` WHERE `ID_CONT` = 1
+        }catch(PDOException $ex){
+
+        }
+    }
+
+    public function queryDeletRec($idcont,$idrec){
+        try{
+            echo($idrec);
+            $cst = $this->con->conect()->prepare("DELETE FROM `receita_proj` WHERE `ID` = $idrec");
+            if($cst->execute()){
+                return '<script type="text/javascript"> alert ("Deletado com sucesso"); </script>';
+                return 'ok';
+            } else{
+                return 'erro';
+            }
+        }catch(PDOException $ex){
+        }
+    }
+
+    public function queryDeletDes($idcont,$iddes){
+        try{
+            echo($idrec);
+            $cst = $this->con->conect()->prepare("DELETE FROM `despesa_proj` WHERE `ID` = $iddes");
+            if($cst->execute()){
+                echo '<script type="text/javascript"> alert ("Deletado com sucesso"); </script>';
+                return 'ok';
+            }
+        }catch(PDOException $ex){
+        }
     }
 
 }

@@ -78,7 +78,7 @@
                     </tr>
                     <tr>
                         <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "> <?php echo $objFc->tratarCaracter((isset($func['detalhes_contrato']))?($func['detalhes_contrato']):(''), 2)?> </textarea></td>
-                        <td><label for="cPrazo ">Prazo:</label><input type="date" name="prazo" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" ></td>
+                        <td><label for="cPrazo ">Prazo:</label><input type="date" name="prazo" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 1)?>" ></td>
                         <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>" onBlur="calcular()" name="valor" id="valor" min="0 " max="99999 " placeholder="R$1.000 " /></td>
                         <?php
                             $valor = $func['valor'];
