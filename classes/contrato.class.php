@@ -199,7 +199,7 @@ class Contrato{
             $this->id_contrato = $dados['id_contrato'];
             //$this->id_servi = $dados['id_servi'];
             $this->detalhes = $dados['detalhes'];
-            $this->prazo = $dados['data'];
+            $this->prazo = $dados['prazo'];
             $this->valor = $dados['valor'];
             $this->qnt_parcela = $dados['qnt_parcela'];
             $this->vencimento = $dados['vencimento'];

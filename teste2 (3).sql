@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 12-Out-2019 às 18:51
+-- Generation Time: 14-Out-2019 às 14:19
 -- Versão do servidor: 5.7.26
 -- versão do PHP: 7.2.18
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
   `id_parc` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_parc` (`id_parc`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `cliente`
@@ -54,7 +54,9 @@ INSERT INTO `cliente` (`id`, `pessoa`, `nome`, `cpf`, `rg`, `cnpj`, `razao`, `in
 (1, 'Fisica', 'Thiago', '321123321', '321122321', '0', '0', 0, 'João', 'M', '        Teste 1        ', 1),
 (2, 'Fisica', 'Gabriel', '333211231', '3321123', '0', '0', 0, 'aaa', 'M', '  Tese', 1),
 (3, 'Fisica', 'Josimeire', '332123', '33212123', '0', '0', 0, 'Teste', 'M', '  tesste    ', 1),
-(4, 'Fisica', '', '0', '0', NULL, '', NULL, '', 'M', '', 1);
+(4, 'Fisica', '', '0', '0', NULL, '', NULL, '', 'M', '', 1),
+(5, 'Fisica', 'Teste final', '32112321', '32132131', '0', '0', 0, '', 'M', ' sarerasda ', 3),
+(6, 'Fisica', 'Teste', '123321123', '32321312', '0', '0', 0, '', 'M', '  ', 2);
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `contrato` (
   PRIMARY KEY (`ID`),
   KEY `fk_cli` (`ID_Cliente`),
   KEY `fk_servi` (`ID_Servico`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `contrato`
@@ -84,7 +86,12 @@ CREATE TABLE IF NOT EXISTS `contrato` (
 INSERT INTO `contrato` (`ID`, `ID_Cliente`, `ID_Servico`, `Detalhes`, `PRAZO`, `Valor`, `qnt_parcela`, `VENCIMENTO`) VALUES
 (1, 1, 2, ' tesste ', '2019-10-10', '5000', '5', '5'),
 (2, 2, 2, '   dfdfsfsd   ', '2019-10-10', '5000', '10', '13'),
-(3, 1, 1, '', '2019-10-12', '22222', '1', '0');
+(3, 1, 1, '  ', '2019-10-13', '22222', '4', '0'),
+(4, 5, 3, ' teste final ', '2019-10-13', '10000', '5', '17'),
+(5, 1, 1, '          ', '2019-10-15', '5000', '1', '0'),
+(6, 1, 1, '      ', '2019-10-09', '333', '1', '0'),
+(7, 1, 1, '', '2019-10-15', '555', '1', '0'),
+(8, 1, 1, '  ', NULL, '2000', '2', '0');
 
 -- --------------------------------------------------------
 
@@ -99,25 +106,32 @@ CREATE TABLE IF NOT EXISTS `despesa_proj` (
   `id_cli` int(11) DEFAULT NULL,
   `DATA` date DEFAULT NULL,
   `VALOR` decimal(10,0) DEFAULT NULL,
-  `Descricao` varchar(100) DEFAULT NULL,
+  `descricao` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_conti` (`ID_CONT`),
   KEY `fk_cli_desp` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `despesa_proj`
 --
 
-INSERT INTO `despesa_proj` (`ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `Descricao`) VALUES
+INSERT INTO `despesa_proj` (`ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao`) VALUES
 (1, 1, 1, NULL, NULL, NULL),
 (2, 2, 2, NULL, NULL, NULL),
-(3, 2, 2, '2019-10-10', '222', 'teste'),
-(4, 1, 1, '2019-10-10', '500000', 'teste'),
 (5, NULL, NULL, '2019-10-11', '300', 'teste'),
 (6, 3, 1, NULL, NULL, NULL),
-(7, 3, 1, '2019-10-12', '222', 'teste'),
-(8, 3, 1, '2019-10-12', '2000', 'aaaaaaatesteaa');
+(10, 4, 5, NULL, NULL, NULL),
+(11, 5, 1, NULL, NULL, NULL),
+(12, 4, 5, '2019-10-13', '25', 'Estacionamento'),
+(13, NULL, NULL, '2019-10-13', '33', 'teste'),
+(14, NULL, NULL, '2019-10-13', '22', 'teste'),
+(15, NULL, NULL, NULL, '1', 'teste'),
+(16, NULL, NULL, '2019-10-23', '9', 'teste'),
+(17, NULL, NULL, '2019-10-24', '2', 'teste'),
+(18, 6, 1, NULL, NULL, NULL),
+(19, 7, 1, NULL, NULL, NULL),
+(20, 8, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `email` (
   `id_cli` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_email` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `email`
@@ -142,7 +156,9 @@ INSERT INTO `email` (`id`, `email`, `id_cli`) VALUES
 (1, 'thiago@teste.com.br', 1),
 (2, 'gabriel@teste2.com.br', 2),
 (3, 'rosi@teste.com.br', 3),
-(4, '', 4);
+(4, '', 4),
+(5, 'teste@teste.com.br', 5),
+(6, '', 6);
 
 -- --------------------------------------------------------
 
@@ -165,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   PRIMARY KEY (`id`),
   KEY `id_cli` (`id_cli`),
   KEY `FK_END_CONTRA` (`id_cont`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `endereco`
@@ -178,7 +194,15 @@ INSERT INTO `endereco` (`id`, `tipo`, `cep`, `logradouro`, `Numero`, `Complement
 (4, 'Obra', 8270610, 'rua teste', 321, 'Ap 31', 'São paulo', 'SP', 1, 1),
 (5, 'Obra', 8270270, 'AV Teste', 321, 'ap22', 'São paulo', 'SP', 2, 2),
 (6, 'Residencial', 0, '', 0, '', '', 'UF', 4, NULL),
-(7, 'Obra', 0, '', 0, '', '', 'UF', 1, 3);
+(7, 'Obra', 0, '', 0, '', '', 'UF', 1, 3),
+(8, 'Residencial', 220202, 'Rua Teste', 321, 'adasdas', 'são Paulo', 'SP', 5, NULL),
+(9, 'Correspondencia', 321321, 'tesate123', 321, 'tedsada', 'Rio de Janeiro', 'RJ', 5, NULL),
+(10, 'Obra', 22222, 'Rua teste', 312, '1B', 'São Paulo', 'SP', 5, 4),
+(11, 'Obra', 0, '', 0, '', '', 'UF', 1, 5),
+(12, 'Obra', 0, '', 0, '', '', 'UF', 1, 6),
+(13, 'Obra', 0, '', 0, '', '', 'UF', 1, 7),
+(14, 'Residencial', 0, '', 0, '', '', 'UF', 6, NULL),
+(15, 'Obra', 0, '', 0, '', 'teste', 'PI', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -194,19 +218,14 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `EMAIL` varchar(50) DEFAULT NULL,
   `CELULAR` char(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`ID`, `NOME`, `CPF`, `EMAIL`, `CELULAR`) VALUES
-(1, 'Admin', '123', NULL, NULL),
-(2, 'Gabriel Santos', '33321123', 'teste@teste.com.br', '23232321'),
-(3, 'teste', '323213123', 'teste@tese', '2132132131'),
-(4, 'sdsdssa', '32131', '', '0'),
-(5, 'teste', '3211231', 'teste@teste.com.br', '2312312312'),
-(6, 'TESTE', '0', '', '0');
+(1, 'Admin', '123', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `receita_proj` (
   PRIMARY KEY (`ID`),
   KEY `fk_cont` (`ID_CONT`),
   KEY `fk_cli_receita` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `receita_proj`
@@ -282,18 +301,23 @@ CREATE TABLE IF NOT EXISTS `receita_proj` (
 INSERT INTO `receita_proj` (`ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao`) VALUES
 (1, 1, 1, NULL, NULL, NULL),
 (2, 2, 2, NULL, NULL, NULL),
-(3, 1, 1, '2019-10-10', '22', ''),
-(4, 2, 2, '2019-10-10', '5000', 'PAgo'),
 (5, NULL, NULL, '2019-10-11', '300', 'teste'),
 (6, NULL, NULL, '2019-10-11', '333', ''),
-(7, NULL, NULL, '2019-10-11', '300', ''),
-(8, NULL, NULL, '2019-10-11', '300', ''),
 (9, NULL, NULL, '2019-10-11', '300', ''),
 (10, NULL, NULL, '2019-10-12', '33', 'teste'),
 (11, 3, 1, NULL, NULL, NULL),
-(12, 3, 1, '2019-10-12', '20', 'Teste'),
-(13, 3, 1, '2019-10-12', '2000', 'teste'),
-(14, 3, 1, '2019-10-12', '20000000', 'TESTE');
+(27, 4, 5, NULL, NULL, NULL),
+(28, 4, 5, '2019-10-13', '2001', 'Primeira Parcela'),
+(29, 5, 1, NULL, NULL, NULL),
+(31, NULL, NULL, '2019-10-13', '22', 'teste'),
+(32, NULL, NULL, '2019-10-13', '22', 'kkkk'),
+(33, NULL, NULL, '2019-10-24', '1', 'teste'),
+(35, 6, 1, NULL, NULL, NULL),
+(36, 7, 1, NULL, NULL, NULL),
+(37, 1, 1, '2019-10-14', '222', 'teste'),
+(38, 8, 1, NULL, NULL, NULL),
+(39, 4, 5, '2019-10-14', '2000', 'segunda parcela'),
+(40, NULL, NULL, '2019-10-16', '222', 'teste');
 
 -- --------------------------------------------------------
 
@@ -330,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `telefone` (
   `id_clie` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_clie` (`id_clie`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `telefone`
@@ -346,7 +370,13 @@ INSERT INTO `telefone` (`id`, `telefone`, `id_clie`) VALUES
 (7, 32131, 3),
 (8, 0, 4),
 (9, 0, 4),
-(10, 0, 4);
+(10, 0, 4),
+(11, 323213, 5),
+(12, 321312, 5),
+(13, 32131, 5),
+(14, 0, 6),
+(15, 0, 6),
+(16, 0, 6);
 
 --
 -- Constraints for dumped tables
