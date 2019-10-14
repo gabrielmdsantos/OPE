@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 14-Out-2019 às 14:19
+-- Generation Time: 14-Out-2019 às 16:16
 -- Versão do servidor: 5.7.26
 -- versão do PHP: 7.2.18
 
@@ -218,14 +218,29 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `EMAIL` varchar(50) DEFAULT NULL,
   `CELULAR` char(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `funcionario`
 --
 
 INSERT INTO `funcionario` (`ID`, `NOME`, `CPF`, `EMAIL`, `CELULAR`) VALUES
-(1, 'Admin', '123', NULL, NULL);
+(1, 'Admin', '123', NULL, NULL),
+(13, 'Josimeire', '321', 'teste@teste.com.br', '321321');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `horas`
+--
+
+DROP TABLE IF EXISTS `horas`;
+CREATE TABLE IF NOT EXISTS `horas` (
+  `contrato` int(11) NOT NULL,
+  `data` date DEFAULT NULL,
+  `hora_inicial` time DEFAULT NULL,
+  `hora_final` time DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -250,7 +265,8 @@ INSERT INTO `login` (`ID_FUNCIONARIO`, `SENHA`) VALUES
 (3, '323213123'),
 (3, '32131'),
 (5, '3211231'),
-(6, '0');
+(6, '0'),
+(13, '321');
 
 -- --------------------------------------------------------
 

@@ -1,0 +1,807 @@
+/*Corpo HTML*/
+
+html {
+    width: 100%;
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background-color: #DCDCDC;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+
+/*Menu*/
+
+.menu {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    background-color: #696969;
+    border-radius: 20px;
+}
+
+.menu ul {
+    padding: 0x;
+    margin: 10px;
+    list-style: none;
+}
+
+.menu ul li {
+    width: auto;
+    height: 53px;
+    float: left;
+}
+
+.menu a {
+    margin: 0px;
+    padding: 16px 30px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    background: #696969;
+    color: #ffffff;
+    font-weight: bold;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+}
+
+.menu ul li:hover ul {
+    visibility: visible;
+}
+
+.menu a:link,
+a:visited {
+    text-decoration: none;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+.menu a:active {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #050000
+}
+
+
+/*Tela Home*/
+
+.tela-menu fieldset {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    text-align: center;
+    margin: 10px;
+    padding: 100px;
+}
+
+
+/*Consultar cliente*/
+
+.scroll {
+    overflow: scroll;
+    overflow: auto;
+    border: solid 1px #696969;
+    width: 800px;
+    height: 300px;
+    margin: 80px;
+    width: 800px;
+    height: 350px;
+}
+
+.scroll table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.scroll table tr th {
+    padding: .5em;
+    margin: 0;
+    text-align: center;
+}
+
+.scroll table td {
+    padding: .8em;
+}
+
+.search3 input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #696969;
+    border-radius: 20px;
+    float: left;
+    margin-top: -350px;
+    margin-left: 999px;
+    padding: 5px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.search4 input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #696969;
+    border-radius: 20px;
+    float: left;
+    margin-top: -300px;
+    margin-left: 999px;
+    padding: 5px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+#appearance-select {
+    font-style: italic;
+    font-size: 16px;
+    border: 1px solid #696969;
+    border-radius: 15px;
+    float: left;
+    margin-left: 999px;
+    margin-top: -250px;
+    padding: 5px;
+    padding-right: 110px;
+}
+
+.btn3 a {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 180PX;
+    margin-top: -50px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn3 a:hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+.btn4 a {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 60%;
+    margin-top: -50px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn4 a:hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/*Cadastrar cliente (Falta direcionar onde salvar o cadastro)*/
+
+.form1 form fieldset table tr td {
+    font-size: 12;
+}
+
+.btn5 {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 83%;
+    margin-top: -167px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn5 :hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+.btn6 a {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 92%;
+    margin-top: -165px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn6 a:hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* Tela Consulta contrato*/
+
+.scroll-contrato {
+    overflow: scroll;
+    overflow: auto;
+    border: solid 1px #050000;
+    margin: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 93%;
+    height: 380px;
+}
+
+.scroll-contrato table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.scroll-contrato table tr th {
+    padding: .5em;
+    margin: 0;
+    text-align: center;
+}
+
+.scroll-contrato table td {
+    padding: .8em;
+}
+
+.search1 {
+    background-color: rgb(255, 255, 255);
+    border: solid 1px #696969;
+    border-radius: 15px;
+    width: 250px;
+    margin-left: 180px;
+    cursor: pointer;
+}
+
+.search1 input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.search1 img {
+    float: left;
+    margin-left: 10px;
+    padding: 2px;
+}
+
+.search2 {
+    background-color: rgb(255, 255, 255);
+    border: solid 1px #696969;
+    border-radius: 15px;
+    width: 250px;
+    margin: auto;
+    margin-top: -30px;
+    cursor: pointer;
+}
+
+.search2 input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.search2 img {
+    float: left;
+    margin-left: 10px;
+    padding: 2px;
+}
+
+.statusobra {
+    float: right;
+    margin-right: 275px;
+    margin-top: -27px;
+}
+
+.statusobra select {
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.btn1 a {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 43%;
+    margin-top: 45px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn1 a:hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* Controle do Projeto*/
+
+.btn7 {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 60px;
+    margin-top: 60px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn7 :hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* Tela Parceiro */
+
+.scroll-parceiro {
+    overflow: scroll;
+    overflow: auto;
+    border: solid 1px #050000;
+    border-collapse: collapse;
+    margin: 60px;
+    margin-left: 100px;
+    width: 250px;
+    height: 450px;
+}
+
+.scroll-parceiro table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.scroll-parceiro table tr th {
+    padding: .5em;
+    margin: 0;
+    text-align: center;
+}
+
+.scroll-parceiro table td {
+    padding: .8em;
+}
+
+.parceiro input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 20px;
+    float: left;
+    margin-left: 700px;
+    margin-top: -400px;
+    padding: 5px;
+    padding-right: 100px;
+    cursor: pointer;
+}
+
+.btn {
+    font-family: Arial;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    position: absolute;
+    padding: 15px;
+    float: left;
+    margin-left: 730PX;
+    margin-top: -300px;
+    color: #ffffff;
+    background: #696969;
+}
+
+.btn :hover {
+    color: #050000;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/*FINANCEIRO*/
+
+.scroll-financeiro {
+    overflow: scroll;
+    overflow: auto;
+    border: solid 1px #696969;
+    width: 800px;
+    height: 300px;
+    margin: 80px;
+    width: 800px;
+    height: 350px;
+}
+
+.scroll-financeiro table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.scroll-financeiro table tr th {
+    padding: .5em;
+    margin: 0;
+    text-align: center;
+}
+
+.scroll-financeiro table td {
+    padding: .8em;
+}
+
+.search-financeiro1 input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #696969;
+    border-radius: 20px;
+    float: left;
+    margin-top: -350px;
+    margin-left: 999px;
+    padding: 5px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.search-financeiro2 input {
+    font-style: italic;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #696969;
+    border-radius: 20px;
+    float: left;
+    margin-top: -300px;
+    margin-left: 999px;
+    padding: 5px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+
+/*Funcionários*/
+
+.conteudo1 {
+    /*Novamente definimos a largura da div*/
+    width: 600px;
+    /* altura da div */
+    height: 400px;
+    float: left;
+    margin: 30px;
+    margin-left: 30px;
+    padding: 20px;
+    /* Cor de fundo da div */
+    color: black;
+}
+
+#lista-funcionario {
+    width: 590px;
+    height: 390px;
+    margin-top: -8px;
+    margin-left: -8px;
+    border: solid 1px black;
+    border-radius: 16px;
+    font-family: Arial;
+    font-size: 20px;
+}
+
+.scroll-tab {
+    overflow: scroll;
+    overflow: auto;
+    width: 590px;
+    height: 300px;
+    border: solid 1px black;
+    margin: 0px;
+    margin-top: 50px;
+}
+
+.scroll-table-fun {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table-fun {
+    text-align: center;
+    border-collapse: collapse;
+    padding: .3em;
+    text-align: center;
+    border: black 1px solid;
+    width: 590px;
+    height: 10px;
+}
+
+.table-fun tr th {
+    text-align: center;
+    border-collapse: collapse;
+    padding: .3em;
+    border: black 1px solid;
+}
+
+.table-fun tr td {
+    text-align: center;
+    border-collapse: collapse;
+    padding: .5em;
+    border: black 1px solid;
+}
+
+#lista-funcionario2 {
+    width: 590px;
+    height: 390px;
+    margin-top: -8px;
+    margin-left: -8px;
+    border: solid 1px black;
+    border-radius: 16px;
+    font-family: Arial;
+    font-size: 20px;
+}
+
+.scroll-tab2 {
+    overflow: scroll;
+    overflow: auto;
+    width: 590px;
+    height: 300px;
+    border: solid 1px black;
+    margin: 0px;
+    margin-top: 50px;
+}
+
+.scroll-table-fun2 {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table-fun2 {
+    text-align: center;
+    border-collapse: collapse;
+    padding: .3em;
+    text-align: center;
+    border: black 1px solid;
+    width: 590px;
+    height: 10px;
+}
+
+.table-fun2 tr th {
+    text-align: center;
+    border-collapse: collapse;
+    padding: .3em;
+    border: black 1px solid;
+}
+
+.table-fun2 tr td {
+    text-align: center;
+    border-collapse: collapse;
+    padding: .5em;
+    border: black 1px solid;
+}
+
+.conteudo1 {
+    /*Novamente definimos a largura da div*/
+    width: 600px;
+    /* altura da div */
+    height: 150px;
+    float: left;
+    margin: 30px;
+    margin-left: 30px;
+    margin-right: auto;
+    padding: 20px;
+    color: black;
+}
+
+.cadFunc {
+    width: 590px;
+    height: 140px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border: solid 1px black;
+    border-radius: 16px;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+#tabcad {
+    text-align: left;
+    border-collapse: collapse;
+    padding: 10px;
+    width: 580px;
+    height: 80px;
+}
+
+.btncad {
+    float: left;
+    margin-top: -350px;
+    margin-left: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #696969;
+    font-family: Arial;
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.conteudo2 {
+    /*Novamente definimos a largura da div*/
+    width: 600px;
+    /* altura da div */
+    height: 150px;
+    float: left;
+    margin: 30px;
+    margin-left: 30px;
+    margin-right: auto;
+    padding: 20px;
+    color: black;
+}
+
+.btn-cad {
+    position: relative;
+    float: left;
+    margin: 0%;
+    margin-top: -350px;
+    margin-left: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #696969;
+    font-family: Arial;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.modal-container {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container.mostrar {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    width: 60%;
+    min-width: 300px;
+    padding: 40px;
+    border: 10px solid #988b7a;
+    box-shadow: 0 0 0 10px white;
+    position: relative;
+}
+
+@keyframes modal {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -60px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.mostrar .modal {
+    animation: modal .3s;
+}
+
+.fechar {
+    position: absolute;
+    font-size: 1.2em;
+    top: -30px;
+    right: -30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: #988b7a;
+    color: white;
+    font-family: "PT Mono", monospace;
+    cursor: pointer;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
+}
+
+.subtitulo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: black;
+    text-transform: uppercase;
+}
+
+.btncad2 {
+    position: relative;
+    float: left;
+    margin: 0%;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: #696969;
+    font-family: Arial;
+    font-size: 10px;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}

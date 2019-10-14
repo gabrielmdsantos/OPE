@@ -42,7 +42,8 @@ $conn2 = mysqli_connect($servidor,$usuario,$senha,$dbname);
   if (empty($resultado)) {
     // Nenhum registro foi encontrado => o usuário é inválido
     return false;
-  } else {
+  }
+  else {
     // Definimos dois valores na sessão com os dados do usuário
     $_SESSION['ID_FUNCIONARIO'] = $resultado['ID_FUNCIONARIO']; // Pega o valor da coluna 'id do registro encontrado no MySQL
     $_SESSION['SENHA'] = $resultado['SENHA'];

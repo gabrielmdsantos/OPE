@@ -9,9 +9,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $senha = (isset($_POST['senha'])) ? $_POST['senha'] : '';
   // Utiliza uma função criada no seguranca.php pra validar os dados digitados
   if (validaUsuario($usuario, $senha) == true) {
+    if ($usuario == 1){
+      header("Location: ../home.php");
+    }
+    else{
+      header("Location: ../home2.php");
+    }
     // O usuário e a senha digitados foram validados, manda pra página interna
-    header("Location: ../home.php");
-  } else {
+    
+  }
+   else {
     echo "Não conectado";
     // O usuário e/ou a senha são inválidos, manda de volta pro form de login
     // Para alterar o endereço da página de login, verifique o arquivo seguranca.php

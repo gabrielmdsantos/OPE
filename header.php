@@ -21,6 +21,7 @@ protegePagina();
             <li><a href="servico.php">Serviço</a></li>
             <li><a href="financeiro.php"> Financeiro </a></li>
             <li><a href="escritorio.php"> Lançamentos Interno </a></li>
+            <li><a href="consultacontratohora.php"> Lançamentos Horas </a></li>
             <li><a href="sair.php"> Sair </a></li>
         </ul>
         
