@@ -241,7 +241,6 @@ class Contrato{
             $cst = $this->con->conect()->prepare("SELECT * FROM `despesa_proj` WHERE `ID_CONT` = $id");
             $cst->execute();
             return $cst->fetchAll();
-            //SELECT * FROM `receita_proj` WHERE `ID_CONT` = 1
         }catch(PDOException $ex){
 
         }

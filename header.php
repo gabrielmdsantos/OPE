@@ -1,6 +1,9 @@
 <?php
 include_once 'seguranca/seguranca.php';
 protegePagina(); 
+if($_SESSION['ID_FUNCIONARIO'] != 1){
+    expulsaVisitante2();
+}
 
 ?>
 <!DOCTYPE html>

@@ -51,7 +51,7 @@ class Hora{
             $this->hora2 = $dados['hora2'];
             $this->id_cont = $dados['id_cont'];
            //inserindo contrato
-            $cst  = $this->con->conect()->prepare("INSERT INTO `horas`(`id_contrato`, `data`, `hora_inicial`, `hora_final`, `id_func`) VALUES (:id_cont,:data,:hora1,:hora2,:id_func);");
+            $cst  = $this->con->conect()->prepare("INSERT INTO `horas`(`contrato`, `data`, `hora_inicial`, `hora_final`, `id_func`) VALUES (:id_cont,:data,:hora1,:hora2,:id_func);");
             $cst -> bindParam(":id_func", $this->id_func, PDO::PARAM_INT);
             $cst -> bindParam(":id_cont", $this->id_cont, PDO::PARAM_INT);
             $cst -> bindParam(":data", $this->data, PDO::PARAM_STR);
@@ -70,7 +70,7 @@ class Hora{
 
     public function querySelecthoras(){
         try{
-            $cst = $this->con->conect()->prepare("SELECT TIME_TO_SEC(hora_inicial) AS A, TIME_TO_SEC(hora_final) AS B, id_contrato FROM horas GROUP BY id_contrato");
+            $cst = $this->con->conect()->prepare("SELECT contrato.ID AS CC, cliente.nome AS CLI, servico.servico AS Serv, contrato.Detalhes AS DETALHES,contrato.Valor AS VALOR ,contrato.qnt_parcela AS QNT_PARC ,contrato.VENCIMENTO AS VENC,SUM(hour(horas.hora_final) - hour(horas.hora_inicial)) AS hora,SUM(minute(horas.hora_final) - minute(horas.hora_inicial)) AS Minuto from cliente INNER JOIN contrato ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON contrato.ID_Servico = servico.id INNER JOIN horas ON horas.contrato  = contrato.ID GROUP BY contrato.ID");
             $cst->execute();
             return $cst->fetchAll();
         }catch(PDOException $ex){

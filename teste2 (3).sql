@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 14-Out-2019 às 16:16
+-- Generation Time: 15-Out-2019 às 03:58
 -- Versão do servidor: 5.7.26
 -- versão do PHP: 7.2.18
 
@@ -239,8 +239,28 @@ CREATE TABLE IF NOT EXISTS `horas` (
   `contrato` int(11) NOT NULL,
   `data` date DEFAULT NULL,
   `hora_inicial` time DEFAULT NULL,
-  `hora_final` time DEFAULT NULL
+  `hora_final` time DEFAULT NULL,
+  `id_func` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Extraindo dados da tabela `horas`
+--
+
+INSERT INTO `horas` (`contrato`, `data`, `hora_inicial`, `hora_final`, `id_func`) VALUES
+(1, '2019-10-15', '13:00:00', '17:00:00', 13),
+(1, '2019-10-16', '13:00:00', '17:00:00', 13),
+(1, '2019-10-16', '15:00:00', '17:00:00', 13),
+(1, '2019-10-15', '15:00:00', '15:55:00', 13),
+(2, '2019-10-16', '11:11:00', '20:50:00', 1),
+(1, '2019-10-16', '10:10:00', '10:30:00', 1),
+(1, '2019-10-17', '10:00:00', '10:59:00', 1),
+(1, '2019-10-15', '10:00:00', '10:30:00', 1),
+(1, '2019-10-16', '10:30:00', '11:00:00', 1),
+(1, '2019-10-16', '13:00:00', '13:40:00', 1),
+(1, '1999-01-10', '10:00:00', '11:15:00', 1),
+(1, '2019-10-16', '10:00:00', '10:51:00', 1),
+(3, '2019-10-16', '10:00:00', '19:35:00', 1);
 
 -- --------------------------------------------------------
 

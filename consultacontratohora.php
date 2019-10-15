@@ -42,54 +42,32 @@
                     <th>CLIENTE</th>
                     <th>SERVIÇO</th>
                     <th>Detalhes</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach($objct->querySelectcli() as $rst){ ?>
-                <tr>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['CC'], 1)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['CLI'], 2)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['Serv'], 2)) ?> </td>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['DETALHES'], 2)) ?> </td>
-                </tr>
-                <?php } ?>
-
-        </table>
-    </div>
-    <div id="modal-User2" class="modal-container2">
-        <table border="1">
-            <thead>
-                <tr>
-                    
-                    <th>C.C</th>
                     <th>Horas trabalhadas</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach($objhr->querySelecthoras() as $rst){ ?>
                 <tr>
-                    <td> <?php echo ($objFc->tratarCaracter($rst['id_contrato'], 1)) ?> </td>
-                    <?php $h = (int)((($rst['B'])-($rst['A']))/3600); ?>
-                    <td> <?php echo ($objFc->tratarCaracter($h, 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['CC'], 1)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['CLI'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['Serv'], 2)) ?> </td>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['DETALHES'], 2)) ?> </td>
+                    <?php 
+                        $min = $rst['Minuto']%60;
+                        $horas = $rst['hora']+(int)($rst['Minuto']/60);
+                    ?>
+                    <td> <?php echo ($horas.'h'.$min.'m') ?> </td>
                 </tr>
                 <?php } ?>
 
         </table>
     </div>
-
-    <!--Campos de busca-->
-    <form action="processacontrato.php">  
-        <div class="search2">
-        
-        <input type="text" name="campo"  id="campo" placeholder="Nome do Cliente" >
-        </div>
-    </form>
     
     <!--Botão-->
     <!-- <div class="btn1"><a href="cadastrarcontrato.php">CADASTRAR HORA</a></div> -->
 
     <input type="submit" class="btn-cad" value="Registrar Hora" />
-    <input type="button" value="Relatorio de Horas" />
+ 
    
 
             </fieldset>

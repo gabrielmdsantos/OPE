@@ -59,3 +59,5 @@ SELECT (hora_inicial-hora_final) as HORAS, id_contrato as contrato FROM horas GR
 SELECT TIME_TO_SEC(hora_inicial) AS A, TIME_TO_SEC(hora_final) AS B FROM horas GROUP BY id_contrato
 
 SELECT  TIME_TO_SEC(hora_final) - TIME_TO_SEC(hora_inicial) AS B, id_contrato FROM horas GROUP by id_contrato
+
+SELECT SUM(hour(hora_final) - hour(hora_inicial)) AS hora,SUM(minute(hora_final) - minute(hora_inicial)) AS Minuto, contrato FROM horas GROUP BY contrato
