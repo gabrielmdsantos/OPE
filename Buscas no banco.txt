@@ -51,3 +51,11 @@ SELECT `ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao` FROM `despesa_pro
 
 <!-- Lista de receitas por data -->
 SELECT `ID`, `ID_CONT`, `id_cli`, `DATA`, `VALOR`, `descricao` FROM `receita_proj` WHERE `DATA` BETWEEN '2019/10/05' AND '2019/10/12';
+
+
+<!-- Select horario  -->
+SELECT (hora_inicial-hora_final) as HORAS, id_contrato as contrato FROM horas GROUP BY id_contrato
+
+SELECT TIME_TO_SEC(hora_inicial) AS A, TIME_TO_SEC(hora_final) AS B FROM horas GROUP BY id_contrato
+
+SELECT  TIME_TO_SEC(hora_final) - TIME_TO_SEC(hora_inicial) AS B, id_contrato FROM horas GROUP by id_contrato

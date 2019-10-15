@@ -1,9 +1,11 @@
 <?php
     require_once 'classes/funcoes.class.php';
     require_once 'classes/contrato.class.php';
-    
+    require_once 'classes/hora.class.php';
+
     $objFc = new Funcoes();
-    $objfn = new Contrato();
+    $objct = new Contrato();
+    $objhr = new Hora();
 ?>
 
 <!DOCTYPE html>
@@ -15,14 +17,22 @@
     <link rel="stylesheet" type="text/css" href="style/style5.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>
-
 </head>
+<?php
+    if(isset($_POST['insert'])){
+        if($objhr->queryInsert($_POST) == 'ok' ){
+            echo '<script type="text/javascript">alert("Cadastrado com sucesso");</script>';
+            echo "<script>window.location = 'consultacontratohora.php';</script>";
+        }
+    }else{
+        echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
+    }
 
+?>
 <!--Menu-->
 
 <body>
     <?php include_once("header.php"); ?>
-
     <div id="resultado" class="scroll-contrato">
         <table border="1">
             <thead>
@@ -35,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($objfn->querySelectcli() as $rst){ ?>
+            <?php foreach($objct->querySelectcli() as $rst){ ?>
                 <tr>
                     <td> <?php echo ($objFc->tratarCaracter($rst['CC'], 1)) ?> </td>
                     <td> <?php echo ($objFc->tratarCaracter($rst['CLI'], 2)) ?> </td>
@@ -46,6 +56,27 @@
 
         </table>
     </div>
+    <div id="modal-User2" class="modal-container2">
+        <table border="1">
+            <thead>
+                <tr>
+                    
+                    <th>C.C</th>
+                    <th>Horas trabalhadas</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($objhr->querySelecthoras() as $rst){ ?>
+                <tr>
+                    <td> <?php echo ($objFc->tratarCaracter($rst['id_contrato'], 1)) ?> </td>
+                    <?php $h = (int)((($rst['B'])-($rst['A']))/3600); ?>
+                    <td> <?php echo ($objFc->tratarCaracter($h, 2)) ?> </td>
+                </tr>
+                <?php } ?>
+
+        </table>
+    </div>
+
     <!--Campos de busca-->
     <form action="processacontrato.php">  
         <div class="search2">
@@ -59,18 +90,28 @@
 
     <input type="submit" class="btn-cad" value="Registrar Hora" />
     <input type="button" value="Relatorio de Horas" />
+   
 
             </fieldset>
             <div id="modal-User" class="modal-container">
                 <div class="modal">
                     <button class="fechar"><a href="">x  </a></button>
                     <h3 class="subtitulo">Registro de Horas Trabalhada</h3>
-                    <form>
-                        <p>Data: <input type="date" class="inputCfun" /></p>
-                        <p>Hora Inicial: <input type="time" class="inputCfun" /></p>
-                        <p>Hora Final: <input type="time" class="inputCfun" /></p>
-                        <p>Cliente: <input type="text" class="inputCfun" placeholder="João" /></p>
-                        <p><input type="submit" class="btncad2" value="Enviar" /></p>
+                   
+                    <form action="consultacontratohora.php" method="post" >
+                        <p>Projeto: <select name="id_cont">
+                                    <?php foreach($objct->querySelectcli() as $rst){ ?>
+                                    <option value="<?php echo ($objFc->tratarCaracter($rst['CC'], 2)) ?>">
+                                    <?php echo ($objFc->tratarCaracter($rst['CC'], 2)) ?>
+                                    </option>
+                                    <?php } ?>
+                                </select>
+                        <input type="hidden" name="id_func"  value=" <?php echo($_SESSION['ID_FUNCIONARIO']) ?>" />  
+                        <p>Data: <input type="date" name="data" class="inputCfun" /></p>
+                        <p>Hora Inicial: <input type="time" name="hora1" class="inputCfun" /></p>
+                        <p>Hora Final: <input type="time"  name="hora2" class="inputCfun" /></p>
+                        
+                        <p><input type="submit" class="btncad2" name="insert" value="Enviar" /></p>
                     </form>
                 </div>
             </div>

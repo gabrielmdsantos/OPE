@@ -4,7 +4,7 @@ require_once 'Conexao.class.php';
 require_once 'funcoes.class.php';
 
 
-class Contrato{
+class Hora{
     private $conn;
     private $objfunc;
     private $vencimento;
@@ -31,7 +31,7 @@ class Contrato{
     }
 
 
-    public function querySeleciona($dado){
+  /*  public function querySeleciona($dado){
         try{
             $this->id = $dado;
             $cst = $this->con->conect()->prepare("SELECT cliente.id as id_cli, cliente.nome as nome_cli, servico.servico as nome_servico, cliente.rg as rg_cli, cliente.cpf AS cpf_cli, contrato.Detalhes as detalhes_contrato, contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcelas, contrato.VENCIMENTO as dia_vencimento,contrato.id as id_contrato FROM contrato INNER JOIN cliente ON cliente.id = contrato.ID_Cliente INNER JOIN servico ON servico.id = contrato.ID_Servico WHERE contrato.id = :id;");
@@ -42,52 +42,21 @@ class Contrato{
             return 'error '.$ex->getMessage();
         }
     }
-
-    public function querySelecionalan($dado){
-        try{
-            $this->id = $dado;
-            $cst = $this->con->conect()->prepare("SELECT contrato.ID as cc, cliente.id as id_cli, cliente.nome as nome_cli, cliente.rg as rg_cli, cliente.cpf as cpf_cli, contrato.Detalhes as detalhes, servico.servico as serico, parceiro.nome AS parceiro,
-            contrato.PRAZO as prazo, contrato.Valor as valor, contrato.qnt_parcela as parcela, contrato.VENCIMENTO as vencimento from cliente INNER JOIN contrato ON contrato.ID_Cliente = cliente. ID INNER JOIN servico ON servico.id = contrato.ID_Servico INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc WHERE contrato.id = :id;");
-            $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
-            $cst->execute();
-            return $cst->fetch();
-        } catch (PDOException $ex) {
-            return 'error '.$ex->getMessage();
-        }
-    }
-
-
-
-    public function querySelecionaID($dados){
-        try{
-            $cst = $this->con->conectar()->prepare("SELECT `id` FROM `contrato` ORDER BY id  DESC LIMIT 1");
-            $cst = bindParam(":idFunc", $this->idFuncionario, PDO::PARAM_INT);
-            $cst->execute();
-            return $cst->fechtAll();
-        }catch(PDOException $ex){
-            return 'error'.$ex->getMessage();
-        }
-    }
-
+*/
     public function queryInsert($dados){
         try{     
-            $this->id_cli = $dados['id_cli'];
-            $this->id_servi = $dados['id_servi'];
-            $this->detalhes = $dados['detalhes'];
-            $this->prazo = $dados['prazo'];
-            $this->valor = $dados['valor'];
-            $this->qnt_parcela = $dados['qnt_parcela'];
-            $this->vencimento = $dados['vencimento'];
+            $this->id_func = $dados['id_func'];
+            $this->data = $dados['data'];
+            $this->hora1 = $dados['hora1'];
+            $this->hora2 = $dados['hora2'];
+            $this->id_cont = $dados['id_cont'];
            //inserindo contrato
-            $cst  = $this->con->conect()->prepare("INSERT INTO `contrato`(`ID_Cliente`,`ID_Servico`,`Detalhes`,`PRAZO`,`Valor`,`qnt_parcela`,`VENCIMENTO`) VALUES (:id_cli,:id_servi,:detalhes,:prazo,:valor,:qnt_parcela,:vencimento);");
-            $cst -> bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
-            $cst -> bindParam(":id_servi", $this->id_servi, PDO::PARAM_INT);
-            $cst -> bindParam(":detalhes", $this->detalhes, PDO::PARAM_STR);
-            $cst -> bindParam(":prazo", $this->prazo, PDO::PARAM_STR);
-            $cst -> bindParam(":valor", $this->valor, PDO::PARAM_STR);
-            $cst -> bindParam(":qnt_parcela", $this->qnt_parcela, PDO::PARAM_STR);
-            $cst -> bindParam(":vencimento", $this->vencimento, PDO::PARAM_INT);
-
+            $cst  = $this->con->conect()->prepare("INSERT INTO `horas`(`id_contrato`, `data`, `hora_inicial`, `hora_final`, `id_func`) VALUES (:id_cont,:data,:hora1,:hora2,:id_func);");
+            $cst -> bindParam(":id_func", $this->id_func, PDO::PARAM_INT);
+            $cst -> bindParam(":id_cont", $this->id_cont, PDO::PARAM_INT);
+            $cst -> bindParam(":data", $this->data, PDO::PARAM_STR);
+            $cst -> bindParam(":hora1", $this->hora1, PDO::PARAM_STR);
+            $cst -> bindParam(":hora2", $this->hora2, PDO::PARAM_STR);
             if ($cst->execute()){
                 return 'ok';
             }else{
@@ -99,21 +68,17 @@ class Contrato{
 
     }
 
-    public function querySelectendereco($dados,$dados2){
+    public function querySelecthoras(){
         try{
-            $this->id = $dados;
-            $this->id_cont = $dados2;
-            $cst = $this->con->conect()->prepare("SELECT * FROM `endereco` WHERE id_cli = :id AND id_cont = :id_cont");
-            $cst -> bindParam(":id", $this->id, PDO::PARAM_INT);
-            $cst -> bindParam(":id_cont", $this->id_cont, PDO::PARAM_INT);
+            $cst = $this->con->conect()->prepare("SELECT TIME_TO_SEC(hora_inicial) AS A, TIME_TO_SEC(hora_final) AS B, id_contrato FROM horas GROUP BY id_contrato");
             $cst->execute();
-            return $cst->fetch();
+            return $cst->fetchAll();
         }catch(PDOException $ex){
             
         }
 
     }
-
+    /*
     public function queryEndereco($dados){
         try{
             $cst = $this->con->conect()->prepare("SELECT `id` FROM `contrato` ORDER BY id  DESC LIMIT 1");
@@ -215,7 +180,7 @@ class Contrato{
             if($cst->execute()){
                 return 'ok';
             }else{
-                echo '<script type="text/javascript">alert("Erro em cadastrar");</script>';
+                echo '<script type="text/javascript">alert("Erro em alterar");</script>';
                 return 'erro';
             }
 
@@ -283,7 +248,7 @@ class Contrato{
         }catch(PDOException $ex){
         }
     }
-
-}
+*/
+    }
 
 ?>
