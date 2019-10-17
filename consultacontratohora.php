@@ -13,8 +13,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
-    <link rel="stylesheet" type="text/css" href="style/style5.css">
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>
 </head>
@@ -33,8 +32,8 @@
 
 <body>
     <?php include_once("header.php"); ?>
-    <div id="resultado" class="scroll-contrato">
-        <table border="1">
+    <div id="resultado" class="scroll-horas">
+        <table id="tab10" border="1">
             <thead>
                 <tr>
                     
@@ -64,9 +63,8 @@
     </div>
     
     <!--Botão-->
-    <!-- <div class="btn1"><a href="cadastrarcontrato.php">CADASTRAR HORA</a></div> -->
 
-    <input type="submit" class="btn-cad" value="Registrar Hora" />
+    <input type="submit" class="btn5" value="Registrar Hora" />
  
    
 
@@ -89,7 +87,7 @@
                         <p>Hora Inicial: <input type="time" name="hora1" class="inputCfun" /></p>
                         <p>Hora Final: <input type="time"  name="hora2" class="inputCfun" /></p>
                         
-                        <p><input type="submit" class="btncad2" name="insert" value="Enviar" /></p>
+                        <p><input type="submit" class="btn6" name="insert" value="Enviar" /></p>
                     </form>
                 </div>
             </div>
@@ -106,7 +104,7 @@
                     }
                 }
 
-                const logo = document.querySelector('.btn-cad');
+                const logo = document.querySelector('.btn5');
                 logo.addEventListener('click', () => iniciaModal('modal-User'));
 
                 document.addEventListener('scroll', () => {

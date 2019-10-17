@@ -13,7 +13,6 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
     <link rel="stylesheet" type="text/css" href="style/style5.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>
@@ -31,14 +30,14 @@
 
 ?>
 <!--Menu-->
+<?php include_once("header2.php"); ?>
+
 
 <body>
-    <?php include_once("header2.php"); ?>
-    <div id="resultado" class="scroll-contrato">
-        <table border="1">
+    <div id="resultado" class="scroll-horas">
+        <table class="tab-fun">
             <thead>
                 <tr>
-                    
                     <th>C.C</th>
                     <th>CLIENTE</th>
                     <th>SERVIÇO</th>
@@ -60,9 +59,7 @@
 
     
     <!--Botão-->
-    <!-- <div class="btn1"><a href="cadastrarcontrato.php">CADASTRAR HORA</a></div> -->
-
-    <input type="submit" class="btn-cad" value="Registrar Hora" />
+    <input type="submit" class="btncad2" value="Registrar Hora" />
    
 
             </fieldset>
@@ -82,8 +79,7 @@
                         <p>Data: <input type="date" name="data" class="inputCfun" /></p>
                         <p>Hora Inicial: <input type="time" name="hora1" class="inputCfun" /></p>
                         <p>Hora Final: <input type="time"  name="hora2" class="inputCfun" /></p>
-                        
-                        <p><input type="submit" class="btncad2" name="insert" value="Enviar" /></p>
+                        <p><input type="submit" class="btncad1" name="insert" value="Enviar" /></p>
                     </form>
                 </div>
             </div>
@@ -100,7 +96,7 @@
                     }
                 }
 
-                const logo = document.querySelector('.btn-cad');
+                const logo = document.querySelector('btncad2');
                 logo.addEventListener('click', () => iniciaModal('modal-User'));
 
                 document.addEventListener('scroll', () => {

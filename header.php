@@ -10,17 +10,17 @@ if($_SESSION['ID_FUNCIONARIO'] != 1){
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="style/style.css">  
+    <link rel="stylesheet" type="text/css" href="style/style1.css">  
 </head>
 <header>
-<div id="menu">
+<div class="menu">
         <ul>
             <li><a href="Home.php">Home</a></li>
             <li><a href="consultacliente.php">Cliente</a></li>
             <li><a href="consultacontrato.php">Contrato</a></li>
             <li><a href="controleprojeto.php">Controle do projeto</a></li>
             <li><a href="funcionario.php">Funcionário</a></li>
-            <li><a href="cadastrar_parceiro">Parceiro</a></li>
+            <li><a href="cadastrar_parceiro.php">Parceiro</a></li>
             <li><a href="servico.php">Serviço</a></li>
             <li><a href="financeiro.php"> Financeiro </a></li>
             <li><a href="escritorio.php"> Lançamentos Interno </a></li>

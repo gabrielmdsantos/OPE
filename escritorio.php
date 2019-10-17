@@ -42,32 +42,26 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
 </head>
 <!--Menu-->
 <body>
 <?php include_once("header.php"); ?>
         <!-- Conteúdo -->
-            <div style="height:80px ">
-                <fieldset id="dadosFin " style="height:80px; float:left; margin-top: 10px; margin-left:auto; margin-right: auto; width:98%; border-radius:20px 20px 20px 20px ">
+                <fieldset id="escritorio">
+                <legend>Lançamentos</legend>
                 <form action="" method = "POST">
-                    <legend>Lançamentos</legend>
-                    <fieldset id="receitas"  name="receitas"  style="position: relative; height: 50px; float:left; width:100px; top:0px; border-radius:20px 20px 20px 20px">
-                                    <legend></legend>
+                    <fieldset id="receitas"  name="receitas">
+                                    <legend>Tipo de Gasto</legend>
                                     <input type="radio" name="receitas" id="e" value="S" CHECKED /><label for="e" > Receita </label><br>
                                     <input type="radio" name="receitas" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f"> Despesa </label>
-                    </fieldset><p>
-                                Valor: <input type="text " name="valoor" size="20 " maxlength="20 " placeholder="Estacionamento, Cópias " /></td>
-                                Data: <input type="date" name="data">
-                                Descrição:<textarea id="dTrabalho " rows="0 " cols="20 " maxlength="20 " name="descricao"></textarea>
-
-                            </tr>
-                        
-                   
-                </fieldset>
-                <br><p><br>
-            </div>  
-             <p><input type="submit" name="insert" value="Inserir">        
+                    </fieldset>
+                    <fieldset id="despesas">
+                                Valor: <input type="text " name="valoor" id="valor" size="20 " maxlength="20 " placeholder="Estacionamento, Cópias " />
+                                Data: <input type="date" name="data" id="data">
+                                Descrição:<textarea id="dTrabalho " rows="0" cols="20 " maxlength="20 " name="descricao"></textarea>
+                                <input type="submit" name="insert" value="Inserir" id="btn7">        
+                    </fieldset>
             </form>
 </body>
 

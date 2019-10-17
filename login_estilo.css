@@ -1,0 +1,46 @@
+body{
+    margin: 0; 
+    padding: 0;
+    background-color: #F5FFFA;
+}
+
+.login {
+	width: 300px; /* Tamanho esquerda + direita box de login */
+    height: 280px; /* Tamanho do topo + base do box de login */
+    border: 3px solid black; /* Cor e tamanho da borda do box login*/
+	color: black; /* Cor das lestras "Login, Usuário e senha"*/
+	background-color: #D3D3D3; /* Cor do fundo box login */
+	top: 50%; /* Distância do topo */
+	left: 50%; /* Distância da esquerda */
+	position: absolute;
+	transform: translate(-50%, -75%);
+	box-sizing: border-box;
+	padding: 50px 20px; /* Distância das palavras até a borda*/
+	border-radius: 20px;/* Arredondando as bordas*/
+}
+
+h1 { /* Edição da palavra "Login" */
+	margin: 0;
+	padding-top: 0;
+	padding-left: 0;
+	padding-bottom: 0px;
+	letter-spacing: 10px;
+	text-transform: arial;
+	text-align: center;
+	font-size: 30px;
+}
+
+.login p { /* Edição das palavras "Usuário" e "Senha" */
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.login input { /* Edição das caixas de usuario e senha*/
+	width: 100%;
+	margin-bottom: 21px;
+}
+
+
+
+

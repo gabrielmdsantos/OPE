@@ -19,7 +19,7 @@ $campo=$_POST['campo'];
 //$sql->bind_result($cc,$cli,$serv,$detalhes,$valor,$qnt,$par);
 
 echo "
-    <table border='1'>
+    <table id='tab3' border='1'>
     <thead>
     <tr>
         

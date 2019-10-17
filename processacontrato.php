@@ -12,7 +12,7 @@ $sql->bind_result($cc,$cli,$serv,$detalhes,$valor,$qnt,$par);
 
 
 echo "
-    <table border='1'>
+    <table id='tab2' border='1'>
     <thead>
     <tr>
         

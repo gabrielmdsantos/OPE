@@ -25,19 +25,19 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css" />
+    <link rel="stylesheet" type="text/css" href="style/style1.css" />
 </head>
 
 <!--Menu-->
+<nav>
+    <div >
+        <?php include_once("header.php"); ?>
+    </div>
+</nav>
 
 <body>
-    <nav>
-        <div >
-           <?php include_once("header.php"); ?>
-        </div>
-    </nav>
     <div class="scroll-parceiro">
-        <table border="1">
+        <table id="tab6" border="1">
             <thead>
                 <tr>
                 <th>ID</th>
@@ -54,13 +54,13 @@
               
         </table>
     </div>
-    <div class="parceiro">
+    <div class="search5">
         <form action="" method="post" >
             <input type="text" id="tParceiro" name="nome" maxlength="20" placeholder="Nome Parceiro" />
         
     </div>
     
-        <button class="btn" type="submit" name="insert">CADASTRAR PARCEIRO</button>
+        <button class="btn3" type="submit" name="insert">CADASTRAR PARCEIRO</button>
     </form>
 
 </body>

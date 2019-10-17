@@ -2,7 +2,7 @@
 
 $servidor="localhost";
 $usuario="root";
-$senha="";
+$senha="root";
 $bancodedados="teste2";
 
 $mysqli=new mysqli($servidor,$usuario,$senha,$bancodedados);

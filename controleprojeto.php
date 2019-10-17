@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
     <script src="Script/jquery-2.1.4.min.js">  </script>
     <script src="Script/controle.js">   </script>
     
@@ -26,8 +26,8 @@
 <body>
     <?php include_once("header.php"); ?>
 
-    <div id="resultado" class="scroll" >
-        <table border="1">
+    <div id="resultado" class="scroll-projeto" >
+        <table id="tab3" border="1">
             <thead>
                 <tr>
                     
@@ -60,9 +60,10 @@
     </div>
     <!--Campos de busca-->
     <form action="processa_controle.php">  
-        <div class="search">
-        Encontre pelo C.C
-        <input type="text" name="campo"  id="campo" placeholder="Numero do C.C" >
+        
+        
+        <div class="search3">
+        <p><input type="text" name="campo"  id="campo" placeholder="Buscar Centro de Custo"/></p>
         </div>
     </form> 
   

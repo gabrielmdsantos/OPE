@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>
 
@@ -23,10 +23,9 @@
     <?php include_once("header.php"); ?>
 
     <div id="resultado" class="scroll-contrato">
-        <table border="1">
+        <table id="tab2" border="1">
             <thead>
-                <tr>
-                    
+                <tr>   
                     <th>C.C</th>
                     <th>CLIENTE</th>
                     <th>SERVIÇO</th>
@@ -62,7 +61,7 @@
     </form>
     
     <!--Botão-->
-    <div class="btn1"><a href="cadastrarcontrato.php">CADASTRAR CONTRATO</a></div>
+    <div class="btn"><a href="cadastrarcontrato.php">CADASTRAR CONTRATO</a></div>
 
 </body>
 

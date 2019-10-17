@@ -19,7 +19,7 @@ $sql->execute();
 $sql->bind_result($id,$nome,$parceiro);
 
 echo "
-    <table border='1'>
+    <table id='tab1' border='1'>
         <thead>
         <tr>
         <td>C.C</td>

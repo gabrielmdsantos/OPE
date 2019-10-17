@@ -3,7 +3,7 @@
 // ==============================
 $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "root";
     $dbname = "teste2";
     
     $conn = new mysqli ($servername, $username, $password, $dbname);
@@ -31,7 +31,7 @@ function validaUsuario($usuario, $senha) {
 
 $servidor = "localhost";
 $usuario = "root";
-$senha = "";
+$senha = "root";
 $dbname = "TESTE2";
 
 //criar conexao

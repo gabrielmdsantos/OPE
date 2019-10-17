@@ -13,7 +13,7 @@ $objfi = new Financeiro();
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="Style/style2.css">
+    <link rel="stylesheet" type="text/css" href="Style/style1.css">
 </head>
 
 <!--Menu-->
@@ -23,12 +23,12 @@ $objfi = new Financeiro();
 
     <!--Financeiro-->
     
-    <fieldset id="dadosFin " style="height:50px; float:left; margin-top: 10px; margin-left:auto; margin-right: auto; width:98%; border-radius:20px 20px 20px 20px ">
+    <fieldset id="dadosFin">
     <legend>Pesquisa</legend>
     <form action="" method="post">
            Data Inicio: <input type="date" name="inicio" id="tCCusto" maxlength="5" placeholder="C.C">
            Data Fim: <input type="date"    name="fim" id="tCliente" maxlength="5" placeholder="CLIENTE">
-    <input type="submit" name="Pesquisar" value="pesquisar">
+    <input type="submit" name="Pesquisar" id="btn4" value="pesquisar">
     </fieldset>
     </form>
     <br><p><br><br>
@@ -36,7 +36,7 @@ $objfi = new Financeiro();
         if(isset($_POST['Pesquisar'])){
                         echo ('
             <div class="scroll-financeiro">
-            <table border="1">
+            <table id="tab8" border="1">
                 <thead>
                     <tr>
                         <th>DATA</th>
@@ -66,7 +66,9 @@ $objfi = new Financeiro();
                     </tr>
                     ');} }, $des,$rec);   echo('
             </table>
-        </div> 
+        </div>
+
+    <div class="resul-relatorio"> 
         ');
         $receita = $objfi->QueryTotalReceita($_POST);
         $despesa = $objfi->QueryTotalDespesa($_POST);
@@ -79,6 +81,7 @@ $objfi = new Financeiro();
 
     }
     ?>
+    </div>
    
 </body>
 

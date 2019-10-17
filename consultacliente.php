@@ -13,27 +13,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="Style/style2.css">
+    <title> Consulta Cliente</title>
+    <link rel="stylesheet" type="text/css" href="Style/style1.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcli.js"></script>
 </head>
 
 <!--Menu-->
 
+<?php include_once('header.php'); ?> 
+
 <body>
-    <?php include_once('header.php'); ?> 
-    <!--consulta cliente-->    
-
-
-    <div id="resultado" class="scroll" >
-        <table border="1">
+     <!--consulta cliente-->    
+    <div id="resultado" class="scroll-cliente">
+        <table border="1" id="tab1">
             <thead>
                 <tr>
-                    <td>C.C</td>
-                    <td>Nome do cliente</td>
-                    <td>Parceiros</td>
-                    <td> Editar </td>
+
+                    <th>C.C</th>
+                    <th>Nome do cliente</th>
+                    <th>Parceiros</th>
+                    <th> Editar </th>
                 </tr>
             </thead>
             <tbody>   
@@ -45,7 +45,6 @@
                     <td><div class="editar"><a href="edita_cliente.php?acao=edit&func=<?=$objFc->tratarCaracter($rst['id_cli'], 1)?>" title="Editar dados"> <img src="img/ico-editar.png" width="16" height="16" alt="Editar"> </a></div>  </td>
                 </tr>
                <?php } ?>
-
         </table>
     </div> 
 
@@ -57,7 +56,7 @@
 
     <!--Campos de busca-->
         <!--Botão-->
-        <button class="btnnn" type="button" name="tbtn"><a href="ins_cliente.php">CADASTRAR CLIENTE</a></button>
+        <button class="button-cli" type="button" name="tbtn"><a href="ins_cliente.php">CADASTRAR CLIENTE</a></button>
      
     
 </body>

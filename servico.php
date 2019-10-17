@@ -24,7 +24,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
 </head>
 
 <!--Menu-->
@@ -34,9 +34,9 @@
            <?php include_once("header.php"); ?>
     
     <!--Conteúdo-->
-    <div class="scroll-parceiro">
+    <div class="scroll-servico">
            
-            <table border="1">
+            <table id="tab7" border="1">
                 <thead>
                     <tr>
                     <th>ID</th>
@@ -53,13 +53,13 @@
                     
             </table>
         </div>
-        <div class="parceiro">
+        <div class="search5">
             <form method="POST" action="">
                 <input type="text" id="tParceiro" name="nome" maxlength="20" placeholder="Tipo de Serviço" />
            
         </div>
        
-            <button class="btn" type="submit" name="insert">CADASTRAR SERVIÇO</button>
+            <button class="btn3" type="submit" name="insert">CADASTRAR SERVIÇO</button>
         </form>
 
 </html>

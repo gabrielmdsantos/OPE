@@ -49,7 +49,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="Style/style3.css" />
+    <link rel="stylesheet" type="text/css" href="Style/style1.css" />
 </head>
 
 <!--Menu-->
@@ -62,13 +62,13 @@
         </div>
 </nav>
 
-<div style="height:140px;">
-            <fieldset id="contato" style="margin: 10px; height:100%;  float:left; margin-top: 0px;  width:300px; border-radius:20px 20px 20px 20px ">
+<div class="area-fun">
+            <fieldset id="contato">
                 <legend>Cadastro de Funcionario</legend>
                 <form method = "POST">
-                <table ALIGN="left" height="100px" ; width="800px" ;>
+                <table id="tab4">
                     <tr>
-                        <td><label for="nomefuncionario">Nome: </label><input type="text" name="nome" id="funcionario"  value="<?=$objFc->tratarCaracter((isset($func['NOME']))?($func['NOME']):(''), 2)?>" size="40" placeholder="Nome Completo" /></td>
+                        <td><label for="nomefuncionario">Nome: </label><input type="text" name="nome" id="funcionario"  value="<?=$objFc->tratarCaracter((isset($func['NOME']))?($func['NOME']):(''), 2)?>" size="30" placeholder="Nome Completo" /></td>
                         <td><label for="cpffuncionario">CPF: </label><input type="number" name="cpf" id="cpf" size="14" value="<?=$objFc->tratarCaracter((isset($func['CPF']))?($func['CPF']):(''), 2)?>" maxlength="9" placeholder="000.000.000-00" /></td>
                     </tr>
                     <tr>
@@ -76,14 +76,14 @@
                         <td><label for="cMail">E-mail: </label><input type="text" name="email" id="cMail" size="30"    value="<?=$objFc->tratarCaracter((isset($func['EMAIL']))?($func['EMAIL']):(''), 2)?>" maxlength="30" placeholder="joão@terra.com.br" /></td>
                     </tr>
                 </table>
-                <div class="botao6">
+                <div class="btn2">
             <input type="submit" name="<?=(isset($_GET['acao']) == 'edit')?('btAlterar'):('btCadastrar')?>" value="<?=(isset($_GET['acao']) == 'edit')?('Alterar'):('Cadastrar')?>">
             <input type="hidden" name="ID_FUN" value="<?=(isset($func['ID']))?($objFc->tratarCaracter($func['ID'], 1)):('')?>">
             </form>
             </fieldset>
         </div>
-        <div class="scroll">
-        <table border="1">
+        <div class="scroll-func">
+        <table id="tab5" border="1">
             <thead>
                 <tr>
                 <th>ID/LOGIN</th>
