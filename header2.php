@@ -7,7 +7,7 @@ protegePagina();
 <html lang="pt-br">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="style/style5.css">  
+    <link rel="stylesheet" type="text/css" href="style/style4.css">  
 </head>
 <header>
 <div id="menu">

@@ -30,7 +30,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style3.css">
 </head>
 <script type="text/javascript">    
     function calcular(){
@@ -46,66 +46,79 @@
 <body>
     <?php include_once ("header.php"); ?>
     <!--Conteúdo-->
-    <div style="height:180px">
-        <fieldset id="dadosFin" style="height:100%;  float:height; margin-top: 10px;   width:98%; border-radius:20px 20px 20px 20px ">
+    <fieldset id="cadastro-contrato">
+    <form method = "POST">
+        <fieldset id="dadosfin" >
             <legend>Cliente</legend>
-            <form method = "POST">
-                <table style="HEIGHT:100%; WIDTH:100%;">
-                    <tr align="left " bottom="middle ">
-                        <td>Cliente: 
-                            <select name="id_cli">
-                                    <?php foreach($objcl->querySelectname() as $rst){ ?>
-                                    <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 2) ." || RG/IE: ". $objFc->tratarCaracter($rst['rg'], 2) ." || CPF/CNPJ: ". $objFc->tratarCaracter($rst['cpf'], 2) ) ?> 
-                                    </option>
-                                    <?php } ?>
-                                </select>
-                        </td>
-                        <td> 
-                        Serviço:
-                            <select name="id_servi">
-                                <?php foreach($objsv->querySelect() as $rst){ ?>
-                                <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>" > <?php echo ($objFc->tratarCaracter($rst['servico'], 2)) ?> 
+            <table id="tab16">
+                <tr>
+                    <td>
+                        Cliente: 
+                        <select name="id_cli">
+                                <?php foreach($objcl->querySelectname() as $rst){ ?>
+                                <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>"> <?php echo ($objFc->tratarCaracter($rst['nome'], 2) ." || RG/IE: ". $objFc->tratarCaracter($rst['rg'], 2) ." || CPF/CNPJ: ". $objFc->tratarCaracter($rst['cpf'], 2) ) ?> 
                                 </option>
                                 <?php } ?>
                             </select>
-                        </td>
-                       
+                    </td>
+                    <td> 
+                    Serviço:
+                        <select name="id_servi">
+                            <?php foreach($objsv->querySelect() as $rst){ ?>
+                            <option value="<?php echo ($objFc->tratarCaracter($rst['id'], 2)) ?>" > <?php echo ($objFc->tratarCaracter($rst['servico'], 2)) ?> 
+                            </option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label for="dTrabalho">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
+                    <td><label for="cPrazo">Prazo:</label><input type="date" name="prazo"></td>
+                    <td><label for="cValorT">Valor do Contrato: </label> <input type="number" value="" name="valor" onBlur="calcular()" id="valor"  placeholder="R$1.000 " /></td>
                     </tr>
-                    <tr>
-                        <td><label for="dTrabalho">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
-                        <td><label for="cPrazo">Prazo:</label><input type="date" name="prazo"></td>
-                        <td><label for="cValorT">Valor do Contrato: </label> <input type="number" value="" name="valor" onBlur="calcular()" id="valor"  placeholder="R$1.000 " /></td>
-                        <td><label for="cParcelas">Quantidade de Parcelas </label><select name="qnt_parcela" id="qnt_parcela" onBlur="calcular()"> 
-                                        <option selected >1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>                                        
-                                    </select></td>
-                        
-                        <td><label for="cValorP">Valor da Parcela: </label> <div id="final"> <input type="number"  value="" name="final " id="final " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="cdate "></label>Dia de Vencimento: </label><input type="text" name="vencimento" name="cdate" /></td>
-                    </tr>
-                </table>
-            
+                <tr>
+                    <td><label for="cParcelas">Quantidade de Parcelas </label><select name="qnt_parcela" id="qnt_parcela" onBlur="calcular()"> 
+                                    <option selected >1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>                                        
+                                </select></td>
+                    
+                    <td><label for="cValorP">Valor da Parcela: </label> <div id="final"> <input type="number"  value="" name="final " id="final " min="0 " max="99999 " placeholder="R$1.000 " /></td>
+                    <td><label for="cdate "></label>Dia de Vencimento: </label><input type="date" name="vencimento" name="cdate" /></td>
+                </tr>
+            </table>    
         </fieldset>
-        <div style="height:auto">
-        <fieldset id="endereco" style="position:relative;height:130px; border-radius:20px 20px 20px 20px">
-                    <legend>Endereço 1 </legend>
-                            CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
-                            Logradouro: <input type="text" name="logradouro"     id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
-                            Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
-                            Complemento:<input type="text" name="complemento"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
-                        <p>
-                            Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
-                            Estado:
+        <fieldset id="endereco-contrato">
+        <legend>Endereço 1 </legend>
+        <table id="tab17">
+            <tr>
+                <td>
+                    CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                </td>
+                <td> 
+                    Logradouro: <input type="text" name="logradouro"     id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                </td>
+                <td> 
+                    Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr> 
+                <td> 
+                    Complemento:<input type="text" name="complemento"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
+                </td>
+                <td> 
+                    Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
+                </td>
+                <td> 
+                    Estado:
                        <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
                             -->
                             <select name="estado" value="" id="cUF">
@@ -138,9 +151,18 @@
                                         <option value = "SE">Sergipe</option>
                                         <option value = "TO">Tocantins</option> 
                                     </select> 
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <input type="hidden" name="tipo" value="Obra"/>
-        </div>      
-        <input type="submit" name="insert" value="Inserir" >
+                </td>
+            </tr>
+        </table> 
+        <input type="submit" name="insert" value="Inserir" id="btn9"/>
+        </fieldset>
         </form>
+    </fieldset>        
+    
 </body>
 </html>

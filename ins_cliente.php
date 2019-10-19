@@ -53,10 +53,11 @@ var data2 = {
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
 <head>
     <meta charset="UTF-8" />
     <title> Cadastrar Cliente</title>
-    <link rel="stylesheet" type="text/css" href="Style/style1.css">
+    <link rel="stylesheet" type="text/css" href="Style/style3.css">
     <script src="script/jquery-2.1.4.min.js"></script>
    <!-- <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>   -->
 </head>
@@ -70,75 +71,109 @@ var data2 = {
             <!--Dados do cliente-->
             <fieldset id="cadastro">
                 <legend>Cadastro</legend>
-                    <fieldset id="pessoa"  name="pessoa" style="position: relative; height: 55px; float: left; width: 100px; border-radius:20px 20px 20px 20px">
+                    <fieldset id="pf-pj"  name="pessoa" >
                                     <legend>Pessoa</legend>
                                     <input type="radio" name="pessoa" id="cPF" value="Fisica" CHECKED/><label for="cPF">Física</label><br>
                                     <input type="radio" name="pessoa" id="cPJ" value="Juridica" /><label for="cPJ">Jurídica</label>
                     </fieldset>
                      
-    <div id="result">  </div>
+                <div id="result">  </div>
             </fieldset>
             <br>  
             <!--Dados do endereço-->
                 <fieldset id="endereco1" >
-                    <legend>Endereço 1 </legend>
-                            CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
-                            Logradouro: <input type="text" name="logradouro"     id="cEnd" size="30" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
-                            Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
-                            Complemento:<input type="text" name="complemento"   size="30" maxlength="30" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
-                        <p></p>
-                            Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
-                            Estado:
-                       <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
-                            -->
-                            <select name="estado" value="" id="cUF">
-                                        <option selected>UF</option>
-                                        <option value = "AC">Acre</option>
-                                        <option value = "AL">Alagoas</option>
-                                        <option value = "AM">Amazonas</option>
-                                        <option value = "AP">Amapá</option>
-                                        <option value = "BA">Bahia</option>
-                                        <option value = "CE">Ceará</option>
-                                        <option value = "DF">Distrito Federal</option>
-                                        <option value = "ES">Espírito Santo</option>
-                                        <option value = "GO">Goiás</option>
-                                        <option value = "MA">Maranhão</option>
-                                        <option value = "MT">Mato Grosso</option>
-                                        <option value = "MS">Mato Grosso do Sul</option>
-                                        <option value = "MG">Minas Gerais</option>
-                                        <option value = "PA">Pará</option>
-                                        <option value = "PB">Paraíba</option>
-                                        <option value = "PR">Paraná</option>
-                                        <option value = "PE">Pernambuco</option>
-                                        <option value = "PI">Piauí</option>
-                                        <option value = "RJ">Rio de Janeiro</option>
-                                        <option value = "RN">Rio Grande do Norte</option>
-                                        <option value = "RS">Rio Grande do Sul</option>
-                                        <option value = "RO">Rondônia</option>
-                                        <option value = "RR">Roraima</option>
-                                        <option value = "SC">Santa Catarina</option>
-                                        <option value = "SP">São Paulo</option>
-                                        <option value = "SE">Sergipe</option>
-                                        <option value = "TO">Tocantins</option> 
-                                    </select> 
-                    
-                    <fieldset id="cobranca"  name="endereco">
-                                    <legend>Cobrança</legend>
-                                    <input type="radio" name="endereco" id="e" value="S" CHECKED /><label for="e" >Sim</label><br>
-                                    <input type="radio" name="endereco" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f">Não</label>
-                    </fieldset><p>
-                    <input type="hidden" name="tipo" value="Residencial"/>
-                    
+                <legend>Endereço Residencial </legend>
+                    <fieldset id="end1">
+                        <table id="tab13">
+                            <tr>
+                                <td>
+                                    CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    Logradouro: <input type="text" name="logradouro"     id="cEnd" size="20" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Complemento:<input type="text" name="complemento"   size="20" maxlength="20" placeholder="Apto, Sala, ... " />&nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    Município: <input type="text"  name="municipio"     size="30"  placeholder="Cidade" />
+                                </td>
+                                <td>
+                                    Estado:
+                                <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
+                                    -->
+                                    <select name="estado" value="" id="cUF">
+                                                <option selected>UF</option>
+                                                <option value = "AC">Acre</option>
+                                                <option value = "AL">Alagoas</option>
+                                                <option value = "AM">Amazonas</option>
+                                                <option value = "AP">Amapá</option>
+                                                <option value = "BA">Bahia</option>
+                                                <option value = "CE">Ceará</option>
+                                                <option value = "DF">Distrito Federal</option>
+                                                <option value = "ES">Espírito Santo</option>
+                                                <option value = "GO">Goiás</option>
+                                                <option value = "MA">Maranhão</option>
+                                                <option value = "MT">Mato Grosso</option>
+                                                <option value = "MS">Mato Grosso do Sul</option>
+                                                <option value = "MG">Minas Gerais</option>
+                                                <option value = "PA">Pará</option>
+                                                <option value = "PB">Paraíba</option>
+                                                <option value = "PR">Paraná</option>
+                                                <option value = "PE">Pernambuco</option>
+                                                <option value = "PI">Piauí</option>
+                                                <option value = "RJ">Rio de Janeiro</option>
+                                                <option value = "RN">Rio Grande do Norte</option>
+                                                <option value = "RS">Rio Grande do Sul</option>
+                                                <option value = "RO">Rondônia</option>
+                                                <option value = "RR">Roraima</option>
+                                                <option value = "SC">Santa Catarina</option>
+                                                <option value = "SP">São Paulo</option>
+                                                <option value = "SE">Sergipe</option>
+                                                <option value = "TO">Tocantins</option> 
+                                            </select> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <input type="hidden" name="tipo" value="Residencial"/>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <fieldset id="cobranca"  name="endereco">
+                                        <legend>Cobrança</legend>
+                                        <input type="radio" name="endereco" id="e" value="S" CHECKED /><label for="e" >Sim</label><br>
+                                        <input type="radio" name="endereco" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f">Não</label>
+                        </fieldset>
+                    </fieldset>
                 </fieldset>
             <div id="result2">  </div>                
                 
             <fieldset id="cont">
                 <legend>Contato</legend>
+                <table id="tab15">
+                    <tr>
+                        <td>
                         Telefone 1: <input type="number" name="tel1"      min="0" maxlength="10" placeholder="(11)9999-9999" />
+                        </td>
+                        <td>
                         Telefone 2: <input type="number" name="tel2" id="cTel2" size="10" maxlength="10" placeholder="(11)9999-9999" />
+                        </td>
+                        <td>
                         Celular: <input type="number" name="tcel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
                       <!--  Contato: <input type="contato" name="tContato" id="cContato" size="10" maxlength="10" placeholder="joão@terra.com.br" /> -->
+                        </td>
+                        <td>
                         E-mail:  <input type="email" name="email" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />
+                        </td>
+                    </tr>
+                </table>
             </fieldset>
 <script>
 $(function(){

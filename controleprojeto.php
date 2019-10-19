@@ -15,6 +15,7 @@
     <meta charset="UTF-8" />
     <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style1.css">
+
     <script src="Script/jquery-2.1.4.min.js">  </script>
     <script src="Script/controle.js">   </script>
     
@@ -30,7 +31,6 @@
         <table id="tab3" border="1">
             <thead>
                 <tr>
-                    
                     <th>C.C</th>
                     <th>CLIENTE</th>
                     <th>Total de Receita</th>

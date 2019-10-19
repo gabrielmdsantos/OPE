@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style5.css">
+    <link rel="stylesheet" type="text/css" href="style/style4.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>
 </head>
@@ -34,8 +34,8 @@
 
 
 <body>
-    <div id="resultado" class="scroll-horas">
-        <table class="tab-fun">
+    <div id="resultado" class="scroll-horas2">
+        <table id="tab18" border="1">
             <thead>
                 <tr>
                     <th>C.C</th>
@@ -59,7 +59,9 @@
 
     
     <!--Botão-->
-    <input type="submit" class="btncad2" value="Registrar Hora" />
+
+    <input type="submit" class="btnfunc" value="Registrar Hora" />
+ 
    
 
             </fieldset>
@@ -67,7 +69,8 @@
                 <div class="modal">
                     <button class="fechar"><a href="">x  </a></button>
                     <h3 class="subtitulo">Registro de Horas Trabalhada</h3>
-                    <form action="consultacontratohora2.php" method="post" >
+                   
+                    <form action="consultacontratohora.php" method="post" >
                         <p>Projeto: <select name="id_cont">
                                     <?php foreach($objct->querySelectcli() as $rst){ ?>
                                     <option value="<?php echo ($objFc->tratarCaracter($rst['CC'], 2)) ?>">
@@ -79,7 +82,8 @@
                         <p>Data: <input type="date" name="data" class="inputCfun" /></p>
                         <p>Hora Inicial: <input type="time" name="hora1" class="inputCfun" /></p>
                         <p>Hora Final: <input type="time"  name="hora2" class="inputCfun" /></p>
-                        <p><input type="submit" class="btncad1" name="insert" value="Enviar" /></p>
+                        
+                        <p><input type="submit" class="btnfunc2" name="insert" value="Enviar" /></p>
                     </form>
                 </div>
             </div>
@@ -96,7 +100,7 @@
                     }
                 }
 
-                const logo = document.querySelector('btncad2');
+                const logo = document.querySelector('.btnfunc');
                 logo.addEventListener('click', () => iniciaModal('modal-User'));
 
                 document.addEventListener('scroll', () => {

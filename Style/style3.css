@@ -1,5 +1,6 @@
 /*Corpo HTML*/
-html{
+
+html {
     width: 100%;
     height: 100%
 }
@@ -11,15 +12,18 @@ body {
 }
 
 
+/*--------------------------------------*/
+
+
 /*Menu*/
 
 .menu {
     position: relative;
     width: 100%;
-    height: 52px;
+    height: 36px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 16px;
-    background-color: #696969;
+    font-size: 10px;
+    background-color: #474747;
     border-radius: 20px;
 }
 
@@ -36,13 +40,13 @@ body {
 }
 
 .menu a {
-    margin: 0px;
-    padding: 16px 30px;
+    margin: 0px 0px 0px;
+    padding: 12px 18px;
     display: block;
     text-decoration: none;
     text-align: center;
     text-transform: uppercase;
-    background: #696969;
+    background: #474747;
     color: #ffffff;
     font-weight: bold;
     border-left: 1px solid #ffffff;
@@ -53,362 +57,464 @@ body {
     visibility: visible;
 }
 
+.menu a:link,
+a:visited {
+    text-decoration: none;
+}
+
 .menu a:hover {
+    text-decoration: underline;
     color: #050000;
     background-color: rgb(255, 255, 255);
 }
 
+.menu a:active {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #050000;
+}
 
-/*Tela Home*/
 
-.tela-menu fieldset {
+/*----------------------------------------------------------------------------*/
+
+
+/*Inserir Cliente*/
+
+#cadastro {
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 60px;
-    text-align: center;
-    margin: 10px;
-    padding: 100px;
-}
-
-
-/*Consultar cliente*/
-
-.scroll {
-    overflow: scroll;
-    overflow: auto;
-    border: solid 1px #696969;
-    width: 800px;
-    height: 300px;
-    margin: 80px;
-    width: 800px;
-    height: 350px;
-}
-
-.scroll table {
-    width: 100%;
-    table-layout: fixed;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-.scroll table tr th {
-    padding: .5em;
-    margin: 0;
-    text-align: center;
-}
-
-.scroll table td {
-    padding: .8em;
-}
-
-.search3 input {
-    font-style: italic;
-    font-size: 16px;
-    background-color: rgb(255, 255, 255);
+    width: 95%;
     border: 1px solid #696969;
     border-radius: 20px;
-    float: left;
-    margin-top: -350px;
-    margin-left: 999px;
-    padding: 5px;
-    padding-right: 30px;
-    cursor: pointer;
-}
-
-.search4 input {
-    font-style: italic;
-    font-size: 16px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #696969;
-    border-radius: 20px;
-    float: left;
-    margin-top: -300px;
-    margin-left: 999px;
-    padding: 5px;
-    padding-right: 30px;
-    cursor: pointer;
-}
-
-#appearance-select{
-    font-style: italic;
-    font-size: 16px;
-    border: 1px solid #696969;
-    border-radius: 15px;
-    float: left;
-    margin-left: 999px;
-    margin-top: -250px;
-    padding: 5px;
-    padding-right: 110px;
- }
-
-.btn3 a {
-    font-family: Arial;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 400px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 15px;
-    position: absolute;
-    padding: 15px;
-    float: left;
-    margin-left: 30PX;
-    margin-top: 300px;
-    color: #ffffff;
-    background: #696969;
-}
-
-.btn3 a:hover {
-    color: #050000;
-    background-color: rgb(255, 255, 255);
-}
-
-.btn4 a {
-    font-family: Arial;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 200px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 15px;
-    position: absolute;
-    padding: 15px;
-    margin: 30px;
-    float: left;
-    margin-left: -30%;
-    margin-top: 250px;
-    color: #ffffff;
-    background: #696969;
-}
-
-.btn4 a:hover {
-    color: #050000;
-    background-color: rgb(255, 255, 255);
-}
-
-/*Cadastrar cliente (Falta direcionar onde salvar o cadastro)*/
-
-.form1 form fieldset table tr td {
-    font-size: 12;
-}
-
-.btn-gravar {
-    position: relative;
-    height: 100%;
-    float: left;
-    left: 87%;
-    top: -170px;
-    cursor: pointer;
-}
-
-.btn6 a {
-    font-family: Arial;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 500px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 15px;
-    position: absolute;
-    padding: 15px;
-    float: left;
-    margin-left: 87%;
-    margin-top: -185px;
-    color: #ffffff;
-    background: #696969;
-}
-
-.btn6 a:hover {
-    color: #050000;
-    background-color: rgb(255, 255, 255);
-}
-
-
-/* Tela Consulta contrato*/
-
-.scroll-contrato {
-    overflow: scroll;
-    overflow: auto;
-    border: solid 1px #050000;
-    margin: 30px;
+    margin: 20px;
     margin-left: auto;
     margin-right: auto;
-    width: 93%;
-    height: 380px;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
 }
 
-.scroll-contrato table {
+#pf-pj {
+    position: relative;
+    float: left;
+    width: 8%;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+#form-pf {
+    position: relative;
+    border: none;
+}
+
+#tab11 {
+    width: 87%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 14px;
+    border: none;
+}
+
+#tab11 td {
+    width: 70%;
+    height: 10px;
+    text-align: left;
+    padding: 3px;
+    padding-left: 20px;
+}
+
+#sexo1 {
+    position: relative;
+    width: 10%;
+    float: right;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    font-family: Arial;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+#form-pj {
+    position: relative;
+    border: none;
+}
+
+#tab12 {
     width: 100%;
     table-layout: fixed;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-.scroll-contrato table tr th {
-    padding: .5em;
-    margin: 0;
-    text-align: center;
-}
-
-.scroll-contrato table td {
-    padding: .8em;
-}
-
-.search1 {
-    background-color: rgb(255, 255, 255);
-    border: solid 1px #696969;
-    border-radius: 15px;
-    width: 250px;
-    margin-left: 180px;
-    cursor: pointer;
-}
-
-.search1 input {
-    font-style: italic;
+    font-family: Arial, monospace;
     font-size: 16px;
-    background-color: rgb(255, 255, 255);
     border: none;
-    margin-left: 10px;
-    padding: 5px;
-    cursor: pointer;
+    margin-top: -20px;
 }
 
-.search1 img {
-    float: left;
-    margin-left: 10px;
-    padding: 2px;
+#tab12 td {
+    width: 100%;
+    height: 10px;
+    text-align: left;
+    padding: 4px;
+    padding-left: 30px;
 }
 
-.search2 {
-    background-color: rgb(255, 255, 255);
-    border: solid 1px #696969;
-    border-radius: 15px;
-    width: 250px;
-    margin: auto;
-    margin-top: -30px;
-    cursor: pointer;
-}
-
-.search2 input {
-    font-style: italic;
+#endereco1 {
+    position: relative;
+    width: 95%;
+    height: 100px;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    margin: -30px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
     font-size: 16px;
-    background-color: rgb(255, 255, 255);
+    text-transform: uppercase;
+}
+
+#end1 {
+    position: relative;
     border: none;
-    margin-left: 10px;
-    padding: 5px;
-    cursor: pointer;
 }
 
-.search2 img {
-    float: left;
-    margin-left: 10px;
-    padding: 2px;
+#tab13 {
+    width: 90%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 16px;
+    border: none;
 }
 
-.statusobra {
+#tab13 td {
+    width: 90%;
+    height: 15px;
+    text-align: left;
+    padding: 3px;
+    padding-left: 30px;
+}
+
+#cobranca {
+    position: relative;
     float: right;
-    margin-right: 275px;
-    margin-top: -27px;
+    width: 5%;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: -67px;
 }
 
-.statusobra select {
-    width: 150px;
+#endereco2 {
+    position: relative;
+    width: 95%;
+    height: 90px;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 37px;
+    margin-left: 20px;
+    margin-bottom: -30px;
+}
+
+#tab14 {
+    width: 100%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 16px;
+    border: none;
+}
+
+#tab14 td {
+    width: 100%;
     height: 30px;
-    border-radius: 15px;
+    text-align: left;
+    padding-left: 40px;
 }
 
-.btn1 a {
+#cont {
+    position: relative;
+    width: 95%;
+    border: 1px solid #696969;
+    border-radius: 8px;
+    margin: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#tab15 {
+    width: 100%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 16px;
+    border: none;
+}
+
+#tab15 td {
+    width: 100%;
+    height: 20px;
+    text-align: left;
+}
+
+.btn8 input {
     font-family: Arial;
     font-size: 16px;
     text-decoration: none;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 500px;
-    font-weight: bold;
     cursor: pointer;
     border-radius: 15px;
-    position: absolute;
-    padding: 15px;
-    margin-left: 43%;
+    position: relative;
+    padding: 10px;
+    float: left;
+    margin: -50px;
+    margin-left: 20px;
     color: #ffffff;
     background: #696969;
 }
 
-.btn1 a:hover {
-    color: #050000;
-    background-color: rgb(255, 255, 255);
+
+/*----------------------------------------------------------------------------*/
+
+
+/*Cadastrar contrato*/
+
+#cadastro-contrato {
+    position: relative;
+    border: none;
+}
+
+#dadosfin {
+    position: relative;
+    width: 95%;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#endereco-contrato {
+    position: relative;
+    width: 95%;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#tab16 {
+    width: 100%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 16px;
+    border: none;
+}
+
+#tab16 td {
+    width: 100%;
+    height: 20px;
+    text-align: left;
+    padding-left: 0px;
+}
+
+#tab17 {
+    width: 100%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 16px;
+    border: none;
+}
+
+#tab17 td {
+    width: 100%;
+    height: 20px;
+    text-align: left;
+}
+
+#btn9 {
+    font-family: Arial;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+    padding: 8px;
+    float: left;
+    margin: 0px;
+    margin-left: 0px;
+    color: #ffffff;
+    background: #696969;
 }
 
 
-/* Tela Parceiro */
-.scroll-parceiro{
+/*Telas de Consulta/Editar*/
+
+#dadosfin2 {
+    position: relative;
+    width: 95%;
+    border: 1px solid #696969;
+    border-radius: 20px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#end2 {
+    position: relative;
+    margin-top: 0pxpx;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+}
+
+#cont1 {
+    position: relative;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -40px;
+}
+
+#btn10 {
+    font-family: Arial;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+    padding: 8px;
+    float: left;
+    margin: 0px;
+    margin-left: 20px;
+    color: #ffffff;
+    background: #696969;
+}
+
+#btn11 {
+    font-family: Arial;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+    padding: 8px;
+    float: left;
+    margin: 0px;
+    margin-left: 0px;
+    color: #ffffff;
+    background: #696969;
+}
+
+#btn11 a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#btn12 {
+    font-family: Arial;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 15px;
+    position: relative;
+    padding: 8px;
+    float: left;
+    margin: 0px;
+    margin-left: 20px;
+    color: #ffffff;
+    background: #696969;
+}
+
+#tab18 {
+    width: 95%;
+    table-layout: fixed;
+    font-family: Arial, monospace;
+    font-size: 16px;
+    border: none;
+    margin-top: 0px;
+}
+
+#tab18 td {
+    width: 100%;
+    height: 10px;
+    text-align: left;
+    padding: 4px;
+    padding-left: 30px;
+}
+
+.scroll-Cprojeto {
     overflow: scroll;
     overflow: auto;
-    border: solid 1px #050000;
-    border-collapse: collapse;
-    margin: 60px;
-    margin-left: 100px;
-    width: 250px;
-    height: 450px;
+    border: solid 1px #696969;
+    width: 90%;
+    height: 100px;
+    margin: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.scroll-parceiro table {
+#tab19 {
     width: 100%;
     table-layout: fixed;
     text-align: center;
     border-collapse: collapse;
+    font-family: Arial, monospace;
+    font-size: 16px;
 }
 
-.scroll-parceiro table tr th {
+#tab19 tr th {
+    text-transform: uppercase;
     padding: .5em;
     margin: 0;
     text-align: center;
+    font-weight: bold;
 }
 
-.scroll-parceiro table td {
+#tab19 td {
     padding: .8em;
 }
 
-.parceiro input {
-    font-style: italic;
+.lancamentos {
+    font-family: Arial, monospace;
     font-size: 16px;
-    background-color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 20px;
-    float: left;
-    margin-left: 700px;
-    margin-top: -400px;
-    padding: 5px;
-    padding-right: 100px;
-    cursor: pointer;
+    text-transform: uppercase;
+    margin: 30px;
+    margin-left: 200px;
 }
 
-.btn {
+#btn13 {
     font-family: Arial;
     font-size: 16px;
-    text-decoration: none;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 400px;
-    font-weight: bold;
     cursor: pointer;
     border-radius: 15px;
-    position: absolute;
-    padding: 15px;
+    position: relative;
+    padding: 8px;
     float: left;
-    margin-left: 730PX;
-    margin-top: -300px;
+    margin: 0px;
+    margin-left: 40px;
     color: #ffffff;
     background: #696969;
-}
-
-.btn :hover {
-    color: #050000;
-    background-color: rgb(255, 255, 255);
 }

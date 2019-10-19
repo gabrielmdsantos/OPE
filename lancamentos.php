@@ -66,18 +66,18 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style1.css">
+    <link rel="stylesheet" type="text/css" href="style/style3.css">
 </head>
 <!--Menu-->
 <body>
 <?php include_once("header.php"); ?>
         <!-- Conteúdo -->
-        <div style="height:180px">
-            <fieldset id="dadosFin" style="height:350px;  float:left; margin-top: 10px; margin-left:auto; margin-right: auto;  width:98%; border-radius:20px 20px 20px 20px ">
+            <fieldset id="dadosFin" style="float:left; margin: 10px; margin-left:3%; margin-right: auto;  width:90%; height:350px; border-radius:20px 20px 20px 20px ">
                 <legend>Cliente</legend>
                 <form action="" method = "POST">
-                    <table style="HEIGHT:100%; WIDTH:100%;">
-                        <tr align="left " bottom="middle ">
+                    <table id="tab18">
+                        <tr>
                             <td> CC <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['cc']))?($func['cc']):(''), 2)?>" name='id_cont'> </td>
                             <input type="hidden" value="<?php echo($func['id_cli']) ?>" name="id_cli">
                             <td> Cliente  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['nome_cli']))?($func['nome_cli']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "></td>
@@ -94,57 +94,57 @@
                             <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
                             <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT" id="cValorT" value="<?php echo($valorparcela); ?>" min="0 " max="99999 " placeholder="R$1.000 " /></td>
                             <td><label for="cParcelas ">Quantidade de Parcelas </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcela']))?($func['parcela']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /> </td>
-                        </tr>
-                        <tr>
-
                             <td>Data do Vencimento:<input type="text" value="<?=$objFc->tratarCaracter((isset($func['vencimento']))?($func['vencimento']):(''), 2)?>"  /></td>
                         </tr>
                     </table>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <td> Valor </td>
-                                <td> Data </td>
-                                <td> Descrição  </td>
-                                <td> Excluir  </td>
-                            </tr>
-                        </thead>
-                        <?php 
-                            $rec = $objct->querySelectRec($_GET['func']);
-                            $des = $objct->querySelectDesp($_GET['func']);
-                            array_map (function($rec,$des){ 
-                                require_once 'classes/funcoes.class.php';
-                                require_once 'classes/receita.class.php';
-                                require_once 'classes/contrato.class.php';
-                                
-                                
-                                $objFc = new Funcoes();
-                                $objfn = new Receita();
-                                $objct = new Contrato();        
-                        ?> 
-                        <tbody>
-                            <?php if ($des['VALOR'] != ''){ ?>
+                    <div class="scroll-Cprojeto">
+                        
+                        <table id="tab19" border="1">
+                            <thead>
                                 <tr>
-                                    <td><?php echo ('-'.$objFc->tratarCaracter($des['VALOR'], 2));        ?></td>
-                                    <td><?php echo ($objFc->tratarCaracter($des['DATA'],1));    ?></td>
-                                    <td><?php echo ($objFc->tratarCaracter($des['descricao'],1));    ?></td>
-                                    <td> <div class="excluir"> <a href="?acao=deld&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$des['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
+                                    <th> Valor </th>
+                                    <th> Data </th>
+                                    <th> Descrição  </th>
+                                    <th> Excluir  </th>
                                 </tr>
-                            <?php
-                            } if ($rec['VALOR'] != ''){ ?>
-                                <tr>
-                                        <td><?php echo ('+'.$objFc->tratarCaracter($rec['VALOR'], 2));        ?></td>
-                                        <td><?php echo ($objFc->tratarCaracter($rec['DATA'],1));    ?></td>
-                                        <td><?php echo ($objFc->tratarCaracter($rec['descricao'],1));    ?></td>
-                                        <td> <div class="excluir"> <a href="?acao=delr&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$rec['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
-                                    </tr>
+                            </thead>
                             <?php 
-                            } 
-                            }, $rec,$des); ?>
-                        </tbody>
+                                $rec = $objct->querySelectRec($_GET['func']);
+                                $des = $objct->querySelectDesp($_GET['func']);
+                                array_map (function($rec,$des){ 
+                                    require_once 'classes/funcoes.class.php';
+                                    require_once 'classes/receita.class.php';
+                                    require_once 'classes/contrato.class.php';
+                                    
+                                    
+                                    $objFc = new Funcoes();
+                                    $objfn = new Receita();
+                                    $objct = new Contrato();        
+                            ?> 
+                            <tbody>
+                                <?php if ($des['VALOR'] != ''){ ?>
+                                    <tr>
+                                        <td><?php echo ('-'.$objFc->tratarCaracter($des['VALOR'], 2));        ?></td>
+                                        <td><?php echo ($objFc->tratarCaracter($des['DATA'],1));    ?></td>
+                                        <td><?php echo ($objFc->tratarCaracter($des['descricao'],1));    ?></td>
+                                        <td> <div class="excluir"> <a href="?acao=deld&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$des['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
+                                    </tr>
+                                <?php
+                                } if ($rec['VALOR'] != ''){ ?>
+                                    <tr>
+                                            <td><?php echo ('+'.$objFc->tratarCaracter($rec['VALOR'], 2));        ?></td>
+                                            <td><?php echo ($objFc->tratarCaracter($rec['DATA'],1));    ?></td>
+                                            <td><?php echo ($objFc->tratarCaracter($rec['descricao'],1));    ?></td>
+                                            <td> <div class="excluir"> <a href="?acao=delr&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$rec['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
+                                        </tr>
+                                <?php 
+                                } 
+                                }, $rec,$des); ?>
+                            </tbody>
 
-                    </table>
-                    <br><p>
+                        </table>
+                </div>
+
                     <?php
                         $contrato =  $func['valor'];
                         $receita = $recei['receita'];
@@ -161,26 +161,23 @@
                     Valor Restante a ser pago: </label> <input type="number" readonly="true" name="tValorT" value="<?php echo($final); ?>" id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
 
             </fieldset>
-            <div style="height:80px ">
-                <fieldset id="dadosFin " style="height:80px; float:left; margin-top: 10px; margin-left:auto; margin-right: auto; width:98%; border-radius:20px 20px 20px 20px ">
+            
+                <fieldset id="dadosFin " style="float:left; margin: 10px; margin-left:3%; margin-right: auto;  width:91%; height:100px; border-radius:20px 20px 20px 20px ">
                     <legend>Lançamentos</legend>
 
-                    <fieldset id="receitas"  name="receitas"  style="position: relative; height: 50px; float:left; width:100px; top:0px; border-radius:20px 20px 20px 20px">
-                                    <legend></legend>
+                    <fieldset id="receitas"  name="receitas"  style="position: relative; width: 10%; height: 50px; float:left; top:7px; border: #696969 1px solid; border-radius:20px font-family: Arial; font-size: 12px; text-transform: uppercase;">
+                                    <legend>Gastos</legend>
                                     <input type="radio" name="receitas" id="e" value="S" CHECKED /><label for="e" > Receita </label><br>
                                     <input type="radio" name="receitas" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f"> Despesa </label>
-                    </fieldset><p>
+                    </fieldset>
+                            <div class="lancamentos">
                                 Valor: <input type="text " name="valoor" size="20 " maxlength="20 " placeholder="Estacionamento, Cópias " /></td>
                                 Data: <input type="date" name="data" >
-                                Descrição:<textarea id="dTrabalho " rows="0 " cols="20 " maxlength="20 " name="descricao"></textarea>
-
-                            </tr>
                         
-                   
+                            </div> 
                 </fieldset>
-                <br><p><br>
-            </div>  
-             <p><input type="submit" name="insert" value="Inserir">        
+
+             <p><input type="submit" name="insert" value="Inserir"id="btn13"/>        
             </form>
 </body>
 

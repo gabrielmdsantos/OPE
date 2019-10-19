@@ -43,7 +43,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title> Teste </title>
-    <link rel="stylesheet" type="text/css" href="style/style2.css">
+    <link rel="stylesheet" type="text/css" href="style/style3.css">
 </head>
 <script type="text/javascript">    
     function calcular(){
@@ -59,8 +59,7 @@
 <body>
     
     <!--Conteúdo-->
-    <div style="height:180px">
-        <fieldset id="dadosFin" style="height:100%; float:left; margin-top: 10px; width:97%; border-radius:20px 20px 20px 20px">
+        <fieldset id="dadosfin">
             <legend>Cliente</legend>
             <form method = "POST">
                 <table style="HEIGHT:100%; WIDTH:100%;">
@@ -96,8 +95,7 @@
                 </table>
             
         </fieldset>
-        <div style="height:120px ">
-            <fieldset id="dadosFin " style="height:100%; float:left; margin-top: 10px; width:97%; border-radius:20px 20px 20px 20px">
+        <fieldset id="dadosfin2">
                 <legend>Endereço do Projeto</legend>
                 
                     <table style="HEIGHT:100px;; WIDTH:100%;">
@@ -115,9 +113,8 @@
                             </td>
                         </tr>
                     </table>
-            </fieldset>
-        </div>
-        <input type="submit" name="alterar" value="Alterar" >
+        </fieldset>
+        <input type="submit" name="alterar" value="Alterar" id="btn12">
         </form>
 </body>
 

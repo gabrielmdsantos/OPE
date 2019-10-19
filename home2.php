@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <title> Teste</title>
-    <link rel="stylesheet" type="text/css" href="style/style5.css" />
+    <link rel="stylesheet" type="text/css" href="style/style4.css" />
 </head>
 
 <!--Menu-->
@@ -20,8 +20,9 @@
     <!--Tela Principal-->
     <div class="tela-menu">
         <fieldset>
-            <p>Bem - Vindo(a)</p>
-            <p><b>W.A SYSTEM</b></p>
+        <p>Bem - Vindo(a)</p>
+        <p><b>W.A SYSTEM</b></p>
+        <p><img src="wsystem.png" id="img1"/></p>
         </fieldset>
     </div>
 
