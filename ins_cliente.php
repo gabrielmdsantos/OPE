@@ -56,10 +56,9 @@ var data2 = {
 
 <head>
     <meta charset="UTF-8" />
-    <title> Cadastrar Cliente</title>
+    
     <link rel="stylesheet" type="text/css" href="Style/style3.css">
     <script src="script/jquery-2.1.4.min.js"></script>
-   <!-- <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>   -->
 </head>
 
 <!--Menu-->
@@ -87,10 +86,10 @@ var data2 = {
                         <table id="tab13">
                             <tr>
                                 <td>
-                                    CEP:        <input type="number" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
+                                    CEP:        <input type="text" name="cep"          id="cCP" size="8" maxlength="8" placeholder="00000-000" />&nbsp;&nbsp;
                                 </td>
                                 <td>
-                                    Logradouro: <input type="text" name="logradouro"     id="cEnd" size="20" maxlength="30" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
+                                    Logradouro: <input type="text" name="logradouro"     id="cEnd" size="50" maxlength="50" placeholder="R:, Av:, Est:..." />&nbsp;&nbsp;
                                 </td>
                                 <td>
                                     Número:     <input type="number" name="numero"      min="0" max="99999" placeholder="" />&nbsp;&nbsp;
@@ -105,8 +104,6 @@ var data2 = {
                                 </td>
                                 <td>
                                     Estado:
-                                <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
-                                    -->
                                     <select name="estado" value="" id="cUF">
                                                 <option selected>UF</option>
                                                 <option value = "AC">Acre</option>
@@ -167,7 +164,6 @@ var data2 = {
                         </td>
                         <td>
                         Celular: <input type="number" name="tcel" id="cCel" size="11" maxlength="11" placeholder="(11)99999-9999" />
-                      <!--  Contato: <input type="contato" name="tContato" id="cContato" size="10" maxlength="10" placeholder="joão@terra.com.br" /> -->
                         </td>
                         <td>
                         E-mail:  <input type="email" name="email" id="cMail" size="30" maxlength="30" placeholder="joão@terra.com.br" />

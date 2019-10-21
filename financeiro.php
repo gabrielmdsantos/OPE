@@ -12,7 +12,6 @@ $objfi = new Financeiro();
 
 <head>
     <meta charset="UTF-8" />
-    <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="Style/style1.css">
 </head>
 

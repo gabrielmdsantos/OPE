@@ -13,7 +13,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title> Consulta Cliente</title>
     <link rel="stylesheet" type="text/css" href="Style/style1.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcli.js"></script>

@@ -22,17 +22,13 @@
                         &nbsp; Nome: <input type="text"  name="nome" value="<?=$objFc->tratarCaracter((isset($func['nome']))?($func['nome']):(''), 2)?>" id="cNome" size="30" maxlength="30" placeholder="Nome Completo" />    
                     </td>
                     <td>
-                        &nbsp; RG:   <input type="number"  name="rg"  value="" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
+                        &nbsp; RG:   <input type="text"  name="rg"  value="" id="cRG" size="9" maxlength="9" placeholder="00.000.000-0" />
                     </td>
                     <td>
-                        &nbsp; CPF:  <input type="number"  name="cpf" value="" id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" />
+                        &nbsp; CPF:  <input type="text"  name="cpf" value="" id="cCC" size="11" maxlength="11" placeholder="000.000.000-00" />
                     </td>
                 </tr>
-                        <fieldset id="sexo1" name="sexo" >
-                            <legend>Sexo</legend>
-                            <input type="radio" value="M" name="sexo" id="cMasc" CHECKED/><label for="cMasc">Masculino</label>
-                            <input type="radio" value="F" name="sexo" id="cFem" /><label for="cFem">Feminino</label>
-                        </fieldset>
+                       
                 
                 
         <!--  

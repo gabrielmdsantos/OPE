@@ -10,7 +10,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style1.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>

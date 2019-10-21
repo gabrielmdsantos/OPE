@@ -8,6 +8,7 @@ protegePagina();
 
 <head>
     <link rel="stylesheet" type="text/css" href="style/style4.css">  
+    <title> W.A SYSTEM </title>
 </head>
 <header>
 <div id="menu">

@@ -29,7 +29,6 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style3.css">
 </head>
 <script type="text/javascript">    
@@ -46,7 +45,7 @@
 <body>
     <?php include_once ("header.php"); ?>
     <!--Conteúdo-->
-    <fieldset id="cadastro-contrato">
+    <fieldset id="cadastro-contrato"  style="width:98%">
     <form method = "POST">
         <fieldset id="dadosfin" >
             <legend>Cliente</legend>
@@ -92,7 +91,7 @@
                                 </select></td>
                     
                     <td><label for="cValorP">Valor da Parcela: </label> <div id="final"> <input type="number"  value="" name="final " id="final " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                    <td><label for="cdate "></label>Dia de Vencimento: </label><input type="date" name="vencimento" name="cdate" /></td>
+                    <td><label for="cdate "></label>Dia de Vencimento: </label><input type="text" name="vencimento" name="cdate" /></td>
                 </tr>
             </table>    
         </fieldset>
@@ -119,8 +118,6 @@
                 </td>
                 <td> 
                     Estado:
-                       <!-- <input type="text"  name="estado"        size="30" placeholder="Estado" />
-                            -->
                             <select name="estado" value="" id="cUF">
                                         <option selected>UF</option>
                                         <option value = "AC">Acre</option>

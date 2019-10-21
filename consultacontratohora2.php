@@ -12,7 +12,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style4.css">
     <script src="Script/jquery-2.1.4.min.js"></script>
     <script src="Script/javascriptcontrato.js"></script>
@@ -22,11 +21,11 @@
         if($objhr->queryInsert($_POST) == 'ok' ){
             echo '<script type="text/javascript">alert("Cadastrado com sucesso");</script>';
             echo "<script>window.location = 'consultacontratohora2.php';</script>";
-            //  header("location: consultacontratohora2.php");
-        }
-    }else{
-        echo '<script type="text/javascript"> Alert("Erro ao inserir")</script>';
+
+        }else{
+            echo '<script type="text/javascript"> alert("Erro ao inserir")</script>';
     }
+}
 
 ?>
 <!--Menu-->
@@ -70,7 +69,7 @@
                     <button class="fechar"><a href="">x  </a></button>
                     <h3 class="subtitulo">Registro de Horas Trabalhada</h3>
                    
-                    <form action="consultacontratohora.php" method="post" >
+                    <form action="consultacontratohora2.php" method="post" >
                         <p>Projeto: <select name="id_cont">
                                     <?php foreach($objct->querySelectcli() as $rst){ ?>
                                     <option value="<?php echo ($objFc->tratarCaracter($rst['CC'], 2)) ?>">

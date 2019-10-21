@@ -46,6 +46,7 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="Style/style3.css">
+    <link rel="stylesheet" type="text/css" href="Style/style1.css">
 
     <script src="script/jquery-2.1.4.min.js"></script>
    <!-- <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>   -->
@@ -60,9 +61,9 @@
 
         <form action="" method="post">
             <!--Dados do cliente-->
-            <fieldset id="cadastro">
+            <fieldset id="cadastro" style="width:98%">
                 <legend>Cadastro</legend>
-                    <fieldset id="pf-pj"  name="pessoa" style="position: relative; height: 55px; float: left; width: 100px; border-radius:20px 20px 20px 20px">
+                <fieldset id="pf-pj"  name="pessoa" >
                                     <legend>Pessoa</legend>
                                     <input type="radio" name="pessoa" id="cPF" value="Fisica" CHECKED/><label for="cPF">Física</label><br>
                                     <input type="radio" name="pessoa" id="cPJ" value="Juridica" /><label for="cPJ">Jurídica</label>
@@ -73,12 +74,6 @@
                     &nbsp; CPF/CNPJ:         <input type="number"  name="cpf" value="<?=$objFc->tratarCaracter((isset($func['cpf_cli']))?($func['cpf_cli']):(''), 1)?>" id="cCC" size="14" maxlength="14" placeholder="000.000.000-00" />
                     &nbsp; RG/INSCRICAO ESTADUAL:          <input type="number"  name="rg"  value="<?=$objFc->tratarCaracter((isset($func['rg_cli']))?($func['rg_cli']):(''), 1)?>" id="cRG" size="10" maxlength="10" placeholder="00.000.000-0" />
                     
-                    <fieldset id="sexo1" name="sexo" style="position:relative; height:55px;  float:right; width:180px; border-radius:20px 20px 20px 20px">
-                                    <legend>Sexo</legend>
-                                    <input type="radio" value="M" name="sexo" id="cMasc" CHECKED/><label for="cMasc">Masculino</label>
-                                    <input type="radio" value="F" name="sexo" id="cFem" /><label for="cFem">Feminino</label>
-                    
-                    </fieldset>
                     <p>    
                     Razão Social<input type="text"  name="razao"          value="<?=$objFc->tratarCaracter((isset($func['razao_cli']))?($func['razao_cli']):(''), 1)?>" />
                     Representante<input type="text"  name="representante"  value="<?=$objFc->tratarCaracter((isset($func['repre_cli']))?($func['repre_cli']):(''), 2)?>" />
@@ -95,7 +90,7 @@
                             <textarea  id="msg" name="observacao" value=""> <?=$objFc->tratarCaracter((isset($func['obs_cli']))?($func['obs_cli']):(''), 1)?> </textarea>    
 
 
-                </fieldset>
+            </fieldset>
             <br>  
             <!--Dados do endereço-->
                 <?php 

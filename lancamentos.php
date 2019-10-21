@@ -78,23 +78,23 @@
                 <form action="" method = "POST">
                     <table id="tab18">
                         <tr>
-                            <td> CC <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['cc']))?($func['cc']):(''), 2)?>" name='id_cont'> </td>
+                            <td> CC <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['cc']))?($func['cc']):(''), 2)?>" name='id_cont' readonly="true"> </td>
                             <input type="hidden" value="<?php echo($func['id_cli']) ?>" name="id_cli">
-                            <td> Cliente  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['nome_cli']))?($func['nome_cli']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "></td>
-                            <td> Parceiro <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['parceiro']))?($func['parceiro']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "></td>
-                            <td> Servico  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['serico']))?($func['serico']):(''), 2)?>" id="search0 " maxlength="5 " placeholder="CLIENTE "> </td>
-                            <td><label for="cRG ">RG: </label><input type="number" value="<?=$objFc->tratarCaracter((isset($func['rg_cli']))?($func['rg_cli']):(''), 2)?>"name="tRG " id="cRG " size="10 " maxlength="10 " placeholder="00.000.000-0 " /></td>
-                            <td><label for="cCC ">CPF/ CNPJ: </label><input type="number"  value="<?=$objFc->tratarCaracter((isset($func['cpf_cli']))?($func['cpf_cli']):(''), 2)?>" name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00 " /></td>
+                            <td> Cliente  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['nome_cli']))?($func['nome_cli']):(''), 2)?>" id="search0 "  placeholder="CLIENTE" readonly="true"></td>
+                            <td> Parceiro <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['parceiro']))?($func['parceiro']):(''), 2)?>" id="search0 " placeholder="Parceiro" readonly="true"></td>
+                            <td> Servico  <input type="text"  value="<?=$objFc->tratarCaracter((isset($func['serico']))?($func['serico']):(''), 2)?>" id="search0 "  placeholder="Servico" readonly="true"> </td>
+                            <td><label for="cRG ">RG: </label><input type="number" value="<?=$objFc->tratarCaracter((isset($func['rg_cli']))?($func['rg_cli']):(''), 2)?>"name="tRG " id="cRG " size="10 " maxlength="10 " placeholder="00.000.000-0" readonly="true" /></td>
+                            <td><label for="cCC ">CPF/ CNPJ: </label><input type="number"  value="<?=$objFc->tratarCaracter((isset($func['cpf_cli']))?($func['cpf_cli']):(''), 2)?>" name="tCC " id="cCC " size="14 " maxlength="14 " placeholder="000.000.000-00" readonly="true" /></td>
                         </tr>
                         <tr>
                         <?php 
                         $valorparcela = $func['valor'] / $func['parcela']; ?>
-                            <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0" cols="20" maxlength="20"> <?=$objFc->tratarCaracter((isset($func['detalhes']))?($func['detalhes']):(''), 2)?>  </textarea></td>
-                            <td><label for="cPrazo ">Prazo:</label><input type="text" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" name="prazo"></td>
-                            <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                            <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT" id="cValorT" value="<?php echo($valorparcela); ?>" min="0 " max="99999 " placeholder="R$1.000 " /></td>
-                            <td><label for="cParcelas ">Quantidade de Parcelas </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcela']))?($func['parcela']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000 " /> </td>
-                            <td>Data do Vencimento:<input type="text" value="<?=$objFc->tratarCaracter((isset($func['vencimento']))?($func['vencimento']):(''), 2)?>"  /></td>
+                            <td><label for="dTrabalho ">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0" cols="20" maxlength="20" readonly="true"> <?=$objFc->tratarCaracter((isset($func['detalhes']))?($func['detalhes']):(''), 2)?>  </textarea></td>
+                            <td><label for="cPrazo ">Prazo:</label><input type="text" value="<?=$objFc->tratarCaracter((isset($func['prazo']))?($func['prazo']):(''), 2)?>" name="prazo" readonly="true"></td>
+                            <td><label for="cValorT ">Valor do Contrato: </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['valor']))?($func['valor']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000"  readonly="true"/></td>
+                            <td><label for="cValorP ">Valor da Parcela: </label><input type="number" name="tValorT" id="cValorT" value="<?php echo($valorparcela); ?>" min="0 " max="99999 " placeholder="R$1.000" readonly="true" /></td>
+                            <td><label for="cParcelas ">Quantidade de Parcelas </label> <input type="number" value="<?=$objFc->tratarCaracter((isset($func['parcela']))?($func['parcela']):(''), 2)?>"  name="tValorT " id="cValorT " min="0 " max="99999 " placeholder="R$1.000" readonly="true" /> </td>
+                            <td>Data do Vencimento:<input type="text" value="<?=$objFc->tratarCaracter((isset($func['vencimento']))?($func['vencimento']):(''), 2)?>" readonly="true" /></td>
                         </tr>
                     </table>
                     <div class="scroll-Cprojeto">
@@ -171,8 +171,10 @@
                                     <input type="radio" name="receitas" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f"> Despesa </label>
                     </fieldset>
                             <div class="lancamentos">
-                                Valor: <input type="text " name="valoor" size="20 " maxlength="20 " placeholder="Estacionamento, Cópias " /></td>
+                                Valor: <input type="text " name="valoor" size="20 " maxlength="20 " placeholder="..R$ " /></td>
                                 Data: <input type="date" name="data" >
+                                Descrição:<textarea id="dTrabalho " rows="0 " cols="20 " maxlength="20 " name="descricao"></textarea>
+
                         
                             </div> 
                 </fieldset>

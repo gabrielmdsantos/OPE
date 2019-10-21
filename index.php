@@ -3,7 +3,7 @@
 	<head>
 		<link rel="stylesheet" href="login_estilo.css">
 		<meta charset="utf-8">
-		<title>Login</title>
+		<title> W.A SYSTEM </title>
 	</head>
 	<body>
 		<div class="login">

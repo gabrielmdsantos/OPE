@@ -109,9 +109,9 @@ class Cliente{
             
             try{
                 $this->id = $dado;
-                $cst = $this->con->conect()->prepare("SELECT cliente.id AS id_cli, cliente.pessoa as pessoa_cli , cliente.nome AS nome_cli ,  cliente.cpf as  cpf_cli, cliente.rg as rg_cli , cliente.razao as razao_cli,  cliente.representante as repre_cli , cliente.sexo as sex_cli , cliente.observacao as obs_cli, cliente.id_parc as parc_cli, parceiro.nome as nome_parceiro, 
+                $cst = $this->con->conect()->prepare("SELECT cliente.id AS id_cli, cliente.pessoa as pessoa_cli , cliente.nome AS nome_cli ,  cliente.cpf as  cpf_cli, cliente.rg as rg_cli , cliente.razao as razao_cli,  cliente.representante as repre_cli , cliente.observacao as obs_cli, cliente.id_parc as parc_cli, parceiro.nome as nome_parceiro, 
                 endereco.cep as cep, endereco.logradouro as endereco, endereco.Numero as num, endereco.Complemento as comple, endereco.municipio as municipio, endereco.estado as estado,
-                telefone.telefone as tel, email.email as email  from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc INNER JOIN endereco ON endereco.id_cli = cliente.id INNER JOIN telefone ON cliente.id = telefone.id_clie INNER JOIN email ON cliente.id = email.id_cli WHERE cliente.id = 8");
+                telefone.telefone as tel, email.email as email  from cliente INNER JOIN parceiro ON parceiro.id_parc = cliente.id_parc INNER JOIN endereco ON endereco.id_cli = cliente.id INNER JOIN telefone ON cliente.id = telefone.id_clie INNER JOIN email ON cliente.id = email.id_cli WHERE cliente.id = :id");
                 $cst->bindParam(":id", $this->id, PDO::PARAM_INT);
                 $cst->execute();
                 return $cst->fetch();
@@ -146,7 +146,7 @@ class Cliente{
         try{     
             $this->pessoa = $dados['pessoa'];
             $this->nome = $this->objfunc->tratarCaracter($dados['nome'], 1);
-            $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 1);
+          //  $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 1);
             $this->observacao = $this->objfunc->tratarCaracter($dados['observacao'], 1);
             $this->id_parc = $dados['id_parc'];
             $this->cpf = $dados['cpf'];
@@ -156,7 +156,7 @@ class Cliente{
             $this->representante = $this->objfunc->tratarCaracter($dados['representante'], 1);
          //   $this->inscricao = $dados['inscricao'];
            //inserindo cliente 
-            $cst = $this->con->conect()->prepare("INSERT INTO `cliente`(`pessoa`, `nome`, `cpf`, `rg`, `razao`,  `representante`, `sexo`, `observacao`, `id_parc`) VALUES (:pessoa,:nome,:cpf,:rg,:razao,:representante,:sexo,:observacao,:id_parc);");
+            $cst = $this->con->conect()->prepare("INSERT INTO `cliente`(`pessoa`, `nome`, `cpf`, `rg`, `razao`,  `representante`,  `observacao`, `id_parc`) VALUES (:pessoa,:nome,:cpf,:rg,:razao,:representante,:observacao,:id_parc);");
             $cst -> bindParam(":pessoa", $this->pessoa, PDO::PARAM_STR);
             $cst -> bindParam(":nome", $this->nome, PDO::PARAM_STR);
             $cst -> bindParam(":cpf",$this->cpf, PDO::PARAM_INT);
@@ -165,7 +165,7 @@ class Cliente{
             $cst -> bindParam(":razao", $this   ->razao, PDO::PARAM_STR);
         //    $cst -> bindParam(":inscricao",$this->inscricao, PDO::PARAM_INT);
             $cst -> bindParam(":representante",$this->representante, PDO::PARAM_STR);
-            $cst -> bindParam(":sexo",$this->sexo, PDO::PARAM_STR);
+      //      $cst -> bindParam(":sexo",$this->sexo, PDO::PARAM_STR);
             $cst -> bindParam(":observacao",$this->observacao, PDO::PARAM_STR);
             $cst -> bindParam(":id_parc",$this->id_parc, PDO::PARAM_INT);
             
@@ -238,7 +238,7 @@ class Cliente{
             $this->nome = $this->objfunc->tratarCaracter($dados['nome'], 1);
             $this->cpf = $this->objfunc->tratarCaracter($dados['cpf'], 1);
             $this->rg = $this->objfunc->tratarCaracter($dados['rg'], 1);
-            $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 1);
+        //    $this->sexo = $this->objfunc->tratarCaracter($dados['sexo'], 1);
             $this->razao = $this->objfunc->tratarCaracter($dados['razao'], 1);
             $this->representante = $this->objfunc->tratarCaracter($dados['representante'], 1);
          //   $this->inscricao = $this->objfunc->tratarCaracter($dados['inscricao'], 1);
@@ -246,14 +246,14 @@ class Cliente{
             $this->id_parc = $this->objfunc->tratarCaracter($dados['id_parc'], 1);
             $this->observacao = $this->objfunc->tratarCaracter($dados['observacao'], 1);
 
-            $cst = $this->con->conect()->prepare("UPDATE `cliente` SET `pessoa`=:pessoa,`nome`=:nome,`cpf`=:cpf,`rg`=:rg,`razao`=:razao,`representante`=:representante,`sexo`=:sexo,`observacao`=:observacao,`id_parc`=:id_parc WHERE  `id` = :id_cli");
+            $cst = $this->con->conect()->prepare("UPDATE `cliente` SET `pessoa`=:pessoa,`nome`=:nome,`cpf`=:cpf,`rg`=:rg,`razao`=:razao,`representante`=:representante,`observacao`=:observacao,`id_parc`=:id_parc WHERE  `id` = :id_cli");
             
             $cst->bindParam(":id_cli", $this->id_cli, PDO::PARAM_INT);
             $cst->bindParam(":pessoa", $this->pessoa, PDO::PARAM_STR);
             $cst->bindParam(":nome", $this->nome, PDO::PARAM_STR);
             $cst->bindParam(":cpf", $this->cpf, PDO::PARAM_INT);
             $cst->bindParam(":rg", $this->rg, PDO::PARAM_INT);
-            $cst->bindParam(":sexo", $this->sexo, PDO::PARAM_STR);
+        //    $cst->bindParam(":sexo", $this->sexo, PDO::PARAM_STR);
             $cst->bindParam(":razao", $this->razao, PDO::PARAM_INT);
             $cst->bindParam(":representante", $this->representante, PDO::PARAM_STR);
         //    $cst->bindParam(":inscricao", $this->inscricao, PDO::PARAM_INT);

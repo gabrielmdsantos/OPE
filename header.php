@@ -11,6 +11,7 @@ if($_SESSION['ID_FUNCIONARIO'] != 1){
 
 <head>
     <link rel="stylesheet" type="text/css" href="style/style1.css">  
+    <title> W.A SYSTEM </title>
 </head>
 <header>
 <div class="menu">

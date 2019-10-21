@@ -41,7 +41,6 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title> Teste</title>
     <link rel="stylesheet" type="text/css" href="style/style1.css">
 </head>
 <!--Menu-->
@@ -57,7 +56,7 @@
                                     <input type="radio" name="receitas" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f"> Despesa </label>
                     </fieldset>
                     <fieldset id="despesas">
-                                Valor: <input type="text " name="valoor" id="valor" size="20 " maxlength="20 " placeholder="Estacionamento, Cópias " />
+                                Valor: <input type="text " name="valoor" id="valor" size="20 " maxlength="20 " placeholder="... R$ " />
                                 Data: <input type="date" name="data" id="data">
                                 Descrição:<textarea id="dTrabalho " rows="0" cols="20 " maxlength="20 " name="descricao"></textarea>
                                 <input type="submit" name="insert" value="Inserir" id="btn7">        

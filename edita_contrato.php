@@ -42,7 +42,6 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title> Teste </title>
     <link rel="stylesheet" type="text/css" href="style/style3.css">
 </head>
 <script type="text/javascript">    

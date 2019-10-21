@@ -60,7 +60,6 @@ class Hora{
             if ($cst->execute()){
                 return 'ok';
             }else{
-                echo '<script type="text/javascript"> alert("Erro ao inserir");</script>';
                 return 'erro';
             }
         }catch(PDOException $ex){
