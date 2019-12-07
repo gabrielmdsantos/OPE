@@ -52,14 +52,14 @@ $objfi = new Financeiro();
                     if ($des['VALOR'] != ''){
                     echo('
                     <tr>
-                        <td>'); echo ($objFc->tratarCaracter($des['DATA'], 2)); echo (' </td>
+                        <td>'); echo ($objFc->dataAtual($des['DATA'], 3)); echo (' </td>
                         <td>'); echo ($objFc->tratarCaracter($des['descricao'],1)); echo ('</td>
                         <td>'); echo ('-'.$objFc->tratarCaracter($des['VALOR'],1)); echo('</td>
                     </tr>
                     <tr>');}
                     if($rec['VALOR'] != ''){ 
                     echo('
-                        <td>'); echo ($objFc->tratarCaracter($rec['DATA'], 2)); echo (' </td>
+                        <td>'); echo ($objFc->dataAtual($rec['DATA'], 3)); echo (' </td>
                         <td>'); echo ($objFc->tratarCaracter($rec['descricao'],1)); echo ('</td>
                         <td>'); echo ('+'.$objFc->tratarCaracter($rec['VALOR'],1)); echo('</td>
                     </tr>

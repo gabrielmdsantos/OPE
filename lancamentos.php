@@ -125,7 +125,7 @@
                                 <?php if ($des['VALOR'] != ''){ ?>
                                     <tr>
                                         <td><?php echo ('-'.$objFc->tratarCaracter($des['VALOR'], 2));        ?></td>
-                                        <td><?php echo ($objFc->tratarCaracter($des['DATA'],1));    ?></td>
+                                        <td><?php echo ($objFc->dataAtual($des['DATA'],3));    ?></td>
                                         <td><?php echo ($objFc->tratarCaracter($des['descricao'],1));    ?></td>
                                         <td> <div class="excluir"> <a href="?acao=deld&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$des['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
                                     </tr>
@@ -133,7 +133,7 @@
                                 } if ($rec['VALOR'] != ''){ ?>
                                     <tr>
                                             <td><?php echo ('+'.$objFc->tratarCaracter($rec['VALOR'], 2));        ?></td>
-                                            <td><?php echo ($objFc->tratarCaracter($rec['DATA'],1));    ?></td>
+                                            <td><?php echo ($objFc->dataAtual($rec['DATA'],3));    ?></td>
                                             <td><?php echo ($objFc->tratarCaracter($rec['descricao'],1));    ?></td>
                                             <td> <div class="excluir"> <a href="?acao=delr&func=<?=$objFc->tratarCaracter($_GET['func'], 1)?>&delet=<?=$rec['ID']?>" /> <img src="img/ico-excluir.png" width="16" height="16" alt="Excluir"></a></div> </td>
                                         </tr>

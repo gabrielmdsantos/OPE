@@ -58,7 +58,7 @@
                     <fieldset id="despesas">
                                 Valor: <input type="text " name="valoor" id="valor" size="20 " maxlength="20 " placeholder="... R$ " />
                                 Data: <input type="date" name="data" id="data">
-                                Descrição:<textarea id="dTrabalho " rows="0" cols="20 " maxlength="20 " name="descricao"></textarea>
+                                Descrição:<textarea id="dTrabalho " rows="0" cols="20 " maxlength="60" name="descricao"></textarea>
                                 <input type="submit" name="insert" value="Inserir" id="btn7">        
                     </fieldset>
             </form>

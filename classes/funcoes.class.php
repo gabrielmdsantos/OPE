@@ -11,8 +11,8 @@ class funcoes{
     }
 
 
-    public function dataAtual($tipo){
-        switch($tipo){
+    public function dataAtual($vlr, $tipo){
+        switch( $tipo){
             case 1: $rst = date("Y-m-d");break;
             case 2: $rst = date("Y-m-d H:i:s");break;
             case 3: $rst = date("d-m-Y");break;

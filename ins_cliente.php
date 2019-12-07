@@ -143,7 +143,7 @@ var data2 = {
                             </tr>
                         </table>
                         
-                        <fieldset id="cobranca"  name="endereco">
+                        <fieldset id="cobranca"  name="endereco" style="margin-top: -100px">
                                         <legend>Cobrança</legend>
                                         <input type="radio" name="endereco" id="e" value="S" CHECKED /><label for="e" >Sim</label><br>
                                         <input type="radio" name="endereco" id="f" value="N"  <?php $enderecobb='' ?>  /><label for="f">Não</label>

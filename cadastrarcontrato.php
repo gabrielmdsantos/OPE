@@ -72,7 +72,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td><label for="dTrabalho">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="20 "></textarea></td>
+                    <td><label for="dTrabalho">Detalhes do Trabalho:</label><textarea id="dTrabalho" name="detalhes" rows="0 " cols="20 " maxlength="200 "></textarea></td>
                     <td><label for="cPrazo">Prazo:</label><input type="date" name="prazo"></td>
                     <td><label for="cValorT">Valor do Contrato: </label> <input type="number" value="" name="valor" onBlur="calcular()" id="valor"  placeholder="R$1.000 " /></td>
                     </tr>
